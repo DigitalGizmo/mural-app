@@ -1,17 +1,73 @@
+// import { Link, Outlet } from 'react-router-dom';
+import {
+  useQuery,
+  gql,
+} from "@apollo/client"; 
 import Panel from './components/Panel';
-import { Link, Outlet } from 'react-router-dom';
 import './index.css';
 
 function App() {
+
+  const GET_PANELS = gql`
+    query {
+      allPanels {
+        edges {
+          node {
+            slug,
+            panelTitle,
+          }
+        }
+      }
+    }
+  `;
+
+  const { loading, error, data } = useQuery(
+    GET_PANELS
+  );
+
+  // const panels = data.allPanels.edges.map((panel, index) => {
+  //   return (
+  //     <li
+  //       // to={`/panels/${panel.node.slug}`}
+  //       key={panel.node.slug}
+  //     >
+  //       {panel.node.panelTitle}
+  //     </li>
+  //   )
+  // });
+  
+  const panels = 
+    data.allPanels.edges.map((panel, index) => {
+    return (
+      <div
+        key={panel.node.slug}
+
+      >
+        <p>{panel.node.panelTitle}</p>
+      </div>
+    )
+  });
+
+
+
+
+  // // loading = {loading}
+  // // error = {error}
+  // // interactivePart = { data.interactive.interactiveParts.edges[0] }
+  // // hotspots = {interactivePart.node.hotspots.edges}
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: { error.message } </p>;
+
   return (
     <div >
-      {/* <Panel /> */}
       <h1>App</h1>
-      <nav>
-        <Link to="/test1">Test1</Link> |{" "}
-        <Link to="/test2">Test2</Link>
-      </nav>
-      <Outlet />
+
+      <ul>
+        { panels }
+      </ul>
+
+
     </div>
 
   );

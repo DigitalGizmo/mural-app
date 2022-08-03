@@ -9,8 +9,8 @@ import {
 import './index.css';
 import App from './App';
 import Home from './components/Home';
-import Test1 from './components/Test1';
-import Test2 from './components/Test2';
+// import Test1 from './components/Test1';
+// import Test2 from './components/Test2';
 import reportWebVitals from './reportWebVitals';
 
 const client = new ApolloClient({
@@ -20,18 +20,14 @@ const client = new ApolloClient({
 });
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-          // {/* <Route path='/' element={<Home />} /> */}
-          // {/* <Route path='panel' element={<App />} /> */}
 
 root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
       <BrowserRouter>
         <Routes>
-          <Route path='/' />
-            <Route index={true} element={<App />} />
-            <Route path='test1' element={<Test1 />} />
-            <Route path='test2' element={<Test2 />} />
+          <Route path='/' element={<Home />} />
+          <Route path='panel' element={<App />} />
         </Routes>
       </BrowserRouter>
     </ApolloProvider>
