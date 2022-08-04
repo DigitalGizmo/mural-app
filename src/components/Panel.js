@@ -1,50 +1,49 @@
-import React from 'react';
-import { Link, useParams } from 'react-router-dom';
-// import {
-//   useQuery,
-//   gql,
-// } from "@apollo/client"; 
+import React, { useState, useEffect } from 'react';
+import {  useParams } from 'react-router-dom'; // Link,
+import {
+  useQuery,
+  gql,
+} from "@apollo/client"; 
 
 
 const Panel = () => {
   let params = useParams();
+  const [currSlug, setCurrSlug] = useState("apprenticeship");
 
-  // const GET_PANELS = gql`
-  //   query {
-  //     allPanels {
-  //       edges {
-  //         node {
-  //           slug,
-  //           panelTitle,
-  //         }
-  //       }
+  useEffect(() => {
+    setCurrSlug(params.panelSlug);
+  }, [params.panelSlug])
+
+
+  const GET_PANEL = gql`
+    query ($slug: String!) {
+      panelBySlug (slug: $slug) {
+        slug
+        panelTitle
+
+      }      
+    }
+  `;
+  // const GET_PANEL = gql`
+  //   query getMyPanel ($slug: String,
+  //   ) {
+  //     panelBySlug (slug: "child-labor")
+  //     {
+  //       slug
+  //       panelTitle
   //     }
   //   }
   // `;
 
-  // const { loading, error, data } = useQuery(
-  //   GET_PANELS
-  // );
+  const { loading, error, data } = useQuery(
+    GET_PANEL, { variables: { slug: currSlug} }
+  );
 
-  // // loading = {loading}
-  // // error = {error}
   // // interactivePart = { data.interactive.interactiveParts.edges[0] }
   // // hotspots = {interactivePart.node.hotspots.edges}
 
-  // if (loading) return <p>Loading...</p>;
-  // if (error) return <p>Error: { error.message } </p>;
-
-  // const panels = 
-  //   data.allPanels.edges.map((panel, index) => {
-  //   return (
-  //     <div
-  //       key={panel.node.slug}
-
-  //     >
-  //       <p>{panel.node.panelTitle}</p>
-  //     </div>
-  //   )
-  // });
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: { error.message } </p>;
 
   return (
     <main className="swipe-main">
@@ -52,13 +51,14 @@ const Panel = () => {
       
 
         <div className="panel-title">     
-          <h1>slug: {params.panelSlug}</h1>
+          <h1>{ data.panelBySlug.panelTitle}</h1>
+          <p>{params.panelSlug}</p>
           <p>Adults viewed children&apos;s work as preparation for adulthood, but industrial labor stunted a child&rsquo;s physical and intellectual growth. Child labor declined as higher levels of education became critical to escape poverty. <a href="/panels/child-labor/intro/">More...</a></p>
         </div>
 
-
-
       </div>{/*  end wrapper */}
+
+
 
     </main>
   )

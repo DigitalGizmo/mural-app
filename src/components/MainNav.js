@@ -3,7 +3,7 @@ import { Link, Outlet } from 'react-router-dom'; // , Outlet
 //   useQuery,
 //   gql,
 // } from "@apollo/client"; 
-import Panel from './Panel';
+// import Panel from './Panel';
 import '../index.css';
 
 function MainNav() {
@@ -51,8 +51,6 @@ function MainNav() {
         <div className="home-nav">
           <Link to='/'>Maine Labor Mural</Link>
         </div>
-
-      <p>
         
       <p>
       <a href="/panel/apprenticeship">Apprenticeship</a> |
@@ -67,9 +65,6 @@ function MainNav() {
       <a href="/panel/jay-strike">Jay Strike</a> |
       <a href="/panel/labor-future">Future of Maine Labor</a> |
       <a href="/panel/home">Home page</a> |
-      </p>
-
-
       </p>
 
       <Outlet />
