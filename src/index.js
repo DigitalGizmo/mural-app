@@ -9,6 +9,7 @@ import {
 import './index.css';
 import App from './App';
 import Home from './components/Home';
+import Panel from './components/Panel';
 // import Test1 from './components/Test1';
 // import Test2 from './components/Test2';
 import reportWebVitals from './reportWebVitals';
@@ -27,7 +28,17 @@ root.render(
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='panel' element={<App />} />
+          <Route path='panel' element={<App />} >
+            <Route path=':panelSlug' element={<Panel />} />
+          </Route>
+          <Route
+            path="*"
+            element={
+              <main style={{ padding: "1rem" }}>
+                <p>There's nothing here!</p>
+              </main>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </ApolloProvider>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 // import {
 //   useQuery,
 //   gql,
@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 
 
 const Panel = () => {
+  let params = useParams();
 
   // const GET_PANELS = gql`
   //   query {
@@ -54,7 +55,7 @@ const Panel = () => {
         </div>
 
         <div className="panel-title">     
-          <h1>Child Labor</h1>
+          <h1>slug: {params.panelSlug}</h1>
           <p>Adults viewed children&apos;s work as preparation for adulthood, but industrial labor stunted a child&rsquo;s physical and intellectual growth. Child labor declined as higher levels of education became critical to escape poverty. <a href="/panels/child-labor/intro/">More...</a></p>
         </div>
 

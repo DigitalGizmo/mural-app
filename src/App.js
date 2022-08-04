@@ -1,4 +1,4 @@
-// import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom'; // , Outlet
 import {
   useQuery,
   gql,
@@ -25,39 +25,28 @@ function App() {
     GET_PANELS
   );
 
-  // const panels = data.allPanels.edges.map((panel, index) => {
-  //   return (
-  //     <li
-  //       // to={`/panels/${panel.node.slug}`}
-  //       key={panel.node.slug}
-  //     >
-  //       {panel.node.panelTitle}
-  //     </li>
-  //   )
-  // });
-  
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: { error.message } </p>;
+
   const panels = 
     data.allPanels.edges.map((panel, index) => {
     return (
-      <div
-        key={panel.node.slug}
+      <li
+       key={panel.node.slug}
+       >
+        <Link
+          to={`/panel/${panel.node.slug}`}
+          // key={panel.node.slug}
+        >
+          {panel.node.panelTitle}
+        </Link>
 
-      >
-        <p>{panel.node.panelTitle}</p>
-      </div>
+      </li>
     )
   });
-
-
-
-
-  // // loading = {loading}
-  // // error = {error}
+  
   // // interactivePart = { data.interactive.interactiveParts.edges[0] }
   // // hotspots = {interactivePart.node.hotspots.edges}
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: { error.message } </p>;
 
   return (
     <div >
@@ -67,6 +56,7 @@ function App() {
         { panels }
       </ul>
 
+      <Outlet />
 
     </div>
 
