@@ -1,4 +1,4 @@
-import { Link, Outlet } from 'react-router-dom'; // , Outlet
+import { Link, Outlet, useOutletContext } from 'react-router-dom'; // , Outlet
 import {
   useQuery,
   gql,
@@ -15,6 +15,7 @@ function MainNav() {
           node {
             slug,
             panelTitle,
+            panelBlurb,
             articleSet {
               edges {
                 node {
@@ -84,8 +85,7 @@ function MainNav() {
       </p>
 
       <Outlet 
-        panelList = { panels }
-      
+        context={{ panelList: data.allPanels.edges }} 
       />
 
 

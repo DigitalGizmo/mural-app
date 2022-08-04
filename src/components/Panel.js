@@ -1,13 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import {  useParams } from 'react-router-dom'; // Link,
+import {  useParams, useOutletContext } from 'react-router-dom'; // Link,
 // import {
 //   useQuery,
 //   gql,
 // } from "@apollo/client"; 
 
 
-const Panel = ( props ) => {
+const Panel = (  ) => {
   let params = useParams();
+
+  const { panelList } = useOutletContext();
+
+  // const testSlug = panelList[0].node.slug;
+  // console.log('test slug from panelList: ' + testSlug);
+
+  // const result = jsObjects.find(obj => {
+  //   return obj.b === 6
+  // })
+ 
+  const chosenPanel = panelList.find(obj => {
+    return obj.node.slug === params.panelSlug
+  })
+ 
+  // console.log('chosenPanel: ' + chosenPanel.node.panelTitle);
+
   // const [currSlug, setCurrSlug] = useState("apprenticeship");
 
   // useEffect(() => {
@@ -35,18 +51,23 @@ const Panel = ( props ) => {
   // if (loading) return <p>Loading...</p>;
   // if (error) return <p>Error: { error.message } </p>;
 
+  const blurb = () => {
+    return { __html:  chosenPanel.node.panelBlurb }
+}
+
   return (
     <main className="swipe-main">
       <div className="wrapper">
       
 
         <div className="panel-title">     
-          <h1>Title</h1> 
-          <p>{params.panelSlug}</p>
-          <p>Adults viewed children&apos;s work as preparation for adulthood, but industrial labor stunted a child&rsquo;s physical and intellectual growth. Child labor declined as higher levels of education became critical to escape poverty. <a href="/panels/child-labor/intro/">More...</a></p>
+          <h1>{ chosenPanel.node.panelTitle }</h1> 
+
+          <div dangerouslySetInnerHTML={blurb()} />
+
+          {/* <a href="/panels/child-labor/intro/">More...</a> */}
         </div>
 
-        { props.panelList }
 
       </div>{/*  end wrapper */}
 
