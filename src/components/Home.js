@@ -28,7 +28,7 @@ const Home = () => {
                 <rect x="3" y="2" className="mural-panel-hotspot" width="333" height="750"/>
             </a>
         
-            <Link to="/panel/child-labor">
+            <Link to="/panels/child-labor">
                 <rect x="342" y="2" className="mural-panel-hotspot" width="333" height="750"/>
             </Link>
         

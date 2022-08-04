@@ -26,7 +26,7 @@ root.render(
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='panel' element={<MainNav />} >
+          <Route path='panels' element={<MainNav />} >
             <Route path=':panelSlug' element={<Panel />} />
           </Route>
           <Route
