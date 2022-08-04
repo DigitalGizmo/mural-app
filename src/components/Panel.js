@@ -50,9 +50,6 @@ const Panel = () => {
     <main className="swipe-main">
       <div className="wrapper">
       
-        <div className="home-nav">
-          <Link to='/'>&larr; Home</Link>
-        </div>
 
         <div className="panel-title">     
           <h1>slug: {params.panelSlug}</h1>

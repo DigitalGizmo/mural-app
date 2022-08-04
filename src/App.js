@@ -31,17 +31,15 @@ function App() {
   const panels = 
     data.allPanels.edges.map((panel, index) => {
     return (
-      <li
-       key={panel.node.slug}
-       >
+
         <Link
           to={`/panel/${panel.node.slug}`}
-          // key={panel.node.slug}
+          key={panel.node.slug}
         >
           {panel.node.panelTitle}
         </Link>
 
-      </li>
+
     )
   });
   
@@ -50,11 +48,13 @@ function App() {
 
   return (
     <div >
-      <h1>App</h1>
+        <div className="home-nav">
+          <Link to='/'>Maine Labor Mural</Link>
+        </div>
 
-      <ul>
+      <p>
         { panels }
-      </ul>
+      </p>
 
       <Outlet />
 
