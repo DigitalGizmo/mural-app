@@ -7,11 +7,9 @@ import {
   ApolloProvider,
 } from "@apollo/client"
 import './index.css';
-import App from './App';
+import MainNav from './components/MainNav';
 import Home from './components/Home';
 import Panel from './components/Panel';
-// import Test1 from './components/Test1';
-// import Test2 from './components/Test2';
 import reportWebVitals from './reportWebVitals';
 
 const client = new ApolloClient({
@@ -28,7 +26,7 @@ root.render(
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='panel' element={<App />} >
+          <Route path='panel' element={<MainNav />} >
             <Route path=':panelSlug' element={<Panel />} />
           </Route>
           <Route
