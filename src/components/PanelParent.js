@@ -1,4 +1,4 @@
-import { Link, Outlet } from 'react-router-dom'; // , Outlet
+import { Link, Outlet, useParams, } from 'react-router-dom'; // , Outlet
 import {
   useQuery,
   gql,
@@ -6,7 +6,9 @@ import {
 // import Panel from './Panel';
 import '../index.css';
 
-function MainNav() {
+function PanelParent() {
+  let params = useParams();
+  // console.log(' params.panelSlug' + params.panelSlug)
 
   const GET_PANELS = gql`
     query {
@@ -45,6 +47,10 @@ function MainNav() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: { error.message } </p>;
 
+  const chosenPanel = data.allPanels.edges.find(obj => {
+    return obj.node.slug === params.panelSlug
+  })
+
   // const panels = 
   //   data.allPanels.edges.map((panel, index) => {
   //   return (
@@ -72,11 +78,11 @@ function MainNav() {
       </header>
 
       <header>
-        <div class="panel-title">
-          <h1>Child Labor</h1>
+        <div className="panel-title">
+          <h1>{ chosenPanel.node.panelTitle }</h1>
         </div>
 
-        <div class="panel-nav">
+        <div className="panel-nav">
           
           <Link to="/panels/apprenticeship/">
             <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
@@ -133,4 +139,4 @@ function MainNav() {
   );
 }
 
-export default MainNav;
+export default PanelParent;

@@ -7,7 +7,7 @@ import {
   ApolloProvider,
 } from "@apollo/client"
 import './index.css';
-import MainNav from './components/MainNav';
+import PanelParent from './components/PanelParent';
 import Home from './components/Home';
 import Panel from './components/Panel';
 import reportWebVitals from './reportWebVitals';
@@ -26,7 +26,7 @@ root.render(
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='panels' element={<MainNav />} >
+          <Route path='panels' element={<PanelParent />} >
             <Route path=':panelSlug' element={<Panel />} />
           </Route>
           <Route

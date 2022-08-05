@@ -56,25 +56,34 @@ const Panel = (  ) => {
 }
 
   return (
-    <main className="XX">
+    <div> {/* sindle element for prev, main & next panels */}
       {/* swipe-main gone */}
-      <div className="wrapper">
-      
 
-        <div className="panel-title">     
-          <h1>{ chosenPanel.node.panelTitle }</h1> 
-
-          <div dangerouslySetInnerHTML={blurb()} />
-
-          {/* <a href="/panels/child-labor/intro/">More...</a> */}
+      <div className="prev-panel">
+          <a className="prev" href="/panels/apprenticeship">
+            <img alt="prev arrow"
+              src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/arrow-prev.png"/>
+          </a>
+          
+          <svg  xmlns="http://www.w3.org/2000/svg"
+            version="1.1"
+            viewBox="0 0 217.2 1800"> {/* 216 1790  */}
+            <image id="document" x="0" y="0" 
+              href="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/child-labor-prev.jpg" 
+              width="217.2" height="1800" />
+          </svg>
         </div>
 
+          {/* <div dangerouslySetInnerHTML={blurb()} /> */}
+      
 
-      </div>{/*  end wrapper */}
 
 
 
-    </main>
+
+
+
+    </div>
   )
 }
 
