@@ -70,65 +70,66 @@ function PanelParent() {
   // // hotspots = {interactivePart.node.hotspots.edges}
 
   return (
-    <div>
+    <div class="wrapper"> 
+      {/* currently wrapper here and also in Panel.js */}
 
-      <header>
-        <a href="/"><img src="msm-logo.jpg"/></a>
-        <Link to='/'>Maine Labor Mural</Link>
-      </header>
+      <div class="msm-link">MSM logo</div>
 
-      <header>
-        <div className="panel-title">
-          <h1>{ chosenPanel.node.panelTitle }</h1>
-        </div>
+      <div class="site-title">
+        <Link to='/'>
+          <h3>Maine Labor Mural</h3>
+        </Link>
+      </div>
 
-        <div className="panel-nav">
-          
-          <Link to="/panels/apprenticeship/">
-            <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
-          </Link>
-          
-          <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav-selected.png"/>
-          
-          <Link to="/panels/women-textiles/">
-            <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
-          </Link>
-          
-          <Link to="/panels/secret-ballot/">
-            <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
-          </Link>
-          
-          <Link to="/panels/labor-day/">
-            <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
-          </Link>
-          
-          <Link to="/panels/logging/">
-            <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
-          </Link>
-          
-          <Link to="/panels/shoe-strike/">
-            <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
-          </Link>
-          
-          <Link to="/panels/reform/">
-            <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
-          </Link>
-          
-          <Link to="/panels/Rosie/">
-            <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
-          </Link>
-          
-          <Link to="/panels/jay-strike/">
-            <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
-          </Link>
-                    
-          <Link to="/panels/labor-future/">
-            <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
-          </Link>
-          
-        </div> {/* panel-nav */}
+      <div className="panel-nav">
         
-      </header>
+        <Link to="/panels/apprenticeship/">
+          <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
+        </Link>
+        
+        <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav-selected.png"/>
+        
+        <Link to="/panels/women-textiles/">
+          <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
+        </Link>
+        
+        <Link to="/panels/secret-ballot/">
+          <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
+        </Link>
+        
+        <Link to="/panels/labor-day/">
+          <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
+        </Link>
+        
+        <Link to="/panels/logging/">
+          <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
+        </Link>
+        
+        <Link to="/panels/shoe-strike/">
+          <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
+        </Link>
+        
+        <Link to="/panels/reform/">
+          <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
+        </Link>
+        
+        <Link to="/panels/Rosie/">
+          <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
+        </Link>
+        
+        <Link to="/panels/jay-strike/">
+          <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
+        </Link>
+                  
+        <Link to="/panels/labor-future/">
+          <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
+        </Link>
+        
+      </div> {/* panel-nav */}
+        
+      <div class="panel-title">
+          <h1>{ chosenPanel.node.panelTitle }</h1>
+      </div>
 
       <Outlet 
         context={{ panelList: data.allPanels.edges }} 
