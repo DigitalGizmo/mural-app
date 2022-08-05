@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react'; // , { useState, useEffect }
 import {  useParams, useOutletContext } from 'react-router-dom'; // Link,
 // import {
 //   useQuery,
@@ -56,7 +56,8 @@ const Panel = (  ) => {
 }
 
   return (
-    <main className="swipe-main">
+    <main className="XX">
+      {/* swipe-main gone */}
       <div className="wrapper">
       
 

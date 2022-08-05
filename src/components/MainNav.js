@@ -1,4 +1,4 @@
-import { Link, Outlet, useOutletContext } from 'react-router-dom'; // , Outlet
+import { Link, Outlet } from 'react-router-dom'; // , Outlet
 import {
   useQuery,
   gql,
@@ -45,49 +45,88 @@ function MainNav() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: { error.message } </p>;
 
-  const panels = 
-    data.allPanels.edges.map((panel, index) => {
-    return (
+  // const panels = 
+  //   data.allPanels.edges.map((panel, index) => {
+  //   return (
 
-        <Link
-          to={`/panels/${panel.node.slug}`}
-          key={panel.node.slug}
-        >
-          {panel.node.panelTitle}
-        </Link>
+  //       <Link
+  //         to={`/panels/${panel.node.slug}`}
+  //         key={panel.node.slug}
+  //       >
+  //         {panel.node.panelTitle}
+  //       </Link>
 
 
-    )
-  });
+  //   )
+  // });
   
   // // interactivePart = { data.interactive.interactiveParts.edges[0] }
   // // hotspots = {interactivePart.node.hotspots.edges}
 
   return (
-    <div >
-        <div className="home-nav">
-          <Link to='/'>Maine Labor Mural</Link>
+    <div>
+
+      <header>
+        <a href="/"><img src="msm-logo.jpg"/></a>
+        <Link to='/'>Maine Labor Mural</Link>
+      </header>
+
+      <header>
+        <div class="panel-title">
+          <h1>Child Labor</h1>
         </div>
+
+        <div class="panel-nav">
+          
+          <Link to="/panels/apprenticeship/">
+            <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
+          </Link>
+          
+          <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav-selected.png"/>
+          
+          <Link to="/panels/women-textiles/">
+            <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
+          </Link>
+          
+          <Link to="/panels/secret-ballot/">
+            <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
+          </Link>
+          
+          <Link to="/panels/labor-day/">
+            <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
+          </Link>
+          
+          <Link to="/panels/logging/">
+            <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
+          </Link>
+          
+          <Link to="/panels/shoe-strike/">
+            <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
+          </Link>
+          
+          <Link to="/panels/reform/">
+            <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
+          </Link>
+          
+          <Link to="/panels/Rosie/">
+            <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
+          </Link>
+          
+          <Link to="/panels/jay-strike/">
+            <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
+          </Link>
+                    
+          <Link to="/panels/labor-future/">
+            <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
+          </Link>
+          
+        </div> {/* panel-nav */}
         
-      <p>
-      <a href="/panels/apprenticeship">Apprenticeship</a> |
-      <a href="/panels/child-labor">Child Labor</a> |
-      <a href="/panels/women-textiles">Women Textile Workers</a> |
-      <a href="/panels/secret-ballot">Secret Ballot</a> |
-      <a href="/panels/labor-day">First Labor Day</a> |
-      <a href="/panels/logging">Woods Workers</a> |
-      <a href="/panels/shoe-strike">The '37 Shoe Strike</a> |
-      <a href="/panels/reform">Labor Reformers</a> |
-      <a href="/panels/Rosie">Rosie the Riveter</a> |
-      <a href="/panels/jay-strike">Jay Strike</a> |
-      <a href="/panels/labor-future">Future of Maine Labor</a> |
-      <a href="/panels/home">Home page</a> |
-      </p>
+      </header>
 
       <Outlet 
         context={{ panelList: data.allPanels.edges }} 
       />
-
 
     </div>
 

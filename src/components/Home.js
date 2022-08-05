@@ -5,82 +5,82 @@ import '../index.css';
 const Home = () => {
 
   return (
-    <div className="home">
+    <main className="home"> {/* Return has to return one overarching element  */}
 
-    <h1>Maine Labor Mural</h1>
+    <header>
+      <h1>Maine Labor Mural</h1>
+      <p>The Maine Labor Mural depicts scenes of the state&rsquo;s labor history in an effort to honor the men and women who built Maine.</p>
+      <p className="prompt">Tap/click a panel to learn more</p>
+    </header>
 
-    <p className="intro">The Maine Labor Mural depicts scenes of the state&rsquo;s labor history in an effort to honor the men and women who built Maine.</p>
+    <section className="mural-menu">
+      <Link to="/panels/apprenticeship">
+        <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/apprenticeship.jpg" />
+        <h2>Apprenticeship</h2>
+      </Link>
 
-    <p>Oil on panel; painted by Judy Taylor, Seal Cove, Maine, 2008<br/>
-    Commissioned by the Maine Department of Labor; transferred to the Maine State Museum in 2019.</p>
+      <Link to="/panels/child-labor">
+        <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/child-labor.jpg" />
+        <h2>Child Labor</h2>
+      </Link>
+
+      <Link to="/panels/women-textiles">
+        <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/women-textiles.jpg" />
+        <h2>Women Textile Workers</h2>
+      </Link>
+
+      <Link to="/panels/secret-ballot">
+        <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/secret-ballot.jpg" />
+      <h2>The Secret Ballot</h2>
+      </Link>
   
-    <p>Tap a panel to learn more</p>
+      <Link to="/panels/labor-day">
+        <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/labor-day.jpg" />
+        <h2>First Labor Day</h2>
+      </Link>
 
-    <svg 
-      xmlns="http://www.w3.org/2000/svg"
-      version="1.1" viewBox="0 0 3732 754">
+      <Link to="/panels/logging">
+        <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/logging.jpg" />
+        <h2>Woods Workers</h2>
+      </Link>
 
-        <image id="document" x="0" y="0" 
-          href="https://dev.digitalgizmo.com/mural-assets/panels/mural.jpg" 
-          width="3732" height="754" />
-        
-            <a href="/panels/apprenticeship/">
-                <rect x="3" y="2" className="mural-panel-hotspot" width="333" height="750"/>
-            </a>
-        
-            <Link to="/panels/child-labor">
-                <rect x="342" y="2" className="mural-panel-hotspot" width="333" height="750"/>
-            </Link>
-        
-            <a href="/panels/women-textiles/">
-                <rect x="681" y="2" className="mural-panel-hotspot" width="333" height="750"/>
-            </a>
-        
-            <a href="/panels/secret-ballot/">
-                <rect x="1020" y="2" className="mural-panel-hotspot" width="333" height="750"/>
-            </a>
-        
-            <a href="/panels/labor-day/">
-                <rect x="1359" y="2" className="mural-panel-hotspot" width="333" height="750"/>
-            </a>
-        
-            <a href="/panels/logging/">
-                <rect x="1698" y="2" className="mural-panel-hotspot" width="333" height="750"/>
-            </a>
-        
-            <a href="/panels/shoe-strike/">
-                <rect x="2037" y="2" className="mural-panel-hotspot" width="333" height="750"/>
-            </a>
-        
-            <a href="/panels/reform/">
-                <rect x="2376" y="2" className="mural-panel-hotspot" width="333" height="750"/>
-            </a>
-        
-            <a href="/panels/Rosie/">
-                <rect x="2715" y="2" className="mural-panel-hotspot" width="333" height="750"/>
-            </a>
-        
-            <a href="/panels/jay-strike/">
-                <rect x="3054" y="2" className="mural-panel-hotspot" width="333" height="750"/>
-            </a>
-        
-            <a href="/panels/labor-future/">
-                <rect x="3393" y="2" className="mural-panel-hotspot" width="333" height="750"/>
-            </a>
-        
-            <a href="/panels/home/">
-                <rect x="33225" y="2" className="mural-panel-hotspot" width="333" height="750"/>
-            </a>
-        
+      <Link to="/panels/shoe-strike">
+        <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/shoe-strike.jpg" />
+        <h2>The &rsquo;37 Shoe Strike</h2>
+      </Link>
 
-    </svg>
+      <Link to="/panels/reform">
+        <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/reform.jpg" />
+        <h2>Labor Reformers</h2>
+      </Link>
 
-    <p><a className="pop_item" href="/pops/video/ajax/49/">Tap here</a> to learn more about the development of the Maine Labor Mural.<br/>
-    <a className="pop_item" href="/pops/video/ajax/50/">Tap here</a> to explore the artist&rsquo;s intentions behind the mural.</p>
+      <Link to="/panels/Rosie">
+        <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/Rosie.jpg" />
+        <h2>Rosie the Riveter</h2>
+      </Link>
 
-    <p className="prompt pop_item"><a href="/pops/credits/ajax/52">Credits</a></p>
+      <Link to="/panels/jay-strike">
+        <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/jay-strike.jpg" />
+        <h2>Jay Strike</h2>
+      </Link>
 
-  </div>
+      <Link to="/panels/labor-future">
+        <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/labor-future.jpg" />
+        <h2>The Future of Maine Labor</h2>
+      </Link>
+    </section>
+
+    <div className="home-info">  
+      <p>Oil on panel; painted by Judy Taylor, Seal Cove, Maine, 2008<br/>
+      Commissioned by the Maine Department of Labor; transferred to the Maine State Museum in 2019.</p>
+
+      <p><a class="pop_item" href="/pops/video/ajax/49/">Tap here</a> to learn more about the development of the Maine Labor Mural.<br/>
+      <a class="pop_item" href="/pops/video/ajax/50/">Tap here</a> to explore the artist&rsquo;s intentions behind the mural.</p>
+
+      <p class="prompt pop_item"><a href="/pops/credits/ajax/52">Credits</a></p>
+    </div>
+
+  </main>
 
   )
 }
