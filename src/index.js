@@ -13,8 +13,8 @@ import Panel from './components/Panel';
 import reportWebVitals from './reportWebVitals';
 
 const client = new ApolloClient({
-  // uri: 'https://admin.picturingurbanrenewal.org/graphql/',
-  uri: 'http://127.0.0.1:8000/graphql/',
+  uri: 'https://mural-admin.digitalgizmo.com/graphql/',
+  // uri: 'http://127.0.0.1:8000/graphql/',
   cache: new InMemoryCache()
 });
 const root = ReactDOM.createRoot(document.getElementById('root'));

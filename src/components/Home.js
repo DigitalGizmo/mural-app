@@ -74,10 +74,10 @@ const Home = () => {
       <p>Oil on panel; painted by Judy Taylor, Seal Cove, Maine, 2008<br/>
       Commissioned by the Maine Department of Labor; transferred to the Maine State Museum in 2019.</p>
 
-      <p><a class="pop_item" href="/pops/video/ajax/49/">Tap here</a> to learn more about the development of the Maine Labor Mural.<br/>
-      <a class="pop_item" href="/pops/video/ajax/50/">Tap here</a> to explore the artist&rsquo;s intentions behind the mural.</p>
+      <p><a className="pop_item" href="/pops/video/ajax/49/">Tap here</a> to learn more about the development of the Maine Labor Mural.<br/>
+      <a className="pop_item" href="/pops/video/ajax/50/">Tap here</a> to explore the artist&rsquo;s intentions behind the mural.</p>
 
-      <p class="prompt pop_item"><a href="/pops/credits/ajax/52">Credits</a></p>
+      <p className="prompt pop_item"><a href="/pops/credits/ajax/52">Credits</a></p>
     </div>
 
   </main>
