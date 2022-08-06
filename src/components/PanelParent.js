@@ -24,6 +24,7 @@ function PanelParent() {
                   title,
                   articleType,
                   caption,
+                  narrative,
                 }
               }
             },

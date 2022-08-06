@@ -1,12 +1,12 @@
 import React from 'react';
 
-const Detail = ({chosenPanel}) => {
+const Detail = ({chosenPanel, onChooseContent}) => {
   const blurb = () => {
     return { __html:  chosenPanel.node.panelBlurb }
   }
   const introInfo =  chosenPanel.node.articleSet.edges[0].node;
   const foreInfo =  chosenPanel.node.articleSet.edges[1].node;
-  
+
   return (
     <div className="current-panel">
     <article>
@@ -61,9 +61,20 @@ const Detail = ({chosenPanel}) => {
       <h3>Learn More</h3>
       <ul>
         <li>
-          <a href="child-labor-article.html">{ introInfo.title } </a>
+          <a 
+            href="/"
+            onClick={e => { e.preventDefault(); onChooseContent(0);}}
+          >
+            { introInfo.title } 
+          </a>
         </li>
-        <li><a href="/panels/child-labor/fore.html">{ foreInfo.title}</a>
+        <li>
+          <a 
+            href="/"
+            onClick={e => { e.preventDefault(); onChooseContent(1);}}
+          >
+            { foreInfo.title } 
+          </a>
         </li>
       </ul>
     </nav>
