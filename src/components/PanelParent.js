@@ -22,6 +22,7 @@ function PanelParent() {
               edges {
                 node {
                   title,
+                  articleType,
                   caption,
                 }
               }
@@ -54,28 +55,23 @@ function PanelParent() {
   // const panels = 
   //   data.allPanels.edges.map((panel, index) => {
   //   return (
-
   //       <Link
   //         to={`/panels/${panel.node.slug}`}
   //         key={panel.node.slug}
   //       >
   //         {panel.node.panelTitle}
   //       </Link>
-
-
   //   )
   // });
-  
-  // // interactivePart = { data.interactive.interactiveParts.edges[0] }
-  // // hotspots = {interactivePart.node.hotspots.edges}
+
 
   return (
-    <div class="wrapper"> 
+    <div className="wrapper"> 
       {/* currently wrapper here and also in Panel.js */}
 
-      <div class="msm-link">MSM logo</div>
+      <div className="msm-link">MSM logo</div>
 
-      <div class="site-title">
+      <div className="site-title">
         <Link to='/'>
           <h3>Maine Labor Mural</h3>
         </Link>
@@ -127,12 +123,12 @@ function PanelParent() {
         
       </div> {/* panel-nav */}
         
-      <div class="panel-title">
+      <div className="panel-title">
           <h1>{ chosenPanel.node.panelTitle }</h1>
       </div>
 
       <Outlet 
-        context={{ panelList: data.allPanels.edges }} 
+        context={{ chosenPanel: chosenPanel }} 
       />
 
     </div>
