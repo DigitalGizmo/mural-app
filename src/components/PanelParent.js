@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react'; // , { useState, useEffect }
 import { Link, Outlet, useParams, } from 'react-router-dom'; // , Outlet
 import {
   useQuery,
@@ -9,6 +10,17 @@ import '../index.css';
 function PanelParent() {
   let params = useParams();
   // console.log(' params.panelSlug' + params.panelSlug)
+
+  const [contentIndex, setContentIndex] = useState(2);
+  const onChooseContent = (contentIndex) => {
+    // event.preventDefault();
+    setContentIndex(contentIndex);
+  }
+
+  // Need to set back to Detail on new page
+  useEffect(() => {
+    setContentIndex(2);
+  }, [params.panelSlug])
 
   const GET_PANELS = gql`
     query {
@@ -125,15 +137,25 @@ function PanelParent() {
       </div> {/* panel-nav */}
         
       <div className="panel-title">
-          <h1>{ chosenPanel.node.panelTitle }</h1>
+          <h1>
+            <a 
+              href="/"
+              onClick={e => { e.preventDefault(); onChooseContent(2);}}
+            >
+            { chosenPanel.node.panelTitle }
+          </a>
+          </h1>
       </div>
 
       <Outlet 
-        context={{ chosenPanel: chosenPanel }} 
+        context={{ 
+          chosenPanel: chosenPanel,
+          contentIndex: contentIndex, 
+          onChooseContent: onChooseContent  }} 
       />
 
     </div>
-
+  //  initialContentIndex: 2,
   );
 }
 

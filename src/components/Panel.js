@@ -5,14 +5,14 @@ import Article from './Article';
 
 const Panel = (  ) => {
   let params = useParams();
-  const { chosenPanel } = useOutletContext();
-  // contentIndex 2 = Detail(hotspots), 0 = Intro, 1 = Fore
-  const [contentIndex, setContentIndex] = useState(2);
+  const { chosenPanel, contentIndex, onChooseContent} = useOutletContext();
+  // contentIndex, onChooseContent , initialContentIndex
 
-  const onChooseContent = (contentIndex) => {
-    // event.preventDefault();
-    setContentIndex(contentIndex);
-  }
+  // const [contentIndex, setContentIndex] = useState(2);
+  // const onChooseContent = (contentIndex) => {
+  //   // event.preventDefault();
+  //   setContentIndex(contentIndex);
+  // }
 
   return (
       <div className="content-area">
