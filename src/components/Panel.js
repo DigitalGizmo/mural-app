@@ -29,12 +29,13 @@ const Panel = (  ) => {
           <Detail
             chosenPanel = { chosenPanel }
             onChooseContent = { onChooseContent }
-          />
-        }
-        { contentIndex === 0 &&
+            />
+          }
+        { (contentIndex === 0 || contentIndex === 1) &&
           <Article
             chosenPanel = { chosenPanel }
             contentIndex = { contentIndex }
+            onChooseContent = { onChooseContent }
           />
         }
 

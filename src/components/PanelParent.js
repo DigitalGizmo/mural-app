@@ -30,6 +30,7 @@ function PanelParent() {
             slug,
             panelTitle,
             panelBlurb,
+            ordinal,
             articleSet {
               edges {
                 node {
@@ -37,6 +38,14 @@ function PanelParent() {
                   articleType,
                   caption,
                   narrative,
+                  learnmoreSet {
+                    edges {
+                      node {
+                        title,
+                        learnmoreType
+                      }
+                    }
+                  }
                 }
               }
             },
@@ -95,8 +104,10 @@ function PanelParent() {
         <Link to="/panels/apprenticeship/">
           <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
         </Link>
-        
-        <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav-selected.png"/>
+                
+        <Link to="/panels/child-labor/">
+          <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
+        </Link>
         
         <Link to="/panels/women-textiles/">
           <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
@@ -133,7 +144,9 @@ function PanelParent() {
         <Link to="/panels/labor-future/">
           <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
         </Link>
-        
+
+        {/* <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav-selected.png"/> */}
+
       </div> {/* panel-nav */}
         
       <div className="panel-title">

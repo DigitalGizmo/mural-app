@@ -1,22 +1,38 @@
 import React from 'react';
 
-const Article = ({chosenPanel, contentIndex}) => {
+const Article = ({chosenPanel, contentIndex, onChooseContent}) => {
+
   const articleInfo =  chosenPanel.node.articleSet.edges[contentIndex].node;
+  const introTitle =  chosenPanel.node.articleSet.edges[0].node.title;
+  const foreTitle =  chosenPanel.node.articleSet.edges[1].node.title;
+  const panelNum = chosenPanel.node.ordinal;
+
   const narrative = () => {
     return { __html:  articleInfo.narrative }
   }
-  const foreInfo =  chosenPanel.node.articleSet.edges[1].node;
-  
+  const caption = () => {
+    return { __html:  articleInfo.caption }
+  }
+
   return (
-
     <div className="current-panel-article">
-
       <nav className="tabs">
         <ul>
           <li>
-            <a href="child-labor-article.html">Children in the Work Force</a>
+            <a 
+              href="/"
+              onClick={e => { e.preventDefault(); onChooseContent(0);}}
+            >
+              { introTitle } 
+            </a>
           </li>
-          <li><a href="/panels/child-labor/fore.html">Children in Maine&rsquo;s Sardine Industry</a>
+          <li>
+            <a 
+              href="/"
+              onClick={e => { e.preventDefault(); onChooseContent(1);}}
+            >
+              { foreTitle } 
+            </a>
           </li>
         </ul>
       </nav>
@@ -28,8 +44,11 @@ const Article = ({chosenPanel, contentIndex}) => {
 
       <div className="panel-image">
 
-        <img src="https://msm-mural.digitalgizmo.com/static/panels/articlepics/p2-intro.jpg"/>
-        <p className="prompt"><strong><em>Some of the young cartoners, including five-year-old Preston.</em></strong> Photograph by Lewis Hine, Eastport, Maine, August 1911. Courtesy of the Library of Congress.</p>
+        <img src={`https://msm-mural.digitalgizmo.com/static/panels/articlepics/p${panelNum}-intro.jpg`}/>
+        <div 
+          dangerouslySetInnerHTML={caption()} 
+          className="prompt"/>
+          {/* Moved class from <p> to this manditory extra div */}
 
       </div>{/* /panel-image */}          
 
