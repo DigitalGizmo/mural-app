@@ -2,11 +2,33 @@ import React, { useState } from 'react'; // , { useState, useEffect }
 import {  useParams, useOutletContext } from 'react-router-dom'; // Link,
 import Detail from './Detail';
 import Article from './Article';
+import Pop from './Pop';
 
 const Panel = (  ) => {
   let params = useParams();
-  const { chosenPanel, contentIndex, onChooseContent, openPop} = useOutletContext();
+  const { chosenPanel, contentIndex, onChooseContent} = useOutletContext();
+  // , openPop
   // contentIndex, onChooseContent , initialContentIndex
+
+  const [showPop, setShowPop] = useState(false);
+
+  function openPop (index) {
+    // setCurrIndex(index);
+    // console.log('currIndex: ' + currIndex);
+    setShowPop(true);
+  }
+
+  // Prevent click on (non-link) FullEntry from closing window
+  function closePop (event) {
+    // console.log(event.target.className)
+    event.preventDefault()
+    event.stopPropagation()
+    // Close if click was on lightbox (background) or close
+    if (event.target.id === 'slimpop-overlay' ||
+    event.target.id === 'close-link') {
+      setShowPop(false);
+    }
+  }
 
   // const [contentIndex, setContentIndex] = useState(2);
   // const onChooseContent = (contentIndex) => {
@@ -48,6 +70,12 @@ const Panel = (  ) => {
             className="arrow"/>
           </a>
         </div>
+
+        { showPop &&
+          <Pop
+            closePop = {closePop}
+          />
+        }
 
       </div> // content-area 
   )

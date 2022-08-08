@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Pop = ({closeFullEntry}) => {
+const Pop = ({closePop}) => {
 
   return (
-    <div id="slimpop-overlay" className="lightbox" > {/* onClick={closeFullEntry} */}
+    <div id="slimpop-overlay" onClick={closePop}> {/* className="lightbox"  onClick={closeFullEntry} */}
       
 
       <div id="slimpop-container">
@@ -11,10 +11,9 @@ const Pop = ({closeFullEntry}) => {
         <div className="slimpop-wrapper">
 
           <p className="pop-close">
-            <a
-              id="close-link" 
-              href="/" onClick={closeFullEntry}
-            >Close</a>
+            <a id="close-link" href="/" onClick={closePop}>
+              Close
+            </a>
           </p>
             
           <h4 className="subhead"></h4>
