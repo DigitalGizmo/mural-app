@@ -5,7 +5,7 @@ import Article from './Article';
 
 const Panel = (  ) => {
   let params = useParams();
-  const { chosenPanel, contentIndex, onChooseContent} = useOutletContext();
+  const { chosenPanel, contentIndex, onChooseContent, openPop} = useOutletContext();
   // contentIndex, onChooseContent , initialContentIndex
 
   // const [contentIndex, setContentIndex] = useState(2);
@@ -29,13 +29,15 @@ const Panel = (  ) => {
           <Detail
             chosenPanel = { chosenPanel }
             onChooseContent = { onChooseContent }
-            />
-          }
+            openPop = {openPop}
+          />
+        }
         { (contentIndex === 0 || contentIndex === 1) &&
           <Article
             chosenPanel = { chosenPanel }
             contentIndex = { contentIndex }
             onChooseContent = { onChooseContent }
+            openPop = {openPop}
           />
         }
 

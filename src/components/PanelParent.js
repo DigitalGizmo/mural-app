@@ -4,7 +4,7 @@ import {
   useQuery,
   gql,
 } from "@apollo/client"; 
-// import Panel from './Panel';
+import Pop from './Pop';
 import '../index.css';
 
 function PanelParent() {
@@ -12,10 +12,32 @@ function PanelParent() {
   // console.log(' params.panelSlug' + params.panelSlug)
 
   const [contentIndex, setContentIndex] = useState(2);
+  const [showPop, setShowPop] = useState(false);
+
   const onChooseContent = (contentIndex) => {
     // event.preventDefault();
     setContentIndex(contentIndex);
   }
+
+  function openPop (index) {
+    // setCurrIndex(index);
+    // console.log('currIndex: ' + currIndex);
+    setShowPop(true);
+  }
+
+  // Prevent click on (non-link) FullEntry from closing window
+  function closePop (event) {
+    // console.log(event.target.className)
+    event.preventDefault()
+    event.stopPropagation()
+    // Close if click was on lightbox (background) or close
+    if (event.target.className === 'lightbox' ||
+    event.target.id === 'close-link') {
+      setShowPop(false);
+    }
+  }
+
+  // Set pop data
 
   // Need to set back to Detail on new page
   useEffect(() => {
@@ -164,8 +186,15 @@ function PanelParent() {
         context={{ 
           chosenPanel: chosenPanel,
           contentIndex: contentIndex, 
+          openPop: openPop,
           onChooseContent: onChooseContent  }} 
       />
+
+        { showPop &&
+          <Pop
+            closePop = {closePop}
+          />
+        }
 
     </div>
   //  initialContentIndex: 2,

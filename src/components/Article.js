@@ -1,6 +1,7 @@
 import React from 'react';
 
-const Article = ({chosenPanel, contentIndex, onChooseContent}) => {
+const Article = ({chosenPanel, 
+    contentIndex, onChooseContent, openPop}) => {
 
   const articleInfo =  chosenPanel.node.articleSet.edges[contentIndex].node;
   const introTitle =  chosenPanel.node.articleSet.edges[0].node.title;
@@ -57,7 +58,9 @@ const Article = ({chosenPanel, contentIndex, onChooseContent}) => {
         <ul>
                   
           <li>
-            <a className="pop_item" href="/pops/images/ajax/11/">
+            <a className="pop_item" 
+              href='/' onClick={e => { e.preventDefault(); openPop();}}>
+            {/* // href="/pops/images/ajax/11/"> */}
               <img src="https://msm-mural.digitalgizmo.com/static/pops/learnmore/thumbpics/p2-intro-images.jpg"/>
               <span>Images:</span>
               Children at Work
