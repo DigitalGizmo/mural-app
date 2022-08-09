@@ -7,6 +7,7 @@ const Article = ({chosenPanel,
   const introTitle =  chosenPanel.node.articleSet.edges[0].node.title;
   const foreTitle =  chosenPanel.node.articleSet.edges[1].node.title;
   const panelNum = chosenPanel.node.ordinal;
+  // const articleTypes = ["intro", "fore"];
 
   const narrative = () => {
     return { __html:  articleInfo.narrative }
@@ -45,7 +46,7 @@ const Article = ({chosenPanel,
 
       <div className="panel-image">
 
-        <img src={`https://msm-mural.digitalgizmo.com/static/panels/articlepics/p${panelNum}-intro.jpg`}/>
+        <img src={`https://msm-mural.digitalgizmo.com/static/panels/articlepics/p${panelNum}-${articleInfo.articleType}.jpg`}/>
         <div 
           dangerouslySetInnerHTML={caption()} 
           className="prompt"/>
@@ -56,25 +57,23 @@ const Article = ({chosenPanel,
       <nav className="learn-more">
         <h3>Learn More</h3>
         <ul>
-                  
-          <li>
-            <a className="pop_item" 
-              href='/' onClick={e => { e.preventDefault(); openPop();}}>
-            {/* // href="/pops/images/ajax/11/"> */}
-              <img src="https://msm-mural.digitalgizmo.com/static/pops/learnmore/thumbpics/p2-intro-images.jpg"/>
-              <span>Images:</span>
-              Children at Work
-            </a> 
-          </li>
-                  
-          <li>
-            <a className="pop_item" href="/pops/objects/ajax/10/">
-              <img src="https://msm-mural.digitalgizmo.com/static/pops/learnmore/thumbpics/p2-intro-objects.jpg"/>
-              <span>Objects:</span>
-              Tools Not Toys
-            </a> 
-          </li>
-            
+          {articleInfo.learnmoreSet.edges.map(learnmore => {
+            return (
+              <li key={learnmore.node.title}>
+                <a className="pop_item" 
+                  href='/' onClick={e => { e.preventDefault(); openPop();}}>
+                  {/* // href="/pops/images/ajax/11/"> */}
+                  <img src={`https://msm-mural.digitalgizmo.com/static/pops/learnmore/thumbpics/p${panelNum}-${articleInfo.articleType}-${learnmore.node.learnmoreType}.jpg`}/>
+                  <span>{
+                    learnmore.node.learnmoreType.charAt(0).toUpperCase() +
+                    learnmore.node.learnmoreType.slice(1)
+                    }: </span>
+                  {learnmore.node.title}
+                </a> 
+              </li>
+            )
+          })}
+                              
         </ul>
       </nav>
 
