@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Pop = ({closePop}) => {
+const Pop = ({closePop, popData}) => {
 
   return (
     <div id="slimpop-overlay" onClick={closePop}> {/* className="lightbox"  onClick={closeFullEntry} */}
@@ -16,8 +16,8 @@ const Pop = ({closePop}) => {
             </a>
           </p>
             
-          <h4 className="subhead"></h4>
-          <h1>Newsboys</h1>
+          <h4 className="subhead">subhead?</h4>
+          <h1>{ popData.title }</h1>
 
           <div className="pop-img">
             <img src="https://dev.digitalgizmo.com/mural-assets/pops/hotspot/p2-newsboys.jpg"/>
