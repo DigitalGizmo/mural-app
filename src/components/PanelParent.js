@@ -48,6 +48,7 @@ function PanelParent() {
                             node {
                               title,
                               caption,
+                              narrative,
                             }
                           }
                         }

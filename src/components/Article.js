@@ -61,9 +61,11 @@ const Article = ({chosenPanel,
             return (
               <li key={learnmore.node.title}>
                 <a className="pop_item" 
-                  href='/' onClick={e => { e.preventDefault(); openPop(panelNum, learnmore.node);}}>
+                  href='/' onClick={e => { e.preventDefault(); 
+                    openPop({panelNum: panelNum, articleType: articleInfo.articleType,
+                    learnmoreNode: learnmore.node});}}>
                   {/* // href="/pops/images/ajax/11/"> */}
-                  <img src={`https://msm-mural.digitalgizmo.com/static/pops/learnmore/thumbpics/p${panelNum}-${articleInfo.articleType}-${learnmore.node.learnmoreType}.jpg`}/>
+                  <img src={`https://dev.digitalgizmo.com/mural-assets/pops/learnmore/thumbpics/p${panelNum}-${articleInfo.articleType}-${learnmore.node.learnmoreType}.jpg`}/>
                   <span>{
                     learnmore.node.learnmoreType.charAt(0).toUpperCase() +
                     learnmore.node.learnmoreType.slice(1)
