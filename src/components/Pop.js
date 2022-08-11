@@ -16,11 +16,13 @@ const Pop = ({closePop, popData}) => {
             </a>
           </p>
             
-          <h4 className="subhead">subhead?</h4>
-          <h1>{ popData.title }</h1>
+          <h4 className="subhead">{ popData[1].learnmoreType }</h4>
+          <h1>{ popData[1].title }</h1>
 
           <div className="pop-img">
             <img src="https://dev.digitalgizmo.com/mural-assets/pops/hotspot/p2-newsboys.jpg"/>
+            {/* <img src="https://dev.digitalgizmo.com/mural-assets/pops/learnmore/fullpics/' %}p{{ slide.learnmore.article.panel.ordinal }}-{{ slide.learnmore.article.article_type }}-{{ slide.learnmore.learnmore_type }}-{{ slide.slide_num }}.jpg"/> */}
+            {/* <img src={`https://msm-mural.digitalgizmo.com/static/pops/learnmore/thumbpics/p${panelNum}-${articleInfo.articleType}-${learnmore.node.learnmoreType}.jpg`}/> */}
             
             <p><strong><em>Biddeford Journal</em> Staff and Newsboys,</strong> Biddeford, Maine, June 30, 1912. Courtesy of the McArthur Public Library.</p>
           </div>

@@ -11,12 +11,12 @@ const Panel = (  ) => {
   // contentIndex, onChooseContent , initialContentIndex
 
   const [showPop, setShowPop] = useState(false);
-  const [popData, setPopData] = useState(null);
+  const [popData, setPopData] = useState([]);
 
-  function openPop (learnmoreNode) {
+  function openPop (panelNum, learnmoreNode) {
     // setCurrIndex(index);
     // console.log('currIndex: ' + currIndex);
-    setPopData(learnmoreNode)
+    setPopData([panelNum, learnmoreNode])
     setShowPop(true);
   }
 
@@ -76,7 +76,7 @@ const Panel = (  ) => {
         { showPop &&
           <Pop
             closePop = {closePop}
-            popData = {popData}
+            popData = {popData} 
           />
         }
 

@@ -42,7 +42,15 @@ function PanelParent() {
                     edges {
                       node {
                         title,
-                        learnmoreType
+                        learnmoreType,
+                        slideSet {
+                          edges {
+                            node {
+                              title,
+                              caption,
+                            }
+                          }
+                        }
                       }
                     }
                   }
