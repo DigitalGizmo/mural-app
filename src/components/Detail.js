@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Detail = ({chosenPanel, onChooseContent}) => {
+const Detail = ({chosenPanel, onChooseContent, openPop}) => {
   const blurb = () => {
     return { __html:  chosenPanel.node.panelBlurb }
   }
@@ -24,7 +24,9 @@ const Detail = ({chosenPanel, onChooseContent}) => {
         href={`https://dev.digitalgizmo.com/mural-assets/panels/panelpics/${chosenPanel.node.slug}.jpg`} 
         width="800" height="1800" />
         
-        <a className="pop_item" href="/pops/hotspot/ajax/lunch-bucket/">
+        <a className="pop_item"      
+          href='/' onClick={e => { e.preventDefault(); 
+          openPop({popType: 'hotspot', slug: 'lunch-bucket'})}}>
           <circle className="hotspot" cx="417"
           cy="1207" r="72"/>
         </a>

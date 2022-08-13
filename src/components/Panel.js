@@ -2,7 +2,7 @@ import React, { useState } from 'react'; // , { useState, useEffect }
 import {  useParams, useOutletContext } from 'react-router-dom'; // Link,
 import Detail from './Detail';
 import Article from './Article';
-import Pop from './Pop';
+import Pop from './pops/Pop';
 
 const Panel = (  ) => {
   let params = useParams();
