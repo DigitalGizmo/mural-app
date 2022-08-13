@@ -6,6 +6,7 @@ const Detail = ({chosenPanel, onChooseContent, openPop}) => {
   }
   const introInfo =  chosenPanel.node.articleSet.edges[0].node;
   const foreInfo =  chosenPanel.node.articleSet.edges[1].node;
+  const panelNum = chosenPanel.node.ordinal;
 
   return (
     <div className="current-panel">
@@ -26,7 +27,8 @@ const Detail = ({chosenPanel, onChooseContent, openPop}) => {
         
         <a className="pop_item"      
           href='/' onClick={e => { e.preventDefault(); 
-          openPop({popType: 'hotspot', slug: 'lunch-bucket'})}}>
+          openPop({popType: 'hotspot', panelNum: panelNum,
+            slug: 'lunch-bucket'})}}>
           <circle className="hotspot" cx="417"
           cy="1207" r="72"/>
         </a>

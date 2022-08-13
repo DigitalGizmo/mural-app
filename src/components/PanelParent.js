@@ -31,6 +31,19 @@ function PanelParent() {
             panelTitle,
             panelBlurb,
             ordinal,
+            hotspotSet {
+              edges {
+                node {
+                  slug,
+                  title,
+                  altTag,
+                  caption,
+                  narrative,
+                  xPosition,
+                  yPosition,
+                }
+              }
+            },
             articleSet {
               edges {
                 node {
