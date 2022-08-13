@@ -10,22 +10,18 @@ const Pop = ({closePop, popData}) => {
   // might be learnmore, might be hotspot
   let title = "to be set";
   let subtitle = "also to be set";
-  let popType = "images";
+  let popType = "tbd";
 
   if (popData.popType === 'hotspot') {
-    console.log('hotspot');
+    // console.log('hotspot');
     subtitle = 'Hotspot';
-    title = popData.slug;
+    title = popData.hotspotNode.title;
     popType = 'hotspot';
   } else { // learnmore
     subtitle = popData.learnmoreNode.learnmoreType;
     title = popData.learnmoreNode.title;
     popType = popData.learnmoreNode.learnmoreType;
   }
-
-  // if hostpot return such and so
-  
-  // if not , or if learnmore, return such and so
 
   return (
     <div id="slimpop-overlay" onClick={closePop}> {/* className="lightbox"  onClick={closeFullEntry} */}

@@ -6,6 +6,7 @@ const Detail = ({chosenPanel, onChooseContent, openPop}) => {
   }
   const introInfo =  chosenPanel.node.articleSet.edges[0].node;
   const foreInfo =  chosenPanel.node.articleSet.edges[1].node;
+  const hotspots =  chosenPanel.node.hotspotSet.edges;
   const panelNum = chosenPanel.node.ordinal;
 
   return (
@@ -25,38 +26,29 @@ const Detail = ({chosenPanel, onChooseContent, openPop}) => {
         href={`https://dev.digitalgizmo.com/mural-assets/panels/panelpics/${chosenPanel.node.slug}.jpg`} 
         width="800" height="1800" />
         
-        <a className="pop_item"      
+        {hotspots.map(hotspot => {
+          return (
+            <a className="pop_item" key={hotspot.node.slug}   
+              href='/' onClick={e => { e.preventDefault(); 
+              openPop({popType: 'hotspot', panelNum: panelNum,
+                hotspotNode: hotspot.node})}}>
+              <circle className="hotspot" 
+                cx={hotspot.node.xPosition}
+                cy={hotspot.node.yPosition} 
+                r="72"
+              />
+            </a>
+          )
+        })}
+
+        {/* <a className="pop_item"      
           href='/' onClick={e => { e.preventDefault(); 
           openPop({popType: 'hotspot', panelNum: panelNum,
             slug: 'lunch-bucket'})}}>
           <circle className="hotspot" cx="417"
           cy="1207" r="72"/>
-        </a>
+        </a> */}
         
-        <a className="pop_item" href="/pops/hotspot/ajax/bandaged-hand/">
-          <circle className="hotspot" cx="611"
-          cy="1075" r="72"/>
-        </a>
-        
-        <a className="pop_item" href="../pops/newsboys.html">
-          <circle className="hotspot" cx="380"
-          cy="100" r="72"/>
-        </a>
-        
-        <a className="pop_item" href="/pops/hotspot/ajax/cutters/">
-          <circle className="hotspot" cx="187"
-          cy="496" r="72"/>
-        </a>
-        
-        <a className="pop_item" href="/pops/hotspot/ajax/child-textiles-workers/">
-          <circle className="hotspot" cx="135"
-          cy="255" r="72"/>
-        </a>
-        
-        <a className="pop_item" href="/pops/hotspot/ajax/slubbers/">
-          <circle className="hotspot" cx="490"
-          cy="732" r="72"/>
-        </a>
         
       </svg>
     </div>{/* /panel-image */}

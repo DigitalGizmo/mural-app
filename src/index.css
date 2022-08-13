@@ -469,3 +469,16 @@ audio.voices {
   color: #b35900;
   text-decoration: underline;
 }
+
+/* copied over by Don */
+.hotspot {
+  stroke: white;
+  stroke-width: 3;
+  fill: #ff9933;
+  fill-opacity: 0.25;
+  cursor: pointer;
+}
+.hotspot:hover {
+  fill: #b35900;
+}
+
