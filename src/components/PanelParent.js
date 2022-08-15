@@ -96,18 +96,22 @@ function PanelParent() {
     return obj.node.slug === params.panelSlug
   })
 
-  // const panels = 
+  // const panelNavs = 
   //   data.allPanels.edges.map((panel, index) => {
   //   return (
-  //       <Link
+  //       { 1 > 0
+  //         ?         <Link
   //         to={`/panels/${panel.node.slug}`}
   //         key={panel.node.slug}
   //       >
-  //         {panel.node.panelTitle}
+  //         <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"
+  //         alt={panel.node.title}/>
   //       </Link>
+
+  //       }
+
   //   )
   // });
-
 
   return (
     <div className="wrapper"> 
@@ -122,53 +126,17 @@ function PanelParent() {
       </div>
 
       <div className="panel-nav">
-        
-        <Link to="/panels/apprenticeship/">
-          <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
-        </Link>
-                
-        <Link to="/panels/child-labor/">
-          <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
-        </Link>
-        
-        <Link to="/panels/women-textiles/">
-          <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
-        </Link>
-        
-        <Link to="/panels/secret-ballot/">
-          <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
-        </Link>
-        
-        <Link to="/panels/labor-day/">
-          <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
-        </Link>
-        
-        <Link to="/panels/logging/">
-          <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
-        </Link>
-        
-        <Link to="/panels/shoe-strike/">
-          <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
-        </Link>
-        
-        <Link to="/panels/reform/">
-          <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
-        </Link>
-        
-        <Link to="/panels/Rosie/">
-          <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
-        </Link>
-        
-        <Link to="/panels/jay-strike/">
-          <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
-        </Link>
-                  
-        <Link to="/panels/labor-future/">
-          <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"/>
-        </Link>
-
-        {/* <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav-selected.png"/> */}
-
+        {data.allPanels.edges.map((panel, index) => {
+          return ( chosenPanel.node.ordinal === (index + 1)
+            ? <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav-selected.png"
+              alt={`${panel.node.title} selected`}/>
+            :
+            <Link to={`/panels/${panel.node.slug}`} >
+              <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"
+              alt={panel.node.title}/>
+            </Link>
+          )
+        })}
       </div> {/* panel-nav */}
         
       <div className="panel-title">
