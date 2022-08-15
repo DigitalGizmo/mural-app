@@ -1,12 +1,13 @@
 import React, { useState } from 'react'; // , { useState, useEffect }
-import {  useParams, useOutletContext } from 'react-router-dom'; // Link,
+import { useOutletContext, Link } from 'react-router-dom'; // Link, useParams,
 import Detail from './Detail';
 import Article from './Article';
 import Pop from './pops/Pop';
 
 const Panel = (  ) => {
-  let params = useParams();
-  const { chosenPanel, contentIndex, onChooseContent} = useOutletContext();
+  // let params = useParams();
+  const { chosenPanel, contentIndex, onChooseContent, 
+    nextPanelSlug, prevPanelSlug} = useOutletContext();
   // , openPop
   // contentIndex, onChooseContent , initialContentIndex
 
@@ -35,21 +36,21 @@ const Panel = (  ) => {
     }
   }
 
-  // const [contentIndex, setContentIndex] = useState(2);
-  // const onChooseContent = (contentIndex) => {
-  //   // event.preventDefault();
-  //   setContentIndex(contentIndex);
-  // }
-
   return (
       <div className="content-area">
 
         <div className="prev-panel">
-          <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/child-labor-prev.jpg" />
-          <a href="/panels/apprenticeship/">
-            <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/arrow-prev.png" 
-            className="arrow"/>
-          </a>
+          {prevPanelSlug &&
+            <img src={`https://dev.digitalgizmo.com/mural-assets/panels/panelpics/${prevPanelSlug}-prev.jpg`} 
+            alt={`Previous panel is ${prevPanelSlug}`} />
+          }
+          {prevPanelSlug &&
+            <Link to={`/panels/${prevPanelSlug}`} >
+              <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/arrow-prev.png" 
+                alt="prev arrow" className="arrow"/>
+            </Link>
+          }
+
         </div>
         
         { contentIndex === 2 &&
@@ -69,11 +70,16 @@ const Panel = (  ) => {
         }
 
         <div className="next-panel">
-          <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/child-labor-next.jpg" />
-          <a href="/panels/women-textiles/">
-            <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/arrow-next.png" 
-            className="arrow"/>
-          </a>
+          {nextPanelSlug &&
+            <img src={`https://dev.digitalgizmo.com/mural-assets/panels/panelpics/${nextPanelSlug}-next.jpg`} 
+              alt={`${nextPanelSlug} next`} />        
+          }
+          {nextPanelSlug &&
+            <Link to={`/panels/${nextPanelSlug}`} >
+              <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/arrow-next.png" 
+                alt="next arrow" className="arrow"/>
+            </Link>
+          }
         </div>
 
         { showPop &&

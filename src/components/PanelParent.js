@@ -96,22 +96,13 @@ function PanelParent() {
     return obj.node.slug === params.panelSlug
   })
 
-  // const panelNavs = 
-  //   data.allPanels.edges.map((panel, index) => {
-  //   return (
-  //       { 1 > 0
-  //         ?         <Link
-  //         to={`/panels/${panel.node.slug}`}
-  //         key={panel.node.slug}
-  //       >
-  //         <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"
-  //         alt={panel.node.title}/>
-  //       </Link>
+  const nextPanelSlug = chosenPanel.node.ordinal < 11
+    ? data.allPanels.edges[chosenPanel.node.ordinal].node.slug
+    : null;
 
-  //       }
-
-  //   )
-  // });
+  const prevPanelSlug = chosenPanel.node.ordinal > 1 
+    ? data.allPanels.edges[chosenPanel.node.ordinal - 2].node.slug
+    : null;
 
   return (
     <div className="wrapper"> 
@@ -128,10 +119,12 @@ function PanelParent() {
       <div className="panel-nav">
         {data.allPanels.edges.map((panel, index) => {
           return ( chosenPanel.node.ordinal === (index + 1)
-            ? <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav-selected.png"
+            ? <img key={panel.node.slug}
+              src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav-selected.png"
               alt={`${panel.node.title} selected`}/>
             :
-            <Link to={`/panels/${panel.node.slug}`} >
+            <Link  key={panel.node.slug}
+              to={`/panels/${panel.node.slug}`} >
               <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"
               alt={panel.node.title}/>
             </Link>
@@ -153,6 +146,8 @@ function PanelParent() {
       <Outlet 
         context={{ 
           chosenPanel: chosenPanel,
+          nextPanelSlug: nextPanelSlug,
+          prevPanelSlug: prevPanelSlug,
           contentIndex: contentIndex, 
           // openPop: openPop,
           onChooseContent: onChooseContent  }} 
