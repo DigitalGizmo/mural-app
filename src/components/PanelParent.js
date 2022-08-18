@@ -66,6 +66,15 @@ function PanelParent() {
                               narrative,
                             }
                           }
+                        },
+                        voiceSet {
+                          edges {
+                            node {
+                              title,
+                              partNum,
+                              narrative,
+                            }
+                          }
                         }
                       }
                     }
