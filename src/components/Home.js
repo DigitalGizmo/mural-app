@@ -40,57 +40,68 @@ const Home = () => {
 
     <section className="mural-menu">
       <Link to="/panels/apprenticeship">
-        <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/apprenticeship.jpg" />
+        <img alt="apprenticeship"
+          src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/apprenticeship.jpg" />
         <h2>Apprenticeship</h2>
       </Link>
 
       <Link to="/panels/child-labor">
-        <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/child-labor.jpg" />
+       <img alt="child-labor"
+          src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/child-labor.jpg" />
         <h2>Child Labor</h2>
       </Link>
 
       <Link to="/panels/women-textiles">
-        <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/women-textiles.jpg" />
+       <img alt="women-textiles"
+          src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/women-textiles.jpg" />
         <h2>Women Textile Workers</h2>
       </Link>
 
       <Link to="/panels/secret-ballot">
-        <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/secret-ballot.jpg" />
+       <img alt="secret-ballot"
+          src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/secret-ballot.jpg" />
       <h2>The Secret Ballot</h2>
       </Link>
   
       <Link to="/panels/labor-day">
-        <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/labor-day.jpg" />
+       <img alt="labor-day"
+          src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/labor-day.jpg" />
         <h2>First Labor Day</h2>
       </Link>
 
       <Link to="/panels/logging">
-        <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/logging.jpg" />
+       <img alt="logging"
+          src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/logging.jpg" />
         <h2>Woods Workers</h2>
       </Link>
 
       <Link to="/panels/shoe-strike">
-        <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/shoe-strike.jpg" />
+       <img alt="shoe-strike"
+          src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/shoe-strike.jpg" />
         <h2>The &rsquo;37 Shoe Strike</h2>
       </Link>
 
       <Link to="/panels/reform">
-        <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/reform.jpg" />
+       <img alt="reform"
+          src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/reform.jpg" />
         <h2>Labor Reformers</h2>
       </Link>
 
       <Link to="/panels/Rosie">
-        <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/Rosie.jpg" />
+       <img alt="Rosie"
+          src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/Rosie.jpg" />
         <h2>Rosie the Riveter</h2>
       </Link>
 
       <Link to="/panels/jay-strike">
-        <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/jay-strike.jpg" />
+       <img alt="jay-strike"
+          src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/jay-strike.jpg" />
         <h2>Jay Strike</h2>
       </Link>
 
       <Link to="/panels/labor-future">
-        <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/labor-future.jpg" />
+       <img alt="labor-future"
+          src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/labor-future.jpg" />
         <h2>The Future of Maine Labor</h2>
       </Link>
     </section>
