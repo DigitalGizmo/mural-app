@@ -56,6 +56,8 @@ function PanelParent() {
                       node {
                         title,
                         learnmoreType,
+                        caption,
+                        narrative,
                         slideSet {
                           edges {
                             node {
@@ -97,11 +99,11 @@ function PanelParent() {
   })
 
   const nextPanelSlug = chosenPanel.node.ordinal < 11
-    ? data.allPanels.edges[chosenPanel.node.ordinal - 1].node.slug
+    ? data.allPanels.edges[chosenPanel.node.ordinal].node.slug
     : null;
 
   const prevPanelSlug = chosenPanel.node.ordinal > 1 
-    ? data.allPanels.edges[chosenPanel.node.ordinal - 1].node.slug
+    ? data.allPanels.edges[chosenPanel.node.ordinal - 2].node.slug
     : null;
 
   return (
@@ -130,18 +132,21 @@ function PanelParent() {
                 alt={panel.node.title}/>
               </Link>
             )
+          } else {
+            return " ";
           }
         })}
       </div> {/* panel-nav */}
         
       <div className="panel-title">
           <h1>
-            <a 
-              href="/"
-              onClick={e => { e.preventDefault(); onChooseContent(2);}}
-            >
-            { chosenPanel.node.panelTitle }
-          </a>
+            {contentIndex === 2
+              ? <span>{ chosenPanel.node.panelTitle }</span>
+              : <a href="/"
+                    onClick={e => { e.preventDefault(); onChooseContent(2);}}>
+                  { chosenPanel.node.panelTitle }
+                </a>
+            }
           </h1>
       </div>
 

@@ -1,8 +1,33 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import '../index.css';
+import {homePopData} from './pops/HomePopContent';
+import Pop from './pops/Pop';
 
 const Home = () => {
+  const [showPop, setShowPop] = useState(false);
+  const [popData, setPopData] = useState();
+
+  // Need to refactor this -- forgot about Home pg use when I put it in Panel.js
+  function openPop (popParams) { // panelNum, learnmoreNode
+    console.log('got to Home openPop');
+    setPopData(popParams)
+    console.log('popData.panelNum: ' + popParams.panelNum);
+    // console.log('popParams.learnmoreNode.title: ' + popParams.learnmoreNode.title);
+    setShowPop(true);
+  }
+
+  // Prevent click on (non-link) FullEntry from closing window
+  function closePop (event) {
+    // console.log(event.target.className)
+    event.preventDefault()
+    event.stopPropagation()
+    // Close if click was on lightbox (background) or close
+    if (event.target.id === 'slimpop-overlay' ||
+    event.target.id === 'close-link') {
+      setShowPop(false);
+    }
+  }
 
   return (
     <main className="home"> {/* Return has to return one overarching element  */}
@@ -74,11 +99,48 @@ const Home = () => {
       <p>Oil on panel; painted by Judy Taylor, Seal Cove, Maine, 2008<br/>
       Commissioned by the Maine Department of Labor; transferred to the Maine State Museum in 2019.</p>
 
-      <p><a className="pop_item" href="/pops/video/ajax/49/">Tap here</a> to learn more about the development of the Maine Labor Mural.<br/>
-      <a className="pop_item" href="/pops/video/ajax/50/">Tap here</a> to explore the artist&rsquo;s intentions behind the mural.</p>
+      <p>
+        <a className="pop_item" 
+          href='/' onClick={e => { e.preventDefault(); 
+            openPop({popType: "video", 
+              panelNum: 99, articleType: "intro",
+              learnmoreNode: homePopData.articleSet.edges[0].node.learnmoreSet.edges[0].node});}}>
+            Tap here {" "}
+        </a> 
+          to learn more about the development of the Maine Labor Mural.
+        <br/>
 
-      <p className="prompt pop_item"><a href="/pops/credits/ajax/52">Credits</a></p>
+        <a className="pop_item" 
+          href='/' onClick={e => { e.preventDefault(); 
+            openPop({popType: "video", 
+              panelNum: 99, articleType: "fore",
+              learnmoreNode: homePopData.articleSet.edges[1].node.learnmoreSet.edges[0].node});}}>
+            Tap here {" "}
+        </a> 
+          to explore the artist&rsquo;s intentions behind the mural.
+      </p>
+
+      <p className="prompt pop_item">
+        
+        
+        <a className="pop_item" 
+          href='/' onClick={e => { e.preventDefault(); 
+            openPop({popType: "credits", 
+              panelNum: 99, articleType: "intro",
+              learnmoreNode: homePopData.articleSet.edges[0].node.learnmoreSet.edges[1].node});}}>
+            Credits
+        </a> 
+        
+        
+        </p>
     </div>
+
+    { showPop &&
+      <Pop
+        closePop = {closePop}
+        popData = {popData} 
+      />
+    }
 
   </main>
 

@@ -2,6 +2,7 @@ import React from 'react';
 import Slide from './Slide';
 import Voice from './Voice';
 import Video from './Video';
+import Credits from './Credits';
 import Hotspot from './Hotspot'; 
 
 const Pop = ({closePop, popData}) => {
@@ -53,6 +54,12 @@ const Pop = ({closePop, popData}) => {
 
           { popType === 'video' &&
             <Video
+              popData = {popData}
+            />
+          }
+
+          { popType === 'credits' &&
+            <Credits
               popData = {popData}
             />
           }

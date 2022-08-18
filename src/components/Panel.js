@@ -41,7 +41,7 @@ const Panel = (  ) => {
 
         <div className="prev-panel">
           {prevPanelSlug &&
-            <img src={`https://dev.digitalgizmo.com/mural-assets/panels/panelpics/${prevPanelSlug}-prev.jpg`} 
+            <img src={`https://dev.digitalgizmo.com/mural-assets/panels/panelpics/${chosenPanel.node.slug}-prev.jpg`} 
             alt={`Previous panel is ${prevPanelSlug}`} />
           }
           {prevPanelSlug &&
@@ -71,7 +71,7 @@ const Panel = (  ) => {
 
         <div className="next-panel">
           {nextPanelSlug &&
-            <img src={`https://dev.digitalgizmo.com/mural-assets/panels/panelpics/${nextPanelSlug}-next.jpg`} 
+            <img src={`https://dev.digitalgizmo.com/mural-assets/panels/panelpics/${chosenPanel.node.slug}-next.jpg`} 
               alt={`${nextPanelSlug} next`} />        
           }
           {nextPanelSlug &&
