@@ -161,7 +161,8 @@ cite:before {
   text-align: center;
 }
 .panel-nav img {
-  margin-right: -2px;
+  margin-right: -1px;
+  width: 8%;
 }
 .panel-nav a {
   text-decoration: none;
@@ -202,14 +203,16 @@ cite:before {
 .panel-title h1 {
   font-size: 2.25em;
   font-weight: 600;
-  margin: 0;
+  margin: 0 1em 0.25em 1em;
 }
 .panel-title h1 a {
   margin: 0;
   color: #ff9933;
   text-decoration: underline;
 }
-
+a.more-link {
+  visibility: hidden;
+}
 .tabs ul {
   font-size: 0.75em;
   letter-spacing: 0.025em;
