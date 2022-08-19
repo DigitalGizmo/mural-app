@@ -200,6 +200,8 @@ cite:before {
   left: 4px;
 }
 .panel-title h1 {
+  font-size: 2.25em;
+  font-weight: 600;
   margin: 0;
 }
 .panel-title h1 a {
