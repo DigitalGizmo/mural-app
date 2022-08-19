@@ -133,6 +133,10 @@ cite:before {
 .msm-link {
   grid-area: msm-link;
 }
+.msm-logo {
+  width:  90px;
+  height: auto;
+}
 .site-title {
   grid-area: site-title;
   justify-self: center;

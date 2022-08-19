@@ -119,7 +119,11 @@ function PanelParent() {
     <div className="wrapper"> 
       {/* currently wrapper here and also in Panel.js */}
 
-      <div className="msm-link">MSM logo</div>
+      <div className="msm-link">
+        <Link to='/'>
+          <img src="https://dev.digitalgizmo.com/mural-assets/images/msm-logo.svg" alt="Maine State Museum" className="msm-logo"/>
+        </Link>
+      </div>
 
       <div className="site-title">
         <Link to='/'>
