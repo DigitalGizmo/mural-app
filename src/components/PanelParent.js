@@ -4,6 +4,7 @@ import {
   useQuery,
   gql,
 } from "@apollo/client"; 
+import {motion, AnimatePresence } from 'framer-motion'; // /dist/framer-motion
 import '../index.css';
 
 function PanelParent() {
@@ -11,7 +12,7 @@ function PanelParent() {
   // console.log(' params.panelSlug' + params.panelSlug)
 
   const [contentIndex, setContentIndex] = useState(2);
-
+  const [direction, setDirection] = useState(0);
   const onChooseContent = (contentIndex) => {
     // event.preventDefault();
     setContentIndex(contentIndex);
@@ -115,6 +116,53 @@ function PanelParent() {
     ? data.allPanels.edges[chosenPanel.node.ordinal - 2].node.slug
     : null;
 
+  const variants = {
+    // initial: {
+    //   originX: 1,
+    // },
+    enter: {
+      // At start, direction 0, new image enters from right
+      // x: direction === 0 ? xOffset : -xOffset,
+      // position: 'absolute',
+      x: direction === 0 ? '100%' : '-100%',
+      // originX: 0,
+      opacity: 0.2,
+      // width: "100%",
+      transition: { 
+        // delay: 0, 
+        // duration: 5,
+        layout: {width: "100%"} 
+      },    },
+    active: {
+      x: 0,
+      opacity: 1,
+      // transition: { delay: 0, duration: 5 },
+      transition: { 
+        delay: 0, 
+        duration: 5,
+        layout: {width: "100%"} 
+      },      // transitionEnd: { position: 'absolute'}
+      // width: "100%"
+    },
+    exit:{
+      // With direction 0 exit left
+      // x: direction === 0 ? -xOffset : xOffset,
+      x: direction === 0 ? '-100%' : '100%',
+
+      transition: { 
+        delay: 0, 
+        duration: 5,
+        layout: {width: "100%"} 
+      },
+      opacity: 0.2,
+      // position: 'absolute',
+      // width: "100%",
+      
+
+    }
+  };
+  
+
   return (
     <div className="wrapper"> 
       {/* currently wrapper here and also in Panel.js */}
@@ -159,16 +207,29 @@ function PanelParent() {
           </h1>
       </div>
 
-      <Outlet 
-        context={{ 
-          chosenPanel: chosenPanel,
-          nextPanelSlug: nextPanelSlug,
-          prevPanelSlug: prevPanelSlug,
-          contentIndex: contentIndex, 
-          // openPop: openPop,
-          onChooseContent: onChooseContent  }} 
-      />
+      <AnimatePresence initial={false}>
+        <motion.div
+          layout  style={{
+            width: "100%",
+          }} 
+          key={chosenPanel.node.slug}
+          variants={variants}
+          initial="enter"
+          animate="active"
+          exit="exit"
+        >
+          <Outlet 
+            context={{ 
+              chosenPanel: chosenPanel,
+              nextPanelSlug: nextPanelSlug,
+              prevPanelSlug: prevPanelSlug,
+              contentIndex: contentIndex, 
+              // openPop: openPop,
+              onChooseContent: onChooseContent  }} 
+          />
+        </motion.div>
 
+      </AnimatePresence>
 
     </div>
   );

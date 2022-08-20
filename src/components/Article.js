@@ -46,7 +46,8 @@ const Article = ({chosenPanel,
 
       <div className="panel-image">
 
-        <img src={`https://msm-mural.digitalgizmo.com/static/panels/articlepics/p${panelNum}-${articleInfo.articleType}.jpg`}/>
+      <img alt={`panel: ${ articleInfo.title } `}
+          src={`https://msm-mural.digitalgizmo.com/static/panels/articlepics/p${panelNum}-${articleInfo.articleType}.jpg`}/>
         <div 
           dangerouslySetInnerHTML={caption()} 
           className="prompt"/>
@@ -66,7 +67,8 @@ const Article = ({chosenPanel,
                       panelNum: panelNum, articleType: articleInfo.articleType,
                       learnmoreNode: learnmore.node});}}>
                   {/* // href="/pops/images/ajax/11/"> */}
-                  <img src={`https://dev.digitalgizmo.com/mural-assets/pops/learnmore/thumbpics/p${panelNum}-${articleInfo.articleType}-${learnmore.node.learnmoreType}.jpg`}/>
+                  <img alt={`learn more: ${ learnmore.node.title } `}
+                    src={`https://dev.digitalgizmo.com/mural-assets/pops/learnmore/thumbpics/p${panelNum}-${articleInfo.articleType}-${learnmore.node.learnmoreType}.jpg`}/>
                   <span>{
                     learnmore.node.learnmoreType.charAt(0).toUpperCase() +
                     learnmore.node.learnmoreType.slice(1)

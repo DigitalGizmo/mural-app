@@ -247,6 +247,10 @@ div.current-panel-article .tabs ul li a {
 /* ////////////////// */
 
 .content-area {
+  /* Don's additions */
+  position: absolute;
+  /* width: "100vw"; */
+
   background-color: #fff;
   display: grid;
   grid-area: content-area;
