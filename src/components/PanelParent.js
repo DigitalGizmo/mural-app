@@ -116,53 +116,6 @@ function PanelParent() {
     ? data.allPanels.edges[chosenPanel.node.ordinal - 2].node.slug
     : null;
 
-  const variants = {
-    // initial: {
-    //   originX: 1,
-    // },
-    enter: {
-      // At start, direction 0, new image enters from right
-      // x: direction === 0 ? xOffset : -xOffset,
-      // position: 'absolute',
-      x: direction === 0 ? '100%' : '-100%',
-      // originX: 0,
-      opacity: 0.2,
-      // width: "100%",
-      transition: { 
-        // delay: 0, 
-        // duration: 5,
-        layout: {width: "100%"} 
-      },    },
-    active: {
-      x: 0,
-      opacity: 1,
-      // transition: { delay: 0, duration: 5 },
-      transition: { 
-        delay: 0, 
-        duration: 5,
-        layout: {width: "100%"} 
-      },      // transitionEnd: { position: 'absolute'}
-      // width: "100%"
-    },
-    exit:{
-      // With direction 0 exit left
-      // x: direction === 0 ? -xOffset : xOffset,
-      x: direction === 0 ? '-100%' : '100%',
-
-      transition: { 
-        delay: 0, 
-        duration: 5,
-        layout: {width: "100%"} 
-      },
-      opacity: 0.2,
-      // position: 'absolute',
-      // width: "100%",
-      
-
-    }
-  };
-  
-
   return (
     <div className="wrapper"> 
       {/* currently wrapper here and also in Panel.js */}
@@ -194,43 +147,38 @@ function PanelParent() {
           }
         })}
       </div> {/* panel-nav */}
-        
-      <div className="panel-title">
-          <h1>
-            {contentIndex === 2
-              ? <span>{ chosenPanel.node.panelTitle }</span>
-              : <a href="/"
-                    onClick={e => { e.preventDefault(); onChooseContent(2);}}>
-                  { chosenPanel.node.panelTitle }
-                </a>
-            }
-          </h1>
-      </div>
 
       <AnimatePresence initial={false}>
-        <motion.div
-          layout  style={{
-            width: "100%",
-          }} 
+        <motion.div 
+          className="panel-title"
           key={chosenPanel.node.slug}
-          variants={variants}
-          initial="enter"
-          animate="active"
-          exit="exit"
+          // variants={variants}
+          initial={{ opacity: 0.2}}
+          animate={{ opacity: 1}}
+          exit={{ opacity: 0.2}}
+          transition={{duration: 1}}
         >
-          <Outlet 
-            context={{ 
-              chosenPanel: chosenPanel,
-              nextPanelSlug: nextPanelSlug,
-              prevPanelSlug: prevPanelSlug,
-              contentIndex: contentIndex, 
-              // openPop: openPop,
-              onChooseContent: onChooseContent  }} 
-          />
+            <h1>
+              {contentIndex === 2
+                ? <span>{ chosenPanel.node.panelTitle }</span>
+                : <a href="/"
+                      onClick={e => { e.preventDefault(); onChooseContent(2);}}>
+                    { chosenPanel.node.panelTitle }
+                  </a>
+              }
+            </h1>
         </motion.div>
-
       </AnimatePresence>
 
+      <Outlet 
+        context={{ 
+          chosenPanel: chosenPanel,
+          nextPanelSlug: nextPanelSlug,
+          prevPanelSlug: prevPanelSlug,
+          contentIndex: contentIndex, 
+          // openPop: openPop,
+          onChooseContent: onChooseContent  }} 
+      />
     </div>
   );
 }
