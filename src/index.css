@@ -372,11 +372,12 @@ div.current-panel-article .tabs ul li a {
 .current-panel-article div.panel-image img {
   max-width: 100%;
 }
-/*.article-wrapper .prev-panel, .article-wrapper .next-panel { for small layout, push panels down w dynamic top padding 
-  background-color: #333;
-  height: 50px;
-  position: relative;
-}*/
+article.article-body {
+  background-color: #eee;
+  height: 60vh;
+  overflow-y: scroll;
+  padding: .15em .5em .25em .5em;
+}
 .learn-more ul li {
   /*display: inline-block;
   font-size: 0.75em;*/
