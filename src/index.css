@@ -64,6 +64,7 @@ cite:before {
 .home {
   padding: 1.6em 0;
   text-align: center;
+  font-size: 1.25em;
 }
 .home h1 {
   color: #ff9933;
@@ -87,11 +88,10 @@ cite:before {
 }
 .mural-menu h2 {
   color: #ff9933;
-  font-size: 1em;
-  font-weight: normal;
+  font-size: 0.75em;
 }
 .home-info p {
-  font-size: .8em;
+  font-size: 1em;
   color: #b9b9b9;
 }
 /* ///////////////////// */

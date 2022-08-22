@@ -106,9 +106,9 @@ const Home = () => {
       </Link>
     </section>
 
+      <p>The Maine Labor Mural is oil on panel and was painted by Judy Taylor, Seal Cove, Maine, 2008</p>
     <div className="home-info">  
-      <p>Oil on panel; painted by Judy Taylor, Seal Cove, Maine, 2008<br/>
-      Commissioned by the Maine Department of Labor; transferred to the Maine State Museum in 2019.</p>
+      <p>Commissioned by the Maine Department of Labor; transferred to the Maine State Museum in 2019.</p>
 
       <p>
         <a className="pop_item" 
