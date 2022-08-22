@@ -445,6 +445,7 @@ article.article-body {
   border-top: 6px solid #eee;
   border-bottom: 6px solid #eee;
   margin-bottom: 0.8em;
+  position: relative;
   text-align: center;
 }
 .pop-img img {
@@ -461,25 +462,30 @@ article.article-body {
 audio.voices {
   width: 50%;
 }
-.slide-nav {
-  text-align: right;
+.prev-slide, .next-slide {
+  position: absolute;
+  top: 40%;
 }
-.slide-nav ul li {
-  display: inline;
+
+.prev-slide {
+  left: 0px;
 }
-.slide-nav ul li span.no-more {
+.next-slide {
+  right: 0px;
+}
+
+.slide-nav span.no-more {
   color: #aeaeae;
-  cursor:  pointer;
+  cursor: default;
 }
-.slide-nav ul li a:link, .slide-nav ul li a:visited {
+.slide-nav a:link, .slide-nav a:visited {
   color: #444;
 }
-.slide-nav ul li a:hover {
+.slide-nav a:hover {
   color: #b35900;
   text-decoration: underline;
 }
 
-/* copied over by Don */
 .hotspot {
   stroke: white;
   stroke-width: 3;
