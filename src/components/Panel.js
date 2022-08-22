@@ -41,7 +41,7 @@ const Panel = (  ) => {
   const variants = {
     initial: {
       // At start, direction 0, new image enters from right
-      x: direction === 0 ? '100%' : '-100%',
+      // x: direction === 0 ? '100%' : '-100%',
       opacity: 0.2,
     },
     animate: {
@@ -51,8 +51,8 @@ const Panel = (  ) => {
     },
     exit:{
       // With direction 0 exit left
-      x: direction === 0 ? '-100%' : '100%',
-      transition: { duration: 1.5 },
+      // x: direction === 0 ? '-100%' : '100%',
+      transition: { duration: 1.4 },
       opacity: 0.2,
     }
   };

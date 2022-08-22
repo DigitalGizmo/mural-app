@@ -142,7 +142,7 @@ function PanelParent() {
               :
               <Link  key={panel.node.slug}
                 to={`/panels/${panel.node.slug}`} >
-                <img src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav.png"
+                <img src={`https://dev.digitalgizmo.com/mural-assets/images/mini-nav-${panel.node.ordinal}.jpg`}
                 alt={panel.node.title}/>
               </Link>
             )
