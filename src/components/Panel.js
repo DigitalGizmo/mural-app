@@ -3,6 +3,7 @@ import { useOutletContext, Link } from 'react-router-dom'; // Link, useParams,
 import Detail from './Detail';
 import Article from './Article';
 import Pop from './pops/Pop';
+import {motion, AnimatePresence } from 'framer-motion'; // /dist/framer-motion
 
 const Panel = (  ) => {
   // let params = useParams();
@@ -10,6 +11,7 @@ const Panel = (  ) => {
     nextPanelSlug, prevPanelSlug} = useOutletContext();
   // , openPop
   // contentIndex, onChooseContent , initialContentIndex
+  const [direction, setDirection] = useState(0);
 
   const [showPop, setShowPop] = useState(false);
   const [popData, setPopData] = useState();
@@ -36,8 +38,36 @@ const Panel = (  ) => {
     }
   }
 
+  const variants = {
+    initial: {
+      // At start, direction 0, new image enters from right
+      x: direction === 0 ? '100%' : '-100%',
+      opacity: 0.2,
+    },
+    animate: {
+      x: 0,
+      opacity: 1,
+      transition: {  duration: 1.5 },  
+    },
+    exit:{
+      // With direction 0 exit left
+      x: direction === 0 ? '-100%' : '100%',
+      transition: { duration: 1.5 },
+      opacity: 0.2,
+    }
+  };
+
   return (
-      <div className="content-area">
+    <AnimatePresence initial={false}>
+
+      <motion.div 
+        className="content-area"
+        key={chosenPanel.node.slug}
+        variants={variants}
+        initial="initial"
+        animate="animate"
+        exit="exit"      
+      >
 
         <div className="prev-panel">
           {prevPanelSlug &&
@@ -89,7 +119,9 @@ const Panel = (  ) => {
           />
         }
 
-      </div> // content-area 
+      </motion.div>  
+    </AnimatePresence>
+
   )
 }
 

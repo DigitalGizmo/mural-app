@@ -4,6 +4,7 @@ import {
   useQuery,
   gql,
 } from "@apollo/client"; 
+import {motion, AnimatePresence } from 'framer-motion'; // /dist/framer-motion
 import '../index.css';
 
 function PanelParent() {
@@ -11,7 +12,7 @@ function PanelParent() {
   // console.log(' params.panelSlug' + params.panelSlug)
 
   const [contentIndex, setContentIndex] = useState(2);
-
+  const [direction, setDirection] = useState(0);
   const onChooseContent = (contentIndex) => {
     // event.preventDefault();
     setContentIndex(contentIndex);
@@ -150,18 +151,28 @@ function PanelParent() {
           }
         })}
       </div> {/* panel-nav */}
-        
-      <div className="panel-title">
-          <h1>
-            {contentIndex === 2
-              ? <span>{ chosenPanel.node.panelTitle }</span>
-              : <a href="/"
-                    onClick={e => { e.preventDefault(); onChooseContent(2);}}>
-                  { chosenPanel.node.panelTitle }
-                </a>
-            }
-          </h1>
-      </div>
+
+      <AnimatePresence initial={false}>
+        <motion.div 
+          className="panel-title"
+          key={chosenPanel.node.slug}
+          // variants={variants}
+          initial={{ opacity: 0.2}}
+          animate={{ opacity: 1}}
+          exit={{ opacity: 0.2}}
+          transition={{duration: 1}}
+        >
+            <h1>
+              {contentIndex === 2
+                ? <span>{ chosenPanel.node.panelTitle }</span>
+                : <a href="/"
+                      onClick={e => { e.preventDefault(); onChooseContent(2);}}>
+                    { chosenPanel.node.panelTitle }
+                  </a>
+              }
+            </h1>
+        </motion.div>
+      </AnimatePresence>
 
       <Outlet 
         context={{ 
@@ -172,8 +183,6 @@ function PanelParent() {
           // openPop: openPop,
           onChooseContent: onChooseContent  }} 
       />
-
-
     </div>
   );
 }
