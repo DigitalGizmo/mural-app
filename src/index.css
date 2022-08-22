@@ -468,6 +468,7 @@ audio.voices {
 }
 .slide-nav ul li span.no-more {
   color: #aeaeae;
+  cursor:  pointer;
 }
 .slide-nav ul li a:link, .slide-nav ul li a:visited {
   color: #444;
