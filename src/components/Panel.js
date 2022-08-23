@@ -16,6 +16,17 @@ const Panel = (  ) => {
   const [showPop, setShowPop] = useState(false);
   const [popData, setPopData] = useState();
 
+  const goForward = () => {
+    console.log('going forward')
+    setDirection(0);
+  }
+
+  const goBackward = () => {
+    console.log('going backward')
+    setDirection(1);
+  }
+
+
   function openPop (popParams) { // panelNum, learnmoreNode
     // setCurrIndex(index);
     // console.log('popParams.learnmoreNode.title: ' + popParams.learnmoreNode.title);
@@ -41,7 +52,7 @@ const Panel = (  ) => {
   const variants = {
     initial: {
       // At start, direction 0, new image enters from right
-      // x: direction === 0 ? '100%' : '-100%',
+      x: direction === 0 ? '100%' : '-100%',
       opacity: 0.2,
     },
     animate: {
@@ -51,7 +62,7 @@ const Panel = (  ) => {
     },
     exit:{
       // With direction 0 exit left
-      // x: direction === 0 ? '-100%' : '100%',
+      x: direction === 0 ? '-100%' : '100%',
       transition: { duration: 1.4 },
       opacity: 0.2,
     }
@@ -75,7 +86,9 @@ const Panel = (  ) => {
             alt={`Previous panel is ${prevPanelSlug}`} />
           }
           {prevPanelSlug &&
-            <Link to={`/panels/${prevPanelSlug}`} >
+            <Link to={`/panels/${prevPanelSlug}`} 
+              onClick={goBackward}
+              >
               <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/arrow-prev.png" 
                 alt="prev arrow" className="arrow"/>
             </Link>
@@ -105,9 +118,12 @@ const Panel = (  ) => {
               alt={`${nextPanelSlug} next`} />        
           }
           {nextPanelSlug &&
-            <Link to={`/panels/${nextPanelSlug}`} >
+            <Link to={`/panels/${nextPanelSlug}`} 
+              onClick={goForward}
+            >
               <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/arrow-next.png" 
                 alt="next arrow" className="arrow"/>
+              debug: {direction}
             </Link>
           }
         </div>

@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react'; // , { useState, useEffect }
+import React, { useState, useEffect, useContext } from 'react'; // , { useState, useEffect }
 import { Link, Outlet, useParams, } from 'react-router-dom'; // , Outlet
 import {
   useQuery,
   gql,
 } from "@apollo/client"; 
+// import { SetDirectionGlobalContext, GetDirectionGlobalContext } from '../context/GlobalState';
 import {motion, AnimatePresence } from 'framer-motion'; // /dist/framer-motion
 import '../index.css';
 
@@ -12,7 +13,15 @@ function PanelParent() {
   // console.log(' params.panelSlug' + params.panelSlug)
 
   const [contentIndex, setContentIndex] = useState(2);
-  const [direction, setDirection] = useState(0);
+  const [tempSlug, setTempSlug] = useState('child-labor');
+  // const [pastPanelIndex, setPastPanelIndex] = useState(1);
+  // Hack to get panel index (hence num) without live data
+  // const slugs = ['apprenticeship', 'child-labor', 'women-textiles', 'secret-ballot', 
+  // 'labor-day', 'logging', 'shoe-strike', 'reform', 'Rosie', 'jay-strike', 'labor-future'];
+
+  // const { setDirection } = useContext(SetDirectionGlobalContext);
+  // const direction = useContext(GetDirectionGlobalContext);
+
   const onChooseContent = (contentIndex) => {
     // event.preventDefault();
     setContentIndex(contentIndex);
@@ -21,7 +30,13 @@ function PanelParent() {
   // Need to set back to Detail on new page
   useEffect(() => {
     setContentIndex(2);
+    // This is to separate out, delay setting panel num
+    setTempSlug(params.panelSlug)
+
   }, [params.panelSlug])
+
+
+
 
   const GET_PANELS = gql`
     query {
@@ -180,6 +195,7 @@ function PanelParent() {
           nextPanelSlug: nextPanelSlug,
           prevPanelSlug: prevPanelSlug,
           contentIndex: contentIndex, 
+          // direction: direction,
           // openPop: openPop,
           onChooseContent: onChooseContent  }} 
       />
