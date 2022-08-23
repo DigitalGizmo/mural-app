@@ -4,7 +4,7 @@ import {
   useQuery,
   gql,
 } from "@apollo/client"; 
-// import { SetDirectionGlobalContext, GetDirectionGlobalContext } from '../context/GlobalState';
+import { SetDirectionGlobalContext, GetDirectionGlobalContext } from '../context/GlobalState';
 import {motion, AnimatePresence } from 'framer-motion'; // /dist/framer-motion
 import '../index.css';
 
@@ -14,13 +14,13 @@ function PanelParent() {
 
   const [contentIndex, setContentIndex] = useState(2);
   const [tempSlug, setTempSlug] = useState('child-labor');
-  // const [pastPanelIndex, setPastPanelIndex] = useState(1);
+  const [pastPanelIndex, setPastPanelIndex] = useState(1);
   // Hack to get panel index (hence num) without live data
-  // const slugs = ['apprenticeship', 'child-labor', 'women-textiles', 'secret-ballot', 
-  // 'labor-day', 'logging', 'shoe-strike', 'reform', 'Rosie', 'jay-strike', 'labor-future'];
+  const slugs = ['apprenticeship', 'child-labor', 'women-textiles', 'secret-ballot', 
+  'labor-day', 'logging', 'shoe-strike', 'reform', 'Rosie', 'jay-strike', 'labor-future'];
 
-  // const { setDirection } = useContext(SetDirectionGlobalContext);
-  // const direction = useContext(GetDirectionGlobalContext);
+  const { setDirection } = useContext(SetDirectionGlobalContext);
+  const direction = useContext(GetDirectionGlobalContext);
 
   const onChooseContent = (contentIndex) => {
     // event.preventDefault();
@@ -35,7 +35,13 @@ function PanelParent() {
 
   }, [params.panelSlug])
 
+  useEffect(() => {
+    // console.log('temp slug: ' + tempSlug);
+    // console.log('panel index: ' + slugs.indexOf(tempSlug));
+    // setPastPanelIndex(panelIndex);
+    setDirection(slugs.indexOf(tempSlug));
 
+  }, [tempSlug])
 
 
   const GET_PANELS = gql`
@@ -195,7 +201,7 @@ function PanelParent() {
           nextPanelSlug: nextPanelSlug,
           prevPanelSlug: prevPanelSlug,
           contentIndex: contentIndex, 
-          // direction: direction,
+          direction: direction,
           // openPop: openPop,
           onChooseContent: onChooseContent  }} 
       />

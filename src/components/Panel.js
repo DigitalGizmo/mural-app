@@ -8,24 +8,13 @@ import {motion, AnimatePresence } from 'framer-motion'; // /dist/framer-motion
 const Panel = (  ) => {
   // let params = useParams();
   const { chosenPanel, contentIndex, onChooseContent, 
-    nextPanelSlug, prevPanelSlug} = useOutletContext();
+    nextPanelSlug, prevPanelSlug, direction} = useOutletContext();
   // , openPop
   // contentIndex, onChooseContent , initialContentIndex
-  const [direction, setDirection] = useState(0);
+  // const [direction, setDirection] = useState(0);
 
   const [showPop, setShowPop] = useState(false);
   const [popData, setPopData] = useState();
-
-  const goForward = () => {
-    console.log('going forward')
-    setDirection(0);
-  }
-
-  const goBackward = () => {
-    console.log('going backward')
-    setDirection(1);
-  }
-
 
   function openPop (popParams) { // panelNum, learnmoreNode
     // setCurrIndex(index);
@@ -86,9 +75,7 @@ const Panel = (  ) => {
             alt={`Previous panel is ${prevPanelSlug}`} />
           }
           {prevPanelSlug &&
-            <Link to={`/panels/${prevPanelSlug}`} 
-              onClick={goBackward}
-              >
+            <Link to={`/panels/${prevPanelSlug}`} >
               <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/arrow-prev.png" 
                 alt="prev arrow" className="arrow"/>
             </Link>
@@ -118,9 +105,7 @@ const Panel = (  ) => {
               alt={`${nextPanelSlug} next`} />        
           }
           {nextPanelSlug &&
-            <Link to={`/panels/${nextPanelSlug}`} 
-              onClick={goForward}
-            >
+            <Link to={`/panels/${nextPanelSlug}`} >
               <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/arrow-next.png" 
                 alt="next arrow" className="arrow"/>
               debug: {direction}
