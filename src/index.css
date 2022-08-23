@@ -156,17 +156,16 @@ cite:before {
   color: #ff9933;
   text-decoration: underline;
 }
+
 .panel-nav {
   grid-area: panel-nav;
   text-align: center;
 }
 .panel-nav img {
-  margin-right: -1px;
+  margin-right: 2px;
   width: 8%;
 }
-.panel-nav a {
-  text-decoration: none;
-}
+
 .msm-link, .site-title, .panel-nav {
   color: #eee;
   margin: .5em;

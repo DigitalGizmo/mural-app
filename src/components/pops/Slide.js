@@ -18,7 +18,10 @@ const Slide = ({popData}) => {
 
       <nav className="slide-nav prev-slide">
         { slideIndex > 0 
-          ? <a href="/" onClick={ prevSlide }>&larr;</a> 
+          ? <a href="/" onClick={ prevSlide }>
+              <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/prev-arrow.svg" 
+                alt="" className=""/>
+            </a> 
           : <span className="no-more">&larr;</span>
         }
       </nav>
@@ -29,7 +32,10 @@ const Slide = ({popData}) => {
 
       <nav className="slide-nav next-slide">
         { slideIndex < (popData.learnmoreNode.slideSet.edges.length -1)
-          ? <a href="/" onClick={ nextSlide }>&rarr;</a>
+          ? <a href="/" onClick={ nextSlide }>
+              <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/next-arrow.svg" 
+                alt="" className=""/>
+            </a>
           : <span className="no-more">&rarr;</span>
         }
       </nav>
