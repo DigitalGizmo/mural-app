@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; // , { useState, useEffect }
+import React, { useState, useEffect } from 'react'; // , { useState, useEffect }
 import { useOutletContext, Link } from 'react-router-dom'; // Link, useParams,
 import Detail from './Detail';
 import Article from './Article';
@@ -12,9 +12,25 @@ const Panel = (  ) => {
   // , openPop
   // contentIndex, onChooseContent , initialContentIndex
   // const [direction, setDirection] = useState(0);
-
+  const [prevDirection, setPrevDirection] = useState(0);
+  const [isSameDirection, setIsSameDirection] = useState(0);
   const [showPop, setShowPop] = useState(false);
   const [popData, setPopData] = useState();
+
+  useEffect(() => {
+    // console.log('temp slug: ' + tempSlug);
+    // console.log('panel index: ' + slugs.indexOf(tempSlug));
+    // setPastPanelIndex(panelIndex);
+    // setDirection(slugs.indexOf(tempSlug));
+    if (direction === prevDirection) {
+      console.log('direction remains the same');
+      setIsSameDirection(0);
+    } else {
+      console.log('direction has changed');
+      setIsSameDirection(1);
+    }
+
+  }, [direction])
 
   function openPop (popParams) { // panelNum, learnmoreNode
     // setCurrIndex(index);
@@ -42,18 +58,18 @@ const Panel = (  ) => {
     initial: {
       // At start, direction 0, new image enters from right
       x: direction === 0 ? '100%' : '-100%',
-      opacity: 0.2,
+      // opacity: 0.2,
     },
     animate: {
       x: 0,
       opacity: 1,
-      transition: {  duration: 1.5 },  
+      transition: {  duration: 1 },  
     },
     exit:{
       // With direction 0 exit left
       x: direction === 0 ? '-100%' : '100%',
-      transition: { duration: 1.4 },
-      opacity: 0.2,
+      transition: { duration: 0.9 },
+      // opacity: 0.2,
     }
   };
 
