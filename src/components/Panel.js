@@ -130,7 +130,6 @@ const Panel = (  ) => {
             <Link to={`/panels/${nextPanelSlug}`} >
               <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/arrow-next.png" 
                 alt="next arrow" className="arrow"/>
-              debug: {direction}
             </Link>
           }
         </div>

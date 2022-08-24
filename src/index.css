@@ -2,7 +2,6 @@
 /*https://gridbyexample.com/*/
 body {
   background-color: #000;
-  color: #eee;
   font-family: "futura-pt", sans-serif;
   font-size: 1em;
   font-weight: 300;
@@ -83,6 +82,7 @@ cite:before {
   width: 100vw;
   overflow-x: scroll;
 }
+
 .mural-menu a img {
   max-width: 100%;
 }
@@ -122,7 +122,7 @@ cite:before {
 /*large display*/
 @media only screen and (min-width: 800px)   {
   .wrapper {
-    grid-template-columns: 200px auto 200px;
+    grid-template-columns: 220px auto 220px;
     grid-template-areas:
       "msm-link site-title panel-nav"
       "panel-title panel-title panel-title"
@@ -134,7 +134,7 @@ cite:before {
   grid-area: msm-link;
 }
 .msm-logo {
-  width:  90px;
+  width: 90px;
   height: auto;
 }
 .site-title {
@@ -163,7 +163,11 @@ cite:before {
 }
 .panel-nav img {
   margin-right: 2px;
-  width: 8%;
+  max-width: 7%;
+}
+
+img.panel-nav-selected {
+  border: 2px solid #ff9933;
 }
 
 .msm-link, .site-title, .panel-nav {
@@ -189,9 +193,10 @@ cite:before {
 .prev-panel img, .next-panel img {/* for small layout, push panels down w dynamic top padding */
   max-width: 100%;
 }
-.arrow {
+img.arrow {
   position: absolute;
-  top: 15%;
+  top: 25%;
+  max-width: 25px;
 }
 .next-panel a img {
   right: 4px;
@@ -212,44 +217,7 @@ cite:before {
 a.more-link {
   visibility: hidden;
 }
-.tabs ul {
-  font-size: 0.75em;
-  letter-spacing: 0.025em;
-  text-align: left;
-  text-transform: uppercase;
-}
-.tabs ul li {
-  background-color: #ff9933;
-  border: 1px solid #e67300;
-  border-radius: 50px;
-  display: inline-block;
-  font-weight: bold;
-  height: 50px;
-  letter-spacing: 0.05em;
-  line-height: 1.2;
-  margin: 0px 0px 1em 0px;
-  text-align: center;
-  width: 80%;
-}
-.tabs ul li a:link, .tabs ul li a:visited {
-  color: #fff;
-  display: block;
-  margin: 5%;
-}
-div.current-panel-article .tabs ul li {
-  display: inline;
-}
-div.current-panel-article .tabs ul li a {
-  display: inherit;
-}
-.tabs ul li a:hover {
-  color: #444;
-  text-decoration: underline;
-}
-.tabs ul li.selected {
-  background-color: #444;
-  color: #eee;
-}
+
 /* ////////////////// */
 /*  PANEL INTRO PAGE  */
 /* ////////////////// */
@@ -299,10 +267,7 @@ div.current-panel-article .tabs ul li a {
   height: 60vw;
   }
 }
-.current-panel .tabs {
-  grid-area: article-buttons;
-  padding: 1em;
-}
+
 /* ////////////////// */
 /*    ARTICLE PAGE    */
 /* ////////////////// */
@@ -352,11 +317,51 @@ div.current-panel-article .tabs ul li a {
       "tabs tabs tabs"
       "article-body panel-image learn-more";
     grid-template-columns: 30% auto 30%;
-    grid-template-rows: 80px auto;
+    grid-template-rows: 60px auto;
   }
 }
 .current-panel-article nav.tabs {
   grid-area: tabs;
+  text-align: center;
+}
+nav.tabs ul {
+  font-size: 0.75em;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+}
+nav.tabs ul li {
+  background-color: #ff9933;
+  border: 1px solid #e67300;
+  border-radius: 50px;
+  display: inline-block;
+  font-weight: bold;
+  height: 50px;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+  margin: 0px 0px 1em 0px;
+  text-align: center;
+  width: 100%;
+}
+nav.tabs ul li a:link, nav.tabs ul li a:visited {
+  color: #fff;
+  display: block;
+  margin: 5%;
+}
+div.current-panel-article nav.tabs ul li {
+  width: 300px;
+  margin: 0.5em;
+  }
+div.current-panel-article nav.tabs ul li a {
+  display: block;
+  margin:  5%;
+}
+.tabs ul li a:hover {
+  color: #444;
+  text-decoration: underline;
+}
+.tabs ul li.selected {
+  background-color: #444;
+  color: #eee;
 }
 .current-panel-article article.article-body {
   grid-area: article-body;
@@ -371,6 +376,12 @@ div.current-panel-article .tabs ul li a {
 .current-panel-article div.panel-image img {
   max-width: 100%;
 }
+
+.current-panel .tabs {
+  grid-area: article-buttons;
+  padding: 1em;
+}
+
 article.article-body {
   background-color: #eee;
   height: 60vh;
@@ -392,6 +403,7 @@ article.article-body {
   border: 1px solid #999;
   display: block;
   margin-bottom: .25em;
+  max-width: 200px;
 }
 .learn-more ul li a {
     color: #999;
@@ -402,9 +414,8 @@ article.article-body {
 .slimpop-wrapper {
   background-color: #fff;
   border: 1px solid #eee;
-  color: #444;
   overflow: auto;
-  padding: 2.25em;
+  padding: 3%;
   margin: auto;
 }
 .slimpop-wrapper h1 {
@@ -415,6 +426,7 @@ article.article-body {
   margin-bottom: 0;
 }
 .slimpop-wrapper p {
+  color: #444;
   font-size: 1.025em;
 }
 .pop-close {
@@ -433,13 +445,25 @@ article.article-body {
   width: 100%;
   z-index: 99;
 }
+/* small display */
 #slimpop-container {
-  margin:  5% auto;
-  max-height: 80%;
+  margin: 0;
+  height: 100%;
   overflow-y: auto;
-  width: 65%;
+  width: 100%;
   z-index: 100;
 }
+/* large display */
+@media only screen and (min-width: 800px)   {
+  #slimpop-container {
+    margin:  5% auto;
+    max-height: 80%;
+    overflow-y: auto;
+    width: 75%;
+    z-index: 100;
+  }
+} 
+
 .pop-img {
   border-top: 6px solid #eee;
   border-bottom: 6px solid #eee;
@@ -461,10 +485,19 @@ article.article-body {
 audio.voices {
   width: 50%;
 }
+
+/* small display */
 .prev-slide, .next-slide {
   position: absolute;
-  top: 40%;
+  top: 30%;
 }
+
+/* large display */
+@media only screen and (min-width: 800px)  {
+  .prev-slide, .next-slide {
+    top: 180px;
+  }
+} 
 
 .prev-slide {
   left: 0px;
