@@ -484,6 +484,11 @@ audio.voices {
   color: #b35900;
   text-decoration: underline;
 }
+img.slide-arrow {
+  border: none;
+  max-height: 37px;
+  width: auto;
+}
 
 .hotspot {
   stroke: white;
