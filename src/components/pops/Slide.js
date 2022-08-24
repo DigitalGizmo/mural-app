@@ -19,10 +19,11 @@ const Slide = ({popData}) => {
       <nav className="slide-nav prev-slide">
         { slideIndex > 0 
           ? <a href="/" onClick={ prevSlide }>
-              <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/prev-arrow.svg" 
-                alt="" className=""/>
+              <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/arrow-prev.png" 
+              alt="previous slide" className="slide-arrow"/>
             </a> 
-          : <span className="no-more">&larr;</span>
+          : <span className="no-more"><img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/arrow-gray-prev.png" 
+                alt="no more slides" className="slide-arrow"/></span>
         }
       </nav>
 
@@ -33,10 +34,11 @@ const Slide = ({popData}) => {
       <nav className="slide-nav next-slide">
         { slideIndex < (popData.learnmoreNode.slideSet.edges.length -1)
           ? <a href="/" onClick={ nextSlide }>
-              <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/next-arrow.svg" 
-                alt="" className=""/>
+              <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/arrow-next.png" 
+                alt="next slide" className="slide-arrow"/>
             </a>
-          : <span className="no-more">&rarr;</span>
+          : <span className="no-more"><img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/arrow-gray-next.png" 
+                alt="no more slides" className="slide-arrow"/></span>
         }
       </nav>
 
