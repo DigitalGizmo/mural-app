@@ -13,14 +13,16 @@ function PanelParent() {
   // console.log(' params.panelSlug' + params.panelSlug)
 
   const [contentIndex, setContentIndex] = useState(2);
-  const [tempSlug, setTempSlug] = useState('child-labor');
-  const [pastPanelIndex, setPastPanelIndex] = useState(1);
+  // const [tempSlug, setTempSlug] = useState('child-labor');
+  // const [pastPanelIndex, setPastPanelIndex] = useState(1);
   // Hack to get panel index (hence num) without live data
   const slugs = ['apprenticeship', 'child-labor', 'women-textiles', 'secret-ballot', 
   'labor-day', 'logging', 'shoe-strike', 'reform', 'Rosie', 'jay-strike', 'labor-future'];
 
   const { setDirection } = useContext(SetDirectionGlobalContext);
   const direction = useContext(GetDirectionGlobalContext);
+
+  const [directionUpdated, setDirectionUpdated] = useState(false);
 
   const onChooseContent = (contentIndex) => {
     // event.preventDefault();
@@ -31,17 +33,20 @@ function PanelParent() {
   useEffect(() => {
     setContentIndex(2);
     // This is to separate out, delay setting panel num
-    setTempSlug(params.panelSlug)
+
+    // setTempSlug(params.panelSlug)
+
+    setDirection(slugs.indexOf(params.panelSlug));
 
   }, [params.panelSlug])
 
-  useEffect(() => {
-    // console.log('temp slug: ' + tempSlug);
-    // console.log('panel index: ' + slugs.indexOf(tempSlug));
-    // setPastPanelIndex(panelIndex);
-    setDirection(slugs.indexOf(tempSlug));
+  // useEffect(() => {
+  //   // console.log('temp slug: ' + tempSlug);
+  //   // console.log('panel index: ' + slugs.indexOf(tempSlug));
+  //   // setPastPanelIndex(panelIndex);
+  //   setDirection(slugs.indexOf(tempSlug));
 
-  }, [tempSlug])
+  // }, [tempSlug])
 
 
   const GET_PANELS = gql`

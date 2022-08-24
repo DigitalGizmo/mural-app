@@ -13,9 +13,12 @@ const Panel = (  ) => {
   // contentIndex, onChooseContent , initialContentIndex
   // const [direction, setDirection] = useState(0);
   const [prevDirection, setPrevDirection] = useState(0);
-  const [isSameDirection, setIsSameDirection] = useState(0);
+  const [isSameDirection, setIsSameDirection] = useState(true);
   const [showPop, setShowPop] = useState(false);
   const [popData, setPopData] = useState();
+
+  console.log('prev direction: ' + prevDirection);
+  console.log('incomig direction: ' + direction);
 
   useEffect(() => {
     // console.log('temp slug: ' + tempSlug);
@@ -24,10 +27,11 @@ const Panel = (  ) => {
     // setDirection(slugs.indexOf(tempSlug));
     if (direction === prevDirection) {
       console.log('direction remains the same');
-      setIsSameDirection(0);
+      setIsSameDirection(true);
     } else {
       console.log('direction has changed');
-      setIsSameDirection(1);
+      setIsSameDirection(false);
+      // setBackwardVariations();
     }
 
   }, [direction])
@@ -54,36 +58,38 @@ const Panel = (  ) => {
     }
   }
 
-  const variants = {
-    initial: {
-      // At start, direction 0, new image enters from right
-      x: direction === 0 ? '100%' : '-100%',
-      // opacity: 0.2,
-    },
-    animate: {
-      x: 0,
-      opacity: 1,
-      transition: {  duration: 1 },  
-    },
-    exit:{
-      // With direction 0 exit left
-      x: direction === 0 ? '-100%' : '100%',
-      transition: { duration: 0.9 },
-      // opacity: 0.2,
-    }
-  };
+  // const variants1 = {
+  //   initial: {
+  //     x: direction === 0 ? '100%' : '-100%',
+  //   },
+  //   animate: {
+  //     x: 0,
+  //     transition: {  duration: 1 },  
+  //   },
+  //   exit:{
+  //     x: direction === 0 ? '-100%' : '100%',
+  //     transition: { duration: 0.9 },
+  //   }
+  // };
 
   return (
     <AnimatePresence initial={false}>
 
-      <motion.div 
-        className="content-area"
-        key={chosenPanel.node.slug}
-        variants={variants}
-        initial="initial"
-        animate="animate"
-        exit="exit"      
-      >
+        <motion.div 
+          className="content-area"
+          key={chosenPanel.node.slug}
+          // variants={variants}
+          // initial="initial"
+          // animate="animate"
+          // exit="exit"      
+          initial={{ x: direction === 0 ? '100%' : '-100%'}}
+          animate={{ x: 0, transition: {  duration: 1 } }}
+          exit={{x: direction === 0 ? '-100%' : '100%', 
+            transition: {  duration: 1 }
+          }}
+        >
+      
+
 
         <div className="prev-panel">
           {prevPanelSlug &&
@@ -136,7 +142,9 @@ const Panel = (  ) => {
           />
         }
 
-      </motion.div>  
+      </motion.div> 
+
+
     </AnimatePresence>
 
   )
