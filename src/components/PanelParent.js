@@ -163,13 +163,15 @@ function PanelParent() {
           if (panel.node.ordinal < 50) {
             return ( chosenPanel.node.ordinal === (index + 1)
               ? <img key={panel.node.slug}
-                src="https://dev.digitalgizmo.com/mural-assets/images/mini-nav-selected.png"
-                alt={`${panel.node.title} selected`}/>
+                src={`https://dev.digitalgizmo.com/mural-assets/images/mini-nav-${panel.node.ordinal}.jpg`}
+                alt={`${panel.node.panelTitle} selected`}
+                className="panel-nav-selected"
+                />
               :
               <Link  key={panel.node.slug}
                 to={`/panels/${panel.node.slug}`} >
                 <img src={`https://dev.digitalgizmo.com/mural-assets/images/mini-nav-${panel.node.ordinal}.jpg`}
-                alt={panel.node.title}/>
+                alt={panel.node.panelTitle}/>
               </Link>
             )
           } else {
