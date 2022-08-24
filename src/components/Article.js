@@ -56,7 +56,9 @@ const Article = ({chosenPanel,
       </div>{/* /panel-image */}          
 
       <nav className="learn-more">
-        <h3>Learn More</h3>
+        { articleInfo.learnmoreSet.edges.length > 0 &&
+          <h3>Learn More</h3>
+        }
         <ul>
           {articleInfo.learnmoreSet.edges.map(learnmore => {
             return (
