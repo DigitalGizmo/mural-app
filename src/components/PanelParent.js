@@ -29,6 +29,15 @@ function PanelParent() {
     setContentIndex(contentIndex);
   }
 
+  const [linkDirection, setLinkDirection] = useState(0);
+
+  const chooseDirection = (directionIndex) => {
+    console.log('looks like I can call functions from Link');
+    setLinkDirection(directionIndex)
+  }
+
+
+
   // Need to set back to Detail on new page
   useEffect(() => {
     setContentIndex(2);
@@ -169,6 +178,7 @@ function PanelParent() {
                 />
               :
               <Link  key={panel.node.slug}
+              onClick={e => { chooseDirection(1);}}
                 to={`/panels/${panel.node.slug}`} >
                 <img src={`https://dev.digitalgizmo.com/mural-assets/images/mini-nav-${panel.node.ordinal}.jpg`}
                 alt={panel.node.panelTitle}/>
@@ -209,6 +219,8 @@ function PanelParent() {
           prevPanelSlug: prevPanelSlug,
           contentIndex: contentIndex, 
           direction: direction,
+          chooseDirection: chooseDirection,
+          linkDirection: linkDirection,
           // openPop: openPop,
           onChooseContent: onChooseContent  }} 
       />

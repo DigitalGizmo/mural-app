@@ -5,10 +5,11 @@ import Article from './Article';
 import Pop from './pops/Pop';
 import {motion, AnimatePresence } from 'framer-motion'; // /dist/framer-motion
 
-const Panel = (  ) => {
+const Panel = ({} ) => {
   // let params = useParams();
   const { chosenPanel, contentIndex, onChooseContent, 
-    nextPanelSlug, prevPanelSlug, direction} = useOutletContext();
+    nextPanelSlug, prevPanelSlug, direction,
+    linkDirection, chooseDirection} = useOutletContext();
   // , openPop
   // contentIndex, onChooseContent , initialContentIndex
   // const [direction, setDirection] = useState(0);
@@ -16,6 +17,8 @@ const Panel = (  ) => {
   const [isSameDirection, setIsSameDirection] = useState(true);
   const [showPop, setShowPop] = useState(false);
   const [popData, setPopData] = useState();
+
+  // const [linkDirection, setLinkDirection] = useState(0);
 
   console.log('prev direction: ' + prevDirection);
   console.log('incomig direction: ' + direction);
@@ -82,9 +85,9 @@ const Panel = (  ) => {
           // initial="initial"
           // animate="animate"
           // exit="exit"      
-          initial={{ x: direction === 0 ? '100%' : '-100%'}}
+          initial={{ x: linkDirection === 0 ? '100%' : '-100%'}}
           animate={{ x: 0, transition: {  duration: 1 } }}
-          exit={{x: direction === 0 ? '-100%' : '100%', 
+          exit={{x: linkDirection === 0 ? '-100%' : '100%', 
             transition: {  duration: 1 }
           }}
         >
@@ -97,7 +100,9 @@ const Panel = (  ) => {
             alt={`Previous panel is ${prevPanelSlug}`} />
           }
           {prevPanelSlug &&
-            <Link to={`/panels/${prevPanelSlug}`} >
+            <Link 
+              onClick={e => { chooseDirection(1);}}
+              to={`/panels/${prevPanelSlug}`} >
               <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/arrow-prev.png" 
                 alt="prev arrow" className="arrow"/>
             </Link>
@@ -127,7 +132,9 @@ const Panel = (  ) => {
               alt={`${nextPanelSlug} next`} />        
           }
           {nextPanelSlug &&
-            <Link to={`/panels/${nextPanelSlug}`} >
+            <Link 
+              onClick={e => { chooseDirection(0);}}
+              to={`/panels/${nextPanelSlug}`} >
               <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/arrow-next.png" 
                 alt="next arrow" className="arrow"/>
             </Link>
