@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react'; // , { useState, useEffect }
+import React, { useState, useEffect } from 'react';
+// , { useState, useEffect , useContext}
 import { Link, Outlet, useParams, } from 'react-router-dom'; // , Outlet
 import {
   useQuery,
   gql,
 } from "@apollo/client"; 
-import { SetDirectionGlobalContext, GetDirectionGlobalContext } from '../context/GlobalState';
+// import { SetDirectionGlobalContext, GetDirectionGlobalContext } from '../context/GlobalState';
 import {motion, AnimatePresence } from 'framer-motion'; // /dist/framer-motion
 import '../index.css';
 
@@ -19,10 +20,10 @@ function PanelParent() {
   const slugs = ['apprenticeship', 'child-labor', 'women-textiles', 'secret-ballot', 
   'labor-day', 'logging', 'shoe-strike', 'reform', 'Rosie', 'jay-strike', 'labor-future'];
 
-  const { setDirection } = useContext(SetDirectionGlobalContext);
-  const direction = useContext(GetDirectionGlobalContext);
+  // const { setDirection } = useContext(SetDirectionGlobalContext);
+  // const direction = useContext(GetDirectionGlobalContext);
 
-  const [directionUpdated, setDirectionUpdated] = useState(false);
+  // const [directionUpdated, setDirectionUpdated] = useState(false);
 
   const onChooseContent = (contentIndex) => {
     // event.preventDefault();
@@ -39,15 +40,15 @@ function PanelParent() {
 
 
   // Need to set back to Detail on new page
-  useEffect(() => {
-    setContentIndex(2);
-    // This is to separate out, delay setting panel num
+  // useEffect(() => {
+  //   setContentIndex(2);
+  //   // This is to separate out, delay setting panel num
 
-    // setTempSlug(params.panelSlug)
+  //   // setTempSlug(params.panelSlug)
 
-    setDirection(slugs.indexOf(params.panelSlug));
+  //   setDirection(slugs.indexOf(params.panelSlug));
 
-  }, [params.panelSlug])
+  // }, [params.panelSlug])
 
   // useEffect(() => {
   //   // console.log('temp slug: ' + tempSlug);
@@ -218,7 +219,6 @@ function PanelParent() {
           nextPanelSlug: nextPanelSlug,
           prevPanelSlug: prevPanelSlug,
           contentIndex: contentIndex, 
-          direction: direction,
           chooseDirection: chooseDirection,
           linkDirection: linkDirection,
           // openPop: openPop,

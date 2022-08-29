@@ -5,10 +5,10 @@ import Article from './Article';
 import Pop from './pops/Pop';
 import {motion, AnimatePresence } from 'framer-motion'; // /dist/framer-motion
 
-const Panel = ({} ) => {
+const Panel = () => {
   // let params = useParams();
   const { chosenPanel, contentIndex, onChooseContent, 
-    nextPanelSlug, prevPanelSlug, direction,
+    nextPanelSlug, prevPanelSlug,
     linkDirection, chooseDirection} = useOutletContext();
   // , openPop
   // contentIndex, onChooseContent , initialContentIndex
@@ -21,23 +21,23 @@ const Panel = ({} ) => {
   // const [linkDirection, setLinkDirection] = useState(0);
 
   console.log('prev direction: ' + prevDirection);
-  console.log('incomig direction: ' + direction);
+  // console.log('incomig direction: ' + direction);
 
   useEffect(() => {
     // console.log('temp slug: ' + tempSlug);
     // console.log('panel index: ' + slugs.indexOf(tempSlug));
     // setPastPanelIndex(panelIndex);
     // setDirection(slugs.indexOf(tempSlug));
-    if (direction === prevDirection) {
+    if (linkDirection === prevDirection) {
       console.log('direction remains the same');
       setIsSameDirection(true);
     } else {
       console.log('direction has changed');
       setIsSameDirection(false);
-      // setBackwardVariations();
+      setPrevDirection(linkDirection)
     }
 
-  }, [direction])
+  }, [linkDirection])
 
   function openPop (popParams) { // panelNum, learnmoreNode
     // setCurrIndex(index);
@@ -92,8 +92,6 @@ const Panel = ({} ) => {
           }}
         >
       
-
-
         <div className="prev-panel">
           {prevPanelSlug &&
             <img src={`https://dev.digitalgizmo.com/mural-assets/panels/panelpics/${chosenPanel.node.slug}-prev.jpg`} 
@@ -107,7 +105,6 @@ const Panel = ({} ) => {
                 alt="prev arrow" className="arrow"/>
             </Link>
           }
-
         </div>
         
         { contentIndex === 2 &&
@@ -137,6 +134,7 @@ const Panel = ({} ) => {
               to={`/panels/${nextPanelSlug}`} >
               <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/arrow-next.png" 
                 alt="next arrow" className="arrow"/>
+                debug, isSameDirection: {isSameDirection.toString() }
             </Link>
           }
         </div>
