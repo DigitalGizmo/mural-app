@@ -20,6 +20,10 @@ function PanelParent() {
   const slugs = ['apprenticeship', 'child-labor', 'women-textiles', 'secret-ballot', 
   'labor-day', 'logging', 'shoe-strike', 'reform', 'Rosie', 'jay-strike', 'labor-future'];
 
+  const [navLinkIndexes, setNavLinkIndexes] = useState(
+    [0,0,0,0,1,1,1,1,1,1,1]
+  )
+
   // const { setDirection } = useContext(SetDirectionGlobalContext);
   // const direction = useContext(GetDirectionGlobalContext);
 
@@ -33,22 +37,27 @@ function PanelParent() {
   const [linkDirection, setLinkDirection] = useState(0);
 
   const chooseDirection = (directionIndex) => {
-    console.log('looks like I can call functions from Link');
+    // console.log('looks like I can call functions from Link');
     setLinkDirection(directionIndex)
   }
 
-
+  const calcLinkDirections = (currPanelIndex) => {
+    console.log('were on panel index: ' + currPanelIndex);
+  }
 
   // Need to set back to Detail on new page
-  // useEffect(() => {
-  //   setContentIndex(2);
-  //   // This is to separate out, delay setting panel num
+  // And we should use this opportunity to set direction
+  // in mini nav links based on current panel
+  useEffect(() => {
+    setContentIndex(2);
+    // This is to separate out, delay setting panel num
 
-  //   // setTempSlug(params.panelSlug)
+    // setTempSlug(params.panelSlug)
+    // setDirection(slugs.indexOf(params.panelSlug));
 
-  //   setDirection(slugs.indexOf(params.panelSlug));
+    calcLinkDirections(slugs.indexOf(params.panelSlug));
 
-  // }, [params.panelSlug])
+  }, [params.panelSlug])
 
   // useEffect(() => {
   //   // console.log('temp slug: ' + tempSlug);
@@ -179,7 +188,7 @@ function PanelParent() {
                 />
               :
               <Link  key={panel.node.slug}
-              onClick={e => { chooseDirection(1);}}
+                onClick={e => { chooseDirection(navLinkIndexes[index]);}}
                 to={`/panels/${panel.node.slug}`} >
                 <img src={`https://dev.digitalgizmo.com/mural-assets/images/mini-nav-${panel.node.ordinal}.jpg`}
                 alt={panel.node.panelTitle}/>
