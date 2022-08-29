@@ -85,9 +85,9 @@ const Panel = () => {
           // initial="initial"
           // animate="animate"
           // exit="exit"      
-          initial={{ x: linkDirection === 0 ? '100%' : '-100%'}}
+          initial={{ x: linkDirection === 1 ? '100%' : '-100%'}}
           animate={{ x: 0, transition: {  duration: 1 } }}
-          exit={{x: linkDirection === 0 ? '-100%' : '100%', 
+          exit={{x: linkDirection === 1 ? '-100%' : '100%', 
             transition: {  duration: 1 }
           }}
         >
@@ -99,7 +99,7 @@ const Panel = () => {
           }
           {prevPanelSlug &&
             <Link 
-              onClick={e => { chooseDirection(1);}}
+              onClick={e => { chooseDirection(0);}}
               to={`/panels/${prevPanelSlug}`} >
               <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/arrow-prev.png" 
                 alt="prev arrow" className="arrow"/>
@@ -130,7 +130,7 @@ const Panel = () => {
           }
           {nextPanelSlug &&
             <Link 
-              onClick={e => { chooseDirection(0);}}
+              onClick={e => { chooseDirection(1);}}
               to={`/panels/${nextPanelSlug}`} >
               <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/arrow-next.png" 
                 alt="next arrow" className="arrow"/>

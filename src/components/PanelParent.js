@@ -34,15 +34,22 @@ function PanelParent() {
     setContentIndex(contentIndex);
   }
 
-  const [linkDirection, setLinkDirection] = useState(0);
+  const [linkDirection, setLinkDirection] = useState(1);
 
   const chooseDirection = (directionIndex) => {
     // console.log('looks like I can call functions from Link');
     setLinkDirection(directionIndex)
   }
 
-  const calcLinkDirections = (currPanelIndex) => {
+  const calcLinkIndexes = (currPanelIndex) => {
     console.log('were on panel index: ' + currPanelIndex);
+    let newLinkIndexes = [];
+    for (let i = 0; i < 11; i++){
+      i < currPanelIndex
+      ? newLinkIndexes.push(0)
+      : newLinkIndexes.push(1);
+    }
+    setNavLinkIndexes(newLinkIndexes);
   }
 
   // Need to set back to Detail on new page
@@ -55,7 +62,7 @@ function PanelParent() {
     // setTempSlug(params.panelSlug)
     // setDirection(slugs.indexOf(params.panelSlug));
 
-    calcLinkDirections(slugs.indexOf(params.panelSlug));
+    calcLinkIndexes(slugs.indexOf(params.panelSlug));
 
   }, [params.panelSlug])
 
