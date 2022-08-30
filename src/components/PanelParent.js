@@ -15,19 +15,24 @@ function PanelParent() {
 
   const [contentIndex, setContentIndex] = useState(2);
   // const [tempSlug, setTempSlug] = useState('child-labor');
-  // const [pastPanelIndex, setPastPanelIndex] = useState(1);
   // Hack to get panel index (hence num) without live data
   const slugs = ['apprenticeship', 'child-labor', 'women-textiles', 'secret-ballot', 
   'labor-day', 'logging', 'shoe-strike', 'reform', 'Rosie', 'jay-strike', 'labor-future'];
 
   const [navLinkIndexes, setNavLinkIndexes] = useState(
-    [0,0,0,0,1,1,1,1,1,1,1]
+    [1,1,1,1,1,1,1,1,1,1,1]
   )
 
-  // const { setDirection } = useContext(SetDirectionGlobalContext);
-  // const direction = useContext(GetDirectionGlobalContext);
+  const [isNewDirection, setIsNewDirection] = useState(false);
+  const [pastDirection, setPastDirection] = useState(1);
 
-  // const [directionUpdated, setDirectionUpdated] = useState(false);
+  const checkDirection = (chosenDirection) => {
+    chosenDirection === pastDirection
+    ? setIsNewDirection(false)
+    : setIsNewDirection(true)
+
+    setPastDirection(chosenDirection);
+  }
 
   const onChooseContent = (contentIndex) => {
     // event.preventDefault();
@@ -37,7 +42,7 @@ function PanelParent() {
   const [linkDirection, setLinkDirection] = useState(1);
 
   const chooseDirection = (directionIndex) => {
-    // console.log('looks like I can call functions from Link');
+    checkDirection(directionIndex);
     setLinkDirection(directionIndex)
   }
 
@@ -57,23 +62,9 @@ function PanelParent() {
   // in mini nav links based on current panel
   useEffect(() => {
     setContentIndex(2);
-    // This is to separate out, delay setting panel num
-
-    // setTempSlug(params.panelSlug)
-    // setDirection(slugs.indexOf(params.panelSlug));
-
     calcLinkIndexes(slugs.indexOf(params.panelSlug));
 
   }, [params.panelSlug])
-
-  // useEffect(() => {
-  //   // console.log('temp slug: ' + tempSlug);
-  //   // console.log('panel index: ' + slugs.indexOf(tempSlug));
-  //   // setPastPanelIndex(panelIndex);
-  //   setDirection(slugs.indexOf(tempSlug));
-
-  // }, [tempSlug])
-
 
   const GET_PANELS = gql`
     query {
@@ -219,7 +210,8 @@ function PanelParent() {
         >
             <h1>
               {contentIndex === 2
-                ? <span>{ chosenPanel.node.panelTitle }</span>
+                ? <span>{ chosenPanel.node.panelTitle } isNewDir? { isNewDirection.toString()} </span>
+                // { isNewDirection.toString()}
                 : <a href="/"
                       onClick={e => { e.preventDefault(); onChooseContent(2);}}>
                     { chosenPanel.node.panelTitle }
