@@ -8,36 +8,47 @@ import {motion, AnimatePresence } from 'framer-motion'; // /dist/framer-motion
 const Panel = () => {
   // let params = useParams();
   const { chosenPanel, contentIndex, onChooseContent, 
-    nextPanelSlug, prevPanelSlug, linkDirection, chooseDirection,
-    isNewDirection} = useOutletContext();
+    nextPanelSlug, prevPanelSlug, linkDirection, setLinkDirection,
+    } = useOutletContext();
+    // exitComparator, chooseDirection
   // , openPop
   // contentIndex, onChooseContent , initialContentIndex
   // const [direction, setDirection] = useState(0);
-  const [prevDirection, setPrevDirection] = useState(0);
-  const [isSameDirection, setIsSameDirection] = useState(true);
+  // const [prevDirection, setPrevDirection] = useState(0);
+  // const [isSameDirection, setIsSameDirection] = useState(true);
+
   const [showPop, setShowPop] = useState(false);
   const [popData, setPopData] = useState();
+  // const [exitComparator, setExitComparator] = useState(1);
 
   // const [linkDirection, setLinkDirection] = useState(0);
 
-  console.log('prev direction: ' + prevDirection);
+  // console.log('prev direction: ' + prevDirection);
   // console.log('incomig direction: ' + direction);
 
-  useEffect(() => {
-    // console.log('temp slug: ' + tempSlug);
-    // console.log('panel index: ' + slugs.indexOf(tempSlug));
-    // setPastPanelIndex(panelIndex);
-    // setDirection(slugs.indexOf(tempSlug));
-    if (linkDirection === prevDirection) {
-      console.log('direction remains the same');
-      setIsSameDirection(true);
-    } else {
-      console.log('direction has changed');
-      setIsSameDirection(false);
-      setPrevDirection(linkDirection)
-    }
+  // useEffect(() => {
+  //   // console.log('temp slug: ' + tempSlug);
+  //   // console.log('panel index: ' + slugs.indexOf(tempSlug));
+  //   // setPastPanelIndex(panelIndex);
+  //   // setDirection(slugs.indexOf(tempSlug));
+  //   if (linkDirection === prevDirection) {
+  //     console.log('direction remains the same');
+  //     setIsSameDirection(true);
+  //   } else {
+  //     console.log('direction has changed');
+  //     setIsSameDirection(false);
+  //     setPrevDirection(linkDirection)
+  //   }
 
-  }, [linkDirection])
+  // }, [linkDirection])
+
+    // useEffect(() => {
+    //   isNewDirection
+    //   ? setExitComparator(0)
+    //   : setExitComparator(1)
+
+    // }, [isNewDirection])
+
 
   function openPop (popParams) { // panelNum, learnmoreNode
     // setCurrIndex(index);
@@ -76,7 +87,7 @@ const Panel = () => {
   // };
 
   return (
-    <AnimatePresence initial={false}>
+    <AnimatePresence initial={false} exit={false}>
 
         <motion.div 
           className="content-area"
@@ -86,10 +97,11 @@ const Panel = () => {
           // animate="animate"
           // exit="exit"      
           initial={{ x: linkDirection === 1 ? '100%' : '-100%'}}
-          animate={{ x: 0, transition: {  duration: 1 } }}
-          exit={{x: linkDirection === 1 ? '-100%' : '100%', 
-            transition: {  duration: 1 }
-          }}
+          animate={{ x: 0, opacity: 1, transition: {  duration: 0.7 } }}
+          // exit={{x: linkDirection === 1 ? '-100%' : '100%', 
+          //   transition: {  duration: 1 }
+          // }}
+          exit={{opacity: 0.2, transition: {duration: 0.5}}}
         >
       
         <div className="prev-panel">
@@ -99,7 +111,7 @@ const Panel = () => {
           }
           {prevPanelSlug &&
             <Link 
-              onClick={e => { chooseDirection(0);}}
+              onClick={e => { setLinkDirection(0);}}
               to={`/panels/${prevPanelSlug}`} >
               <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/arrow-prev.png" 
                 alt="prev arrow" className="arrow"/>
@@ -130,11 +142,11 @@ const Panel = () => {
           }
           {nextPanelSlug &&
             <Link 
-              onClick={e => { chooseDirection(1);}}
+              onClick={e => { setLinkDirection(1);}}
               to={`/panels/${nextPanelSlug}`} >
               <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/arrow-next.png" 
                 alt="next arrow" className="arrow"/>
-                debug, isSameDirection: {isSameDirection.toString() }
+                {/* debug, exitComparator: {exitComparator.toString() } */}
             </Link>
           }
         </div>

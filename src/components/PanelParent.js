@@ -19,20 +19,25 @@ function PanelParent() {
   'labor-day', 'logging', 'shoe-strike', 'reform', 'Rosie', 'jay-strike', 'labor-future'];
   
   const [linkDirection, setLinkDirection] = useState(1);
-  const [isNewDirection, setIsNewDirection] = useState(false);
-  const [pastDirection, setPastDirection] = useState(1);
+  // const [pastDirection, setPastDirection] = useState(1);
+  // const [exitComparator, setExitComparator] = useState(1);
   
-  const checkDirection = (chosenDirection) => {
-    chosenDirection === pastDirection
-    ? setIsNewDirection(false)
-    : setIsNewDirection(true) 
-    setPastDirection(chosenDirection);
-  }
+  // const checkDirection = (chosenDirection) => {
+  //   // chosenDirection === pastDirection
+  //   // ? setIsNewDirection(false)
+  //   // : setIsNewDirection(true) 
+  //   chosenDirection === pastDirection
+  //   ? setExitComparator(1)
+  //   : setExitComparator(0) 
+
+
+  //   setPastDirection(chosenDirection);
+  // }
     
-  const chooseDirection = (directionIndex) => {
-    checkDirection(directionIndex);
-    setLinkDirection(directionIndex)
-  }
+  // const chooseDirection = (directionIndex) => {
+  //   // checkDirection(directionIndex);
+  //   setLinkDirection(directionIndex)
+  // }
 
   const [contentIndex, setContentIndex] = useState(2);
   const onChooseContent = (contentIndex) => {
@@ -184,7 +189,7 @@ function PanelParent() {
                 />
               :
               <Link  key={panel.node.slug}
-                onClick={e => { chooseDirection(navLinkIndexes[index]);}}
+                onClick={e => { setLinkDirection(navLinkIndexes[index]);}}
                 to={`/panels/${panel.node.slug}`} >
                 <img src={`https://dev.digitalgizmo.com/mural-assets/images/mini-nav-${panel.node.ordinal}.jpg`}
                 alt={panel.node.panelTitle}/>
@@ -204,16 +209,16 @@ function PanelParent() {
           initial={{ opacity: 0.2}}
           animate={{ opacity: 1}}
           exit={{ opacity: 0.2}}
-          transition={{duration: 1}}
+          transition={{duration: 0.7}}
         >
             <h1>
               {contentIndex === 2
-                ? <span>{ chosenPanel.node.panelTitle } isNewDir? { isNewDirection.toString()} </span>
-                // { isNewDirection.toString()}
+                ? <span>{ chosenPanel.node.panelTitle }</span>
                 : <a href="/"
-                      onClick={e => { e.preventDefault(); onChooseContent(2);}}>
+                onClick={e => { e.preventDefault(); onChooseContent(2);}}>
                     { chosenPanel.node.panelTitle }
                   </a>
+              // exit? { exitComparator.toString()} 
               }
             </h1>
         </motion.div>
@@ -224,9 +229,11 @@ function PanelParent() {
           chosenPanel: chosenPanel,
           nextPanelSlug: nextPanelSlug,
           prevPanelSlug: prevPanelSlug,
-          chooseDirection: chooseDirection,
+          // chooseDirection: chooseDirection,
           linkDirection: linkDirection,
-          isNewDirection: isNewDirection,
+          setLinkDirection: setLinkDirection,
+          // isNewDirection: isNewDirection,
+          // exitComparator: exitComparator,
           contentIndex: contentIndex, 
           onChooseContent: onChooseContent  }} 
       />
