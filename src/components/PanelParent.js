@@ -13,39 +13,37 @@ function PanelParent() {
   let params = useParams();
   // console.log(' params.panelSlug' + params.panelSlug)
 
-  const [contentIndex, setContentIndex] = useState(2);
   // const [tempSlug, setTempSlug] = useState('child-labor');
   // Hack to get panel index (hence num) without live data
   const slugs = ['apprenticeship', 'child-labor', 'women-textiles', 'secret-ballot', 
   'labor-day', 'logging', 'shoe-strike', 'reform', 'Rosie', 'jay-strike', 'labor-future'];
-
-  const [navLinkIndexes, setNavLinkIndexes] = useState(
-    [1,1,1,1,1,1,1,1,1,1,1]
-  )
-
+  
+  const [linkDirection, setLinkDirection] = useState(1);
   const [isNewDirection, setIsNewDirection] = useState(false);
   const [pastDirection, setPastDirection] = useState(1);
-
+  
   const checkDirection = (chosenDirection) => {
     chosenDirection === pastDirection
     ? setIsNewDirection(false)
-    : setIsNewDirection(true)
-
+    : setIsNewDirection(true) 
     setPastDirection(chosenDirection);
   }
-
-  const onChooseContent = (contentIndex) => {
-    // event.preventDefault();
-    setContentIndex(contentIndex);
-  }
-
-  const [linkDirection, setLinkDirection] = useState(1);
-
+    
   const chooseDirection = (directionIndex) => {
     checkDirection(directionIndex);
     setLinkDirection(directionIndex)
   }
 
+  const [contentIndex, setContentIndex] = useState(2);
+  const onChooseContent = (contentIndex) => {
+    // event.preventDefault();
+    setContentIndex(contentIndex);
+  }
+
+  const [navLinkIndexes, setNavLinkIndexes] = useState(
+    [1,1,1,1,1,1,1,1,1,1,1]
+  )
+    
   const calcLinkIndexes = (currPanelIndex) => {
     console.log('were on panel index: ' + currPanelIndex);
     let newLinkIndexes = [];
@@ -226,10 +224,10 @@ function PanelParent() {
           chosenPanel: chosenPanel,
           nextPanelSlug: nextPanelSlug,
           prevPanelSlug: prevPanelSlug,
-          contentIndex: contentIndex, 
           chooseDirection: chooseDirection,
           linkDirection: linkDirection,
-          // openPop: openPop,
+          isNewDirection: isNewDirection,
+          contentIndex: contentIndex, 
           onChooseContent: onChooseContent  }} 
       />
     </div>

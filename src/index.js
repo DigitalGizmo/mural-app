@@ -6,7 +6,7 @@ import {
   InMemoryCache,
   ApolloProvider,
 } from "@apollo/client"
-import { GlobalProvider } from './context/GlobalState';
+// import { GlobalProvider } from './context/GlobalState';
 import './index.css';
 import PanelParent from './components/PanelParent';
 import Home from './components/Home';
@@ -25,7 +25,7 @@ root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
       <BrowserRouter>
-      <GlobalProvider>
+      {/* <GlobalProvider> */}
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='panels' element={<PanelParent />} >
@@ -40,7 +40,7 @@ root.render(
               }
             />
           </Routes>
-        </GlobalProvider>
+        {/* </GlobalProvider> */}
       </BrowserRouter>
     </ApolloProvider>
   </React.StrictMode>

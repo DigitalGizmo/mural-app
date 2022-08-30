@@ -8,8 +8,8 @@ import {motion, AnimatePresence } from 'framer-motion'; // /dist/framer-motion
 const Panel = () => {
   // let params = useParams();
   const { chosenPanel, contentIndex, onChooseContent, 
-    nextPanelSlug, prevPanelSlug,
-    linkDirection, chooseDirection} = useOutletContext();
+    nextPanelSlug, prevPanelSlug, linkDirection, chooseDirection,
+    isNewDirection} = useOutletContext();
   // , openPop
   // contentIndex, onChooseContent , initialContentIndex
   // const [direction, setDirection] = useState(0);
