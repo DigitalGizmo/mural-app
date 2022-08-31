@@ -414,7 +414,8 @@ article.article-body {
 .slimpop-wrapper {
   background-color: #fff;
   border: 1px solid #eee;
-  overflow: auto;
+  /* overflow: auto; */
+  position: relative;
   padding: 3%;
   margin: auto;
 }
@@ -537,4 +538,6 @@ img.slide-arrow {
 /* added by Don for slides */
 .slide-container {
   position: absolute;
+  background-color: #fff;
+  left: 0;
 }
