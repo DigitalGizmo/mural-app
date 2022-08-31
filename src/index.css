@@ -534,3 +534,7 @@ img.slide-arrow {
   fill: #b35900;
 }
 
+/* added by Don for slides */
+.slide-container {
+  position: absolute;
+}

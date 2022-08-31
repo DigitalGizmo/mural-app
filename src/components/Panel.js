@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'; // , { useState, useEffect }
+import React, { useState } from 'react'; // , { useState, useEffect }
 import { useOutletContext, Link } from 'react-router-dom'; // Link, useParams,
 import Detail from './Detail';
 import Article from './Article';
@@ -9,46 +9,11 @@ const Panel = () => {
   // let params = useParams();
   const { chosenPanel, contentIndex, onChooseContent, 
     nextPanelSlug, prevPanelSlug, linkDirection, setLinkDirection,
-    } = useOutletContext();
-    // exitComparator, chooseDirection
-  // , openPop
-  // contentIndex, onChooseContent , initialContentIndex
-  // const [direction, setDirection] = useState(0);
-  // const [prevDirection, setPrevDirection] = useState(0);
-  // const [isSameDirection, setIsSameDirection] = useState(true);
+  } = useOutletContext();
 
   const [showPop, setShowPop] = useState(false);
   const [popData, setPopData] = useState();
   // const [exitComparator, setExitComparator] = useState(1);
-
-  // const [linkDirection, setLinkDirection] = useState(0);
-
-  // console.log('prev direction: ' + prevDirection);
-  // console.log('incomig direction: ' + direction);
-
-  // useEffect(() => {
-  //   // console.log('temp slug: ' + tempSlug);
-  //   // console.log('panel index: ' + slugs.indexOf(tempSlug));
-  //   // setPastPanelIndex(panelIndex);
-  //   // setDirection(slugs.indexOf(tempSlug));
-  //   if (linkDirection === prevDirection) {
-  //     console.log('direction remains the same');
-  //     setIsSameDirection(true);
-  //   } else {
-  //     console.log('direction has changed');
-  //     setIsSameDirection(false);
-  //     setPrevDirection(linkDirection)
-  //   }
-
-  // }, [linkDirection])
-
-    // useEffect(() => {
-    //   isNewDirection
-    //   ? setExitComparator(0)
-    //   : setExitComparator(1)
-
-    // }, [isNewDirection])
-
 
   function openPop (popParams) { // panelNum, learnmoreNode
     // setCurrIndex(index);
@@ -72,23 +37,8 @@ const Panel = () => {
     }
   }
 
-  // const variants1 = {
-  //   initial: {
-  //     x: direction === 0 ? '100%' : '-100%',
-  //   },
-  //   animate: {
-  //     x: 0,
-  //     transition: {  duration: 1 },  
-  //   },
-  //   exit:{
-  //     x: direction === 0 ? '-100%' : '100%',
-  //     transition: { duration: 0.9 },
-  //   }
-  // };
-
   return (
-    <AnimatePresence initial={false} exit={false}>
-
+    <AnimatePresence initial={false}> 
         <motion.div 
           className="content-area"
           key={chosenPanel.node.slug}
@@ -157,12 +107,8 @@ const Panel = () => {
             popData = {popData} 
           />
         }
-
       </motion.div> 
-
-
     </AnimatePresence>
-
   )
 }
 
