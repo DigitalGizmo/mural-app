@@ -7,14 +7,28 @@ const Slide = ({popData}) => {
   const [direction, setDirection] = useState(1); 
   
   const nextSlide = (event) => {
-    event.preventDefault();
-    setDirection(1);
-    setCurrSlideIndex(slideIndex + 1);
+    // event.preventDefault();
+    if (slideIndex < (popData.learnmoreNode.slideSet.edges.length -1)){
+      setDirection(1);
+      setCurrSlideIndex(slideIndex + 1);
+    }
   }
 
   const prevSlide = () => {
-    setDirection(0);
-    setCurrSlideIndex(slideIndex - 1);
+    if (slideIndex > 0) {
+      setDirection(0);
+      setCurrSlideIndex(slideIndex - 1);
+    }
+  }
+
+  const onSlidePan = (event, info) => {
+    console.log('info.delta.x: ' + info.delta.x);
+    info.delta.x < 0
+    ? nextSlide()
+    : prevSlide()
+    // info.delta.x < 0
+    // ? console.log('next: ')
+    // : console.log('prev: ')
   }
 
   // Have to useEffect because of closure on setState
@@ -34,13 +48,14 @@ const Slide = ({popData}) => {
         exit={{x: direction === 1 ? '-100%' : '100%', 
           transition: {  duration: 1 }
         }}
-        // exit={{opacity: 0.2, transition: {duration: 0.5}}}      
+        // exit={{opacity: 0.2, transition: {duration: 0.5}}}
+        // onPan={(e, pointInfo) => { console.log('got pan') }}
+        onPanStart={onSlidePan}
       >
         <div className="pop-img">
 
           <motion.nav 
             className="slide-nav prev-slide"
-            key={slideIndex}     
             initial={{ opacity: 1 }}
             animate={{ opacity: 1, transition: {  duration: 0.1 } }}
             exit={{opacity: 0.1, transition: {  duration: 0.1 }
@@ -56,13 +71,16 @@ const Slide = ({popData}) => {
             }
           </motion.nav>
 
-          {/* <img src="https://dev.digitalgizmo.com/mural-assets/pops/learnmore/fullpics/' %}p{{ slide.learnmore.article.panel.ordinal }}-{{ slide.learnmore.article.article_type }}-{{ slide.learnmore.learnmore_type }}-{{ slide.slide_num }}.jpg"/> */}
-          <img src={`https://dev.digitalgizmo.com/mural-assets/pops/learnmore/fullpics/p${popData.panelNum}-${popData.articleType}-${popData.learnmoreNode.learnmoreType}-${slideIndex+1}.jpg`}
-          alt={popData.learnmoreNode.title} />
+          <motion.img 
+            className="slide-image"
+            // onPan={(e, pointInfo) => { console.log('got img pan') }}
+            // onPan={onSlidePan}
+            alt={popData.learnmoreNode.title} 
+            src={`https://dev.digitalgizmo.com/mural-assets/pops/learnmore/fullpics/p${popData.panelNum}-${popData.articleType}-${popData.learnmoreNode.learnmoreType}-${slideIndex+1}.jpg`}
+          />
 
           <motion.nav 
             className="slide-nav next-slide"
-            key={slideIndex}     
             initial={{ opacity: 1 }}
             animate={{ opacity: 1, transition: {  duration: 0.1 } }}
             exit={{opacity: 0.1, transition: {  duration: 0.1 }

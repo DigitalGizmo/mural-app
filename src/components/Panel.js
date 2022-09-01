@@ -1,5 +1,5 @@
-import React, { useState } from 'react'; // , { useState, useEffect }
-import { useOutletContext, Link } from 'react-router-dom'; // Link, useParams,
+import React, { useState, useCallback } from 'react'; // , { useState, useEffect }
+import { useOutletContext, Link, useNavigate } from 'react-router-dom'; // Link, useParams,
 import Detail from './Detail';
 import Article from './Article';
 import Pop from './pops/Pop';
@@ -14,6 +14,8 @@ const Panel = () => {
   const [showPop, setShowPop] = useState(false);
   const [popData, setPopData] = useState();
   // const [exitComparator, setExitComparator] = useState(1);
+
+  const navigate = useNavigate();
 
   function openPop (popParams) { // panelNum, learnmoreNode
     // setCurrIndex(index);
@@ -36,16 +38,29 @@ const Panel = () => {
       setShowPop(false);
     }
   }
+  const nextPanel = useCallback(() => navigate('/panels/jay-strike', {replace: true}), [navigate]);
+
+  const onPanelPan = (event, info) => {
+    // console.log('info.delta.x: ' + info.delta.x);
+    if (info.delta.x < 0) {
+      setLinkDirection(1);
+      nextPanel();
+    } else {
+      console.log('prev: ')
+    }
+    // : prevPanel()
+    // info.delta.x < 0
+    // ? console.log('next: ')
+    // : console.log('prev: ')
+  }
+ 
 
   return (
     <AnimatePresence initial={false}> 
         <motion.div 
           className="content-area"
           key={chosenPanel.node.slug}
-          // variants={variants}
-          // initial="initial"
-          // animate="animate"
-          // exit="exit"      
+          onPanStart={onPanelPan}
           initial={{ x: linkDirection === 1 ? '100%' : '-100%'}}
           animate={{ x: 0, opacity: 1, transition: {  duration: 0.7 } }}
           // exit={{x: linkDirection === 1 ? '-100%' : '100%', 

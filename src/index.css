@@ -229,6 +229,7 @@ a.more-link {
   grid-template-columns: 8% auto 8%;  
   grid-template-areas: 
     "prev-panel current-panel next-panel";
+  touch-action: none;
 }
 /*.content-area img {
   max-height: 80vh;
@@ -540,4 +541,9 @@ img.slide-arrow {
   position: absolute;
   background-color: #fff;
   left: 0;
+}
+
+.slide-image {
+  touch-action: none;
+  pointer-events: none;
 }
