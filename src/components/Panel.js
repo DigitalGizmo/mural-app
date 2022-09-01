@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'; // , { useState, useEffect }
+import React, { useState, useCallback, useEffect } from 'react'; // , { useState }
 import { useOutletContext, Link, useNavigate } from 'react-router-dom'; // Link, useParams,
 import Detail from './Detail';
 import Article from './Article';
@@ -7,16 +7,27 @@ import {motion, AnimatePresence } from 'framer-motion'; // /dist/framer-motion
 
 const Panel = () => {
   // let params = useParams();
-  const { chosenPanel, contentIndex, onChooseContent, 
-    nextPanelSlug, prevPanelSlug, linkDirection, setLinkDirection,
+  const { chosenPanel, contentIndex, onChooseContent, nextPanelSlug, 
+    prevPanelSlug, linkDirection, setLinkDirection, getSlugFromIndex
   } = useOutletContext();
+  // , currPanelIndex
 
   const [showPop, setShowPop] = useState(false);
   const [popData, setPopData] = useState();
   // const [exitComparator, setExitComparator] = useState(1);
+  // const [panelSlug, setPanelSlug] = useState('labor-day');
+  // const [panelToGoTo, setPanelToGoTo] = useState('jay-strike');
 
   const navigate = useNavigate();
 
+  // Have to useEffect because of closure on setState
+  // https://stackoverflow.com/questions/54069253/usestate-set-method-not-reflecting-change-immediately
+  // useEffect(() => {
+  //   // console.log('direction: ' + direction);
+  //   setPanelSlug(panelToGoTo);
+  // }, [panelToGoTo])
+  
+  
   function openPop (popParams) { // panelNum, learnmoreNode
     // setCurrIndex(index);
     // console.log('popParams.learnmoreNode.title: ' + popParams.learnmoreNode.title);
@@ -38,15 +49,28 @@ const Panel = () => {
       setShowPop(false);
     }
   }
-  const nextPanel = useCallback(() => navigate('/panels/jay-strike', {replace: true}), [navigate]);
+  const goNextPanel = useCallback(() => 
+    navigate(`/panels/${getSlugFromIndex(chosenPanel.node.ordinal)}`, 
+    {replace: true}), [navigate]);
+
+  const goPrevPanel = useCallback(() => 
+    navigate(`/panels/${getSlugFromIndex(chosenPanel.node.ordinal - 2)}`, 
+    {replace: true}), [navigate]);
 
   const onPanelPan = (event, info) => {
     // console.log('info.delta.x: ' + info.delta.x);
     if (info.delta.x < 0) {
-      setLinkDirection(1);
-      nextPanel();
+      if (chosenPanel.node.ordinal < 11) {
+        setLinkDirection(1);
+        // setPanelToGoTo('logging');
+        goNextPanel();
+      }
     } else {
-      console.log('prev: ')
+      if (chosenPanel.node.ordinal > 1){
+        setLinkDirection(0);
+        // console.log('prev: ')
+        goPrevPanel();
+      }
     }
     // : prevPanel()
     // info.delta.x < 0
@@ -111,7 +135,8 @@ const Panel = () => {
               to={`/panels/${nextPanelSlug}`} >
               <img src="https://dev.digitalgizmo.com/mural-assets/panels/panelpics/arrow-next.png" 
                 alt="next arrow" className="arrow"/>
-                {/* debug, exitComparator: {exitComparator.toString() } */}
+                {/* debug,
+                chosenPanel - 1: {chosenPanel.node.ordinal - 1} */}
             </Link>
           }
         </div>

@@ -21,6 +21,8 @@ function PanelParent() {
   const [linkDirection, setLinkDirection] = useState(1);
   // const [pastDirection, setPastDirection] = useState(1);
   // const [exitComparator, setExitComparator] = useState(1);
+
+  // const [currPanelIndex, setCurrPanelIndex] = useState(0);
   
   // const checkDirection = (chosenDirection) => {
   //   // chosenDirection === pastDirection
@@ -49,22 +51,29 @@ function PanelParent() {
     [1,1,1,1,1,1,1,1,1,1,1]
   )
     
-  const calcLinkIndexes = (currPanelIndex) => {
-    console.log('were on panel index: ' + currPanelIndex);
+  const calcLinkIndexes = (panelIndex) => { // currPanelIndex
+    console.log('were on panel index: ' + panelIndex);
     let newLinkIndexes = [];
     for (let i = 0; i < 11; i++){
-      i < currPanelIndex
+      i < panelIndex
       ? newLinkIndexes.push(0)
       : newLinkIndexes.push(1);
     }
     setNavLinkIndexes(newLinkIndexes);
   }
 
+  const getSlugFromIndex = (index) => { 
+
+    return slugs[index];
+  } 
+
+
   // Need to set back to Detail on new page
   // And we should use this opportunity to set direction
   // in mini nav links based on current panel
   useEffect(() => {
     setContentIndex(2);
+    // setCurrPanelIndex(slugs.indexOf(params.panelSlug));
     calcLinkIndexes(slugs.indexOf(params.panelSlug));
 
   }, [params.panelSlug])
@@ -235,6 +244,8 @@ function PanelParent() {
           // isNewDirection: isNewDirection,
           // exitComparator: exitComparator,
           contentIndex: contentIndex, 
+          // currPanelIndex: currPanelIndex,
+          getSlugFromIndex: getSlugFromIndex,
           onChooseContent: onChooseContent  }} 
       />
     </div>
