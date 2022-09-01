@@ -59,19 +59,33 @@ const Panel = () => {
 
   const onPanelPan = (event, info) => {
     // console.log('info.delta.x: ' + info.delta.x);
-    if (info.delta.x < 0) {
-      if (chosenPanel.node.ordinal < 11) {
-        setLinkDirection(1);
-        // setPanelToGoTo('logging');
-        goNextPanel();
-      }
+    console.log('event.target: ' + event.target.className);
+    // console.log('closest content-area: ' + event.target.closest(".content-area").className);
+    // console.log('closest slide-container: ' + event.target.closest(".slide-container").className);
+    // document.querySelector("p").closest(".near.ancestor")
+
+
+    // if (event.target.closest(".slide-container")) {
+    if (event.target.closest(".slimpop-wrapper")) {
+      console.log('pan on slide, ignore');
     } else {
-      if (chosenPanel.node.ordinal > 1){
-        setLinkDirection(0);
-        // console.log('prev: ')
-        goPrevPanel();
+      if (info.delta.x < 0) {
+        if (chosenPanel.node.ordinal < 11) {
+          setLinkDirection(1);
+          // setPanelToGoTo('logging');
+          goNextPanel();
+        }
+      } else {
+        if (chosenPanel.node.ordinal > 1){
+          setLinkDirection(0);
+          // console.log('prev: ')
+          goPrevPanel();
+        }
       }
     }
+
+
+
     // : prevPanel()
     // info.delta.x < 0
     // ? console.log('next: ')

@@ -23,9 +23,12 @@ const Slide = ({popData}) => {
 
   const onSlidePan = (event, info) => {
     console.log('info.delta.x: ' + info.delta.x);
-    info.delta.x < 0
-    ? nextSlide()
-    : prevSlide()
+    // console.log('event.target: ' + event.target.className);
+    // if (event.target.className === 'pop-img') {
+      info.delta.x < 0
+      ? nextSlide()
+      : prevSlide()
+    // }
     // info.delta.x < 0
     // ? console.log('next: ')
     // : console.log('prev: ')
@@ -51,6 +54,8 @@ const Slide = ({popData}) => {
         // exit={{opacity: 0.2, transition: {duration: 0.5}}}
         // onPan={(e, pointInfo) => { console.log('got pan') }}
         onPanStart={onSlidePan}
+        // onPanStart={e => { onSlidePan();}} // e.stopProagation(); 
+        // onClick={e => { e.preventDefault(); onChooseContent(0);}}
       >
         <div className="pop-img">
 
