@@ -134,9 +134,12 @@ cite:before {
   grid-area: msm-link;
 }
 .msm-logo {
-  width: 90px;
+  background-color: #eee;
   height: auto;
+  padding: 4px;
+  width: 90px;
 }
+
 .site-title {
   grid-area: site-title;
   justify-self: center;
