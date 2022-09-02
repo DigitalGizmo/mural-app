@@ -20,13 +20,13 @@ const Article = ({chosenPanel,
     <div className="current-panel-article">
       <nav className="tabs">
         <ul>
-          <li>
-            <a 
+          <li className="selected-article">
+{/*            <a 
               href="/"
               onClick={e => { e.preventDefault(); onChooseContent(0);}}
-            >
-              { introTitle } 
-            </a>
+            >*/}
+              <span>{ introTitle }</span> 
+{/*            </a>*/}
           </li>
           <li>
             <a 

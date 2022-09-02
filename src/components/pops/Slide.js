@@ -119,10 +119,11 @@ const Slide = ({popData}) => {
           <div dangerouslySetInnerHTML={{ __html: popData.learnmoreNode.slideSet.edges[slideIndex].node.caption}}/>
         </div>
       
+      <div className="slide-caption">
         <h4 dangerouslySetInnerHTML={{ __html: popData.learnmoreNode.slideSet.edges[slideIndex].node.title}}
         />    
         <div dangerouslySetInnerHTML={{ __html: popData.learnmoreNode.slideSet.edges[slideIndex].node.narrative}}/>
-
+      </div>
       </motion.div>
     </AnimatePresence>
   )
