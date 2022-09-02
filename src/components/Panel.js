@@ -8,7 +8,7 @@ import {motion, AnimatePresence } from 'framer-motion'; // /dist/framer-motion
 const Panel = () => {
   // let params = useParams();
   const { chosenPanel, contentIndex, onChooseContent, nextPanelSlug, 
-    prevPanelSlug, linkDirection, setLinkDirection, getSlugFromIndex
+    prevPanelSlug, linkDirection, setLinkDirection, getSlugFromIndex,
   } = useOutletContext();
   // , currPanelIndex
 
@@ -66,22 +66,25 @@ const Panel = () => {
 
 
     // if (event.target.closest(".slide-container")) {
-    if (event.target.closest(".slimpop-wrapper")) {
-      console.log('pan on slide, ignore');
+    if (event.target.closest(".slimpop-wrapper") || showPop) {
+      // Don't slide panel when target was slide-show
+      console.log('pan on slide or while pop open, ignore');
     } else {
-      if (info.delta.x < 0) {
-        if (chosenPanel.node.ordinal < 11) {
-          setLinkDirection(1);
-          // setPanelToGoTo('logging');
-          goNextPanel();
+      // if (info.delta.x > info.delta.y) { // pan only if move was horizontal
+        if (info.delta.x < 0) {
+          if (chosenPanel.node.ordinal < 11) {
+            setLinkDirection(1);
+            // setPanelToGoTo('logging');
+            goNextPanel();
+          }
+        } else {
+          if (chosenPanel.node.ordinal > 1){
+            setLinkDirection(0);
+            // console.log('prev: ')
+            goPrevPanel();
+          }
         }
-      } else {
-        if (chosenPanel.node.ordinal > 1){
-          setLinkDirection(0);
-          // console.log('prev: ')
-          goPrevPanel();
-        }
-      }
+      // }
     }
 
 

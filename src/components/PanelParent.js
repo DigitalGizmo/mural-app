@@ -13,44 +13,24 @@ function PanelParent() {
   let params = useParams();
   // console.log(' params.panelSlug' + params.panelSlug)
 
+
   // const [tempSlug, setTempSlug] = useState('child-labor');
   // Hack to get panel index (hence num) without live data
   const slugs = ['apprenticeship', 'child-labor', 'women-textiles', 'secret-ballot', 
   'labor-day', 'logging', 'shoe-strike', 'reform', 'Rosie', 'jay-strike', 'labor-future'];
   
   const [linkDirection, setLinkDirection] = useState(1);
-  // const [pastDirection, setPastDirection] = useState(1);
-  // const [exitComparator, setExitComparator] = useState(1);
-
-  // const [currPanelIndex, setCurrPanelIndex] = useState(0);
-  
-  // const checkDirection = (chosenDirection) => {
-  //   // chosenDirection === pastDirection
-  //   // ? setIsNewDirection(false)
-  //   // : setIsNewDirection(true) 
-  //   chosenDirection === pastDirection
-  //   ? setExitComparator(1)
-  //   : setExitComparator(0) 
-
-
-  //   setPastDirection(chosenDirection);
-  // }
-    
-  // const chooseDirection = (directionIndex) => {
-  //   // checkDirection(directionIndex);
-  //   setLinkDirection(directionIndex)
-  // }
-
   const [contentIndex, setContentIndex] = useState(2);
+  const [navLinkIndexes, setNavLinkIndexes] = useState(
+    [1,1,1,1,1,1,1,1,1,1,1]
+  )
+  // const [showPop, setShowPop] = useState(false);
+    
   const onChooseContent = (contentIndex) => {
     // event.preventDefault();
     setContentIndex(contentIndex);
   }
 
-  const [navLinkIndexes, setNavLinkIndexes] = useState(
-    [1,1,1,1,1,1,1,1,1,1,1]
-  )
-    
   const calcLinkIndexes = (panelIndex) => { // currPanelIndex
     console.log('were on panel index: ' + panelIndex);
     let newLinkIndexes = [];
@@ -63,10 +43,8 @@ function PanelParent() {
   }
 
   const getSlugFromIndex = (index) => { 
-
     return slugs[index];
   } 
-
 
   // Need to set back to Detail on new page
   // And we should use this opportunity to set direction
@@ -246,6 +224,8 @@ function PanelParent() {
           contentIndex: contentIndex, 
           // currPanelIndex: currPanelIndex,
           getSlugFromIndex: getSlugFromIndex,
+          // showPop: showPop,
+          // setShowPop: setShowPop,
           onChooseContent: onChooseContent  }} 
       />
     </div>
