@@ -2,18 +2,15 @@ import React, { useState, useCallback, useEffect } from 'react'; // , { useState
 import { useOutletContext, Link, useNavigate } from 'react-router-dom'; // Link, useParams,
 import Detail from './Detail';
 import Article from './Article';
-import Pop from './pops/Pop';
 import {motion, AnimatePresence } from 'framer-motion'; // /dist/framer-motion
 
 const Panel = () => {
   // let params = useParams();
   const { chosenPanel, contentIndex, onChooseContent, nextPanelSlug, 
     prevPanelSlug, linkDirection, setLinkDirection, getSlugFromIndex,
+    setPopData, showPop, setShowPop
   } = useOutletContext();
   // , currPanelIndex
-
-  const [showPop, setShowPop] = useState(false);
-  const [popData, setPopData] = useState();
   // const [exitComparator, setExitComparator] = useState(1);
   // const [panelSlug, setPanelSlug] = useState('labor-day');
   // const [panelToGoTo, setPanelToGoTo] = useState('jay-strike');
@@ -38,17 +35,6 @@ const Panel = () => {
     setShowPop(true);
   }
 
-  // Prevent click on (non-link) FullEntry from closing window
-  function closePop (event) {
-    // console.log(event.target.className)
-    event.preventDefault()
-    event.stopPropagation()
-    // Close if click was on lightbox (background) or close
-    if (event.target.id === 'slimpop-overlay' ||
-    event.target.id === 'close-link') {
-      setShowPop(false);
-    }
-  }
   const goNextPanel = useCallback(() => 
     navigate(`/panels/${getSlugFromIndex(chosenPanel.node.ordinal)}`, 
     {replace: true}), [navigate]);
@@ -86,16 +72,12 @@ const Panel = () => {
         }
       // }
     }
-
-
-
     // : prevPanel()
     // info.delta.x < 0
     // ? console.log('next: ')
     // : console.log('prev: ')
   }
  
-
   return (
     <AnimatePresence initial={false}> 
         <motion.div 
@@ -159,13 +141,7 @@ const Panel = () => {
             </Link>
           }
         </div>
-
-        { showPop &&
-          <Pop
-            closePop = {closePop}
-            popData = {popData} 
-          />
-        }
+        
       </motion.div> 
     </AnimatePresence>
   )

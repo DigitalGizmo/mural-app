@@ -7,6 +7,7 @@ import {
 } from "@apollo/client"; 
 // import { SetDirectionGlobalContext, GetDirectionGlobalContext } from '../context/GlobalState';
 import {motion, AnimatePresence } from 'framer-motion'; // /dist/framer-motion
+import Pop from './pops/Pop';
 import '../index.css';
 
 function PanelParent() {
@@ -24,8 +25,10 @@ function PanelParent() {
   const [navLinkIndexes, setNavLinkIndexes] = useState(
     [1,1,1,1,1,1,1,1,1,1,1]
   )
-  // const [showPop, setShowPop] = useState(false);
-    
+
+  const [showPop, setShowPop] = useState(false);
+  const [popData, setPopData] = useState();  
+
   const onChooseContent = (contentIndex) => {
     // event.preventDefault();
     setContentIndex(contentIndex);
@@ -46,6 +49,18 @@ function PanelParent() {
     return slugs[index];
   } 
 
+  // Prevent click on (non-link) FullEntry from closing window
+  function closePop (event) {
+    // console.log(event.target.className)
+    event.preventDefault()
+    event.stopPropagation()
+    // Close if click was on lightbox (background) or close
+    if (event.target.id === 'slimpop-overlay' ||
+    event.target.id === 'close-link') {
+      setShowPop(false);
+    }
+  }
+  
   // Need to set back to Detail on new page
   // And we should use this opportunity to set direction
   // in mini nav links based on current panel
@@ -224,10 +239,20 @@ function PanelParent() {
           contentIndex: contentIndex, 
           // currPanelIndex: currPanelIndex,
           getSlugFromIndex: getSlugFromIndex,
-          // showPop: showPop,
-          // setShowPop: setShowPop,
+          setPopData: setPopData,
+          showPop: showPop,
+          closePop: closePop,
+          setShowPop: setShowPop,
           onChooseContent: onChooseContent  }} 
       />
+
+      { showPop &&
+        <Pop
+          closePop = {closePop}
+          popData = {popData} 
+        />
+      }
+
     </div>
   );
 }
