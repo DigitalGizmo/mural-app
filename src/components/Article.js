@@ -20,22 +20,29 @@ const Article = ({chosenPanel,
     <div className="current-panel-article">
       <nav className="tabs">
         <ul>
-          <li className="selected-article">
-{/*            <a 
-              href="/"
-              onClick={e => { e.preventDefault(); onChooseContent(0);}}
-            >*/}
-              <span>{ introTitle }</span> 
-{/*            </a>*/}
-          </li>
-          <li>
-            <a 
-              href="/"
-              onClick={e => { e.preventDefault(); onChooseContent(1);}}
-            >
-              { foreTitle } 
-            </a>
-          </li>
+          { contentIndex === 0
+            ?
+            <li className="selected-article"><span>{ introTitle }</span> </li>
+            :
+            <li>
+              <a  href="/intro"
+                onClick={e => { e.preventDefault(); onChooseContent(0);}}>
+                { introTitle } 
+              </a>
+            </li>
+          }
+          { contentIndex === 1
+            ?
+            <li className="selected-article"><span>{ foreTitle }</span></li>
+            :
+            <li>
+              <a  href="/foreground"
+                onClick={e => { e.preventDefault(); onChooseContent(1);}}>
+                { foreTitle } 
+              </a>
+            </li>
+          }
+
         </ul>
       </nav>
 
