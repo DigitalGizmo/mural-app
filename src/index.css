@@ -545,6 +545,7 @@ img.slide-arrow {
   background-color: #fff;
   left: 0;
   position: absolute;
+  width: 100%;
 }
 
 .slide-image {
