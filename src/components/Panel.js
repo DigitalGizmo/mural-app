@@ -101,7 +101,9 @@ const Panel = () => {
         <motion.div 
           className="content-area"
           key={chosenPanel.node.slug}
-          onPanStart={onPanelPan}
+          // onPanStart={onPanelPanStart}
+          // onPanStart={onPanelPan}
+          // onPanEnd={onPanelPanEnd}
           initial={{ x: linkDirection === 1 ? '100%' : '-100%'}}
           animate={{ x: 0, opacity: 1, transition: {  duration: 0.7 } }}
           // exit={{x: linkDirection === 1 ? '-100%' : '100%', 

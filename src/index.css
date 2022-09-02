@@ -544,6 +544,6 @@ img.slide-arrow {
 }
 
 .slide-image {
-  touch-action: none;
+  touch-action: pan-y;
   pointer-events: none;
 }
