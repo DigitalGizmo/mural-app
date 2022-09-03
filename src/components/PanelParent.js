@@ -169,9 +169,9 @@ function PanelParent() {
       {/* currently wrapper here and also in Panel.js */}
 
       <div className="msm-link">
-        <Link to='/'>
+        <a href="https://mainestatemuseum.org/exhibit/maine-labor-history-mural/">
           <img src="https://dev.digitalgizmo.com/mural-assets/images/msm-logo.svg" alt="Maine State Museum" className="msm-logo"/>
-        </Link>
+        </a>
       </div>
 
       <div className="site-title">

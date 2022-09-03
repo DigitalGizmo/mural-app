@@ -548,10 +548,10 @@ img.slide-arrow {
   width: 100%;
 }
 
-.slide-image {
+/* .slide-image {
   touch-action: pan-y;
   pointer-events: none;
-}
+} */
 .slide-caption {
   padding:  0 2em;
 }
