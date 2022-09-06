@@ -33,6 +33,12 @@ const Home = () => {
     <main className="home"> {/* Return has to return one overarching element  */}
 
     <header>
+      <div className="home-msm-link">
+        <a href="https://mainestatemuseum.org/exhibit/maine-labor-history-mural/">
+          <img src="https://dev.digitalgizmo.com/mural-assets/images/msm-logo.svg" alt="Maine State Museum" className="msm-logo"/>
+        </a>
+      </div>
+
       <h1>Maine Labor Mural</h1>
       <p>The Maine Labor Mural depicts scenes of the state&rsquo;s labor history in an effort to honor the men and women who built Maine.</p>
       <p className="prompt">Tap/click a panel to learn more</p>
