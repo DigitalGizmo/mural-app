@@ -54,7 +54,7 @@ const Article = ({chosenPanel,
       <div className="panel-image">
 
       <img alt={`panel: ${ articleInfo.title } `}
-          src={`https://msm-mural.digitalgizmo.com/static/panels/articlepics/p${panelNum}-${articleInfo.articleType}.jpg`}/>
+          src={`https://dev.digitalgizmo.com/mural-assets/panels/articlepics/p${panelNum}-${articleInfo.articleType}.jpg`}/>
         <div 
           dangerouslySetInnerHTML={caption()} 
           className="prompt"/>

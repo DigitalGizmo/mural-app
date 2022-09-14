@@ -3,15 +3,15 @@ import { useOutletContext, Link, useNavigate } from 'react-router-dom'; // Link,
 import Detail from './Detail';
 import Article from './Article';
 import {motion, AnimatePresence } from 'framer-motion'; // /dist/framer-motion
+import { useDrag } from '@use-gesture/react';
 
 const Panel = () => {
   // let params = useParams();
   const { chosenPanel, contentIndex, onChooseContent, nextPanelSlug, 
     prevPanelSlug, linkDirection, setLinkDirection, getSlugFromIndex,
-    setPopData, showPop, setShowPop
+    setPopData, setShowPop
   } = useOutletContext();
-  // , currPanelIndex
-  // const [exitComparator, setExitComparator] = useState(1);
+  // , currPanelIndex, showPop, 
   // const [panelSlug, setPanelSlug] = useState('labor-day');
   // const [panelToGoTo, setPanelToGoTo] = useState('jay-strike');
 
@@ -23,7 +23,36 @@ const Panel = () => {
   //   // console.log('direction: ' + direction);
   //   setPanelSlug(panelToGoTo);
   // }, [panelToGoTo])
+
+  const bind = useDrag(({ down, target,  movement: [mx,my]}) => { 
+    if (!down) {
+      console.log('panel mx, my: ' + mx +', ' + my + ' down: ' + down.toString());
+      console.log('target: ' + target.tagName);
+
+      // if (target.closest(".slimpop-wrapper") || showPop) {
+      if (target.tagName === "A") {
+        // Don't slide panel when target was slide-show
+        console.log('click on link, ignore');
+      } else {
+        if (Math.abs(mx) > Math.abs(my)) { // pan only if move was horizontal
+          if (mx < -1) {
+            if (chosenPanel.node.ordinal < 11) {
+              setLinkDirection(1);
+              // console.log('dir 1, mx: ' + mx);
+              goNextPanel();
+            }
+          } else {
+            if (chosenPanel.node.ordinal > 1){
+              setLinkDirection(0);
+              // console.log('dir 0, mx: ' + mx)
+              goPrevPanel();
+            }
+          }
+        }
+      }
   
+    }
+  })
   
   function openPop (popParams) { // panelNum, learnmoreNode
     // setCurrIndex(index);
@@ -42,56 +71,19 @@ const Panel = () => {
   const goPrevPanel = useCallback(() => 
     navigate(`/panels/${getSlugFromIndex(chosenPanel.node.ordinal - 2)}`, 
     {replace: true}), [navigate]);
-
-  const onPanelPan = (event, info) => {
-    // console.log('info.delta.x: ' + info.delta.x);
-    console.log('event.target: ' + event.target.className);
-    // console.log('closest content-area: ' + event.target.closest(".content-area").className);
-    // console.log('closest slide-container: ' + event.target.closest(".slide-container").className);
-    // document.querySelector("p").closest(".near.ancestor")
-
-
-    // if (event.target.closest(".slide-container")) {
-    if (event.target.closest(".slimpop-wrapper") || showPop) {
-      // Don't slide panel when target was slide-show
-      console.log('pan on slide or while pop open, ignore');
-    } else {
-      // if (info.delta.x > info.delta.y) { // pan only if move was horizontal
-        if (info.delta.x < 0) {
-          if (chosenPanel.node.ordinal < 11) {
-            setLinkDirection(1);
-            // setPanelToGoTo('logging');
-            goNextPanel();
-          }
-        } else {
-          if (chosenPanel.node.ordinal > 1){
-            setLinkDirection(0);
-            // console.log('prev: ')
-            goPrevPanel();
-          }
-        }
-      // }
-    }
-    // : prevPanel()
-    // info.delta.x < 0
-    // ? console.log('next: ')
-    // : console.log('prev: ')
-  }
  
   return (
     <AnimatePresence initial={false}> 
         <motion.div 
           className="content-area"
           key={chosenPanel.node.slug}
-          // onPanStart={onPanelPanStart}
-          // onPanStart={onPanelPan}
-          // onPanEnd={onPanelPanEnd}
           initial={{ x: linkDirection === 1 ? '100%' : '-100%'}}
-          animate={{ x: 0, opacity: 1, transition: {  duration: 0.7 } }}
+          animate={{ x: 0, opacity: 1, transition: {  duration: 1.7 } }}
           // exit={{x: linkDirection === 1 ? '-100%' : '100%', 
           //   transition: {  duration: 1 }
           // }}
-          exit={{opacity: 0.2, transition: {duration: 0.5}}}
+          exit={{opacity: 0.2, transition: {duration: 1.5}}}
+          {...bind()}
         >
       
         <div className="prev-panel">
