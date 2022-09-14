@@ -264,7 +264,7 @@ a.more-link {
   grid-template-columns: 8% auto 8%;  
   grid-template-areas: 
     "prev-panel current-panel next-panel";
-  touch-action: none;
+  /* touch-action: none; */
 }
 
 .current-panel {
@@ -512,6 +512,7 @@ article.article-body {
   margin-top: 0.8em;
   max-height: 500px;
   max-width: 90%;
+  pointer-events: none;
 }
 
 .pop-img p {
@@ -583,12 +584,9 @@ img.slide-arrow {
   left: 0;
   position: absolute;
   width: 100%;
+  touch-action: pan-y;
 }
 
-/* .slide-image {
-  touch-action: pan-y;
-  pointer-events: none;
-} */
 .slide-caption {
   padding:  0 2em;
 }

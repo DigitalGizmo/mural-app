@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {motion, AnimatePresence } from 'framer-motion';
+import { useDrag } from '@use-gesture/react';
 
 const Slide = ({popData}) => {
   const [slideIndex, setSlideIndex] = useState(0);
@@ -7,6 +8,18 @@ const Slide = ({popData}) => {
   const [direction, setDirection] = useState(1); 
   // let panStart = 0;
   
+  const bind = useDrag(({ down,  movement: [mx,my]}) => { // offset: [ox,oy]
+    if (!down) {
+      console.log('movement mx, y: ' + mx +', ' + my + ' down: ' + down.toString());
+      // if (Math.abs(mx) > 10) {
+      if (Math.abs(mx) > Math.abs(my)) {
+        mx < 0
+        ? nextSlide()
+        : prevSlide()
+      }
+    }
+  })
+
   const nextSlide = (event) => {
     // event.preventDefault();
     if (slideIndex < (popData.learnmoreNode.slideSet.edges.length -1)){
@@ -20,28 +33,6 @@ const Slide = ({popData}) => {
       setDirection(0);
       setCurrSlideIndex(slideIndex - 1);
     }
-  }
-
-  // const onSlidePanStart = (event, info) => {
-  //   panStart = 
-  // }
-
-  const onSlidePanEnd = (event, info) => {
-    console.log('info.delta.x: ' + info.delta.x);
-    console.log('info.delta.y: ' + info.delta.y);
-    // console.log('event.target: ' + event.target.className);
-
-    if (Math.abs(info.offset.x) > Math.abs(info.offset.y)) {
-
-      // info.offset.x < 0
-      // ? nextSlide()
-      // : prevSlide()
-
-    }
-
-    // info.delta.x < 0
-    // ? console.log('next: ')
-    // : console.log('prev: ')
   }
 
   // Have to useEffect because of closure on setState
@@ -62,13 +53,7 @@ const Slide = ({popData}) => {
           transition: {  duration: 1 }
         }}
         // exit={{opacity: 0.2, transition: {duration: 0.5}}}
-        // onPan={(e, pointInfo) => { console.log('got pan') }}
-
-        // onPanStart={onSlidePanStart}
-        onPanEnd={onSlidePanEnd}
-
-        // onPanStart={e => { onSlidePan();}} // e.stopProagation(); 
-        // onClick={e => { e.preventDefault(); onChooseContent(0);}}
+        {...bind()}
       >
         <div className="pop-img">
 

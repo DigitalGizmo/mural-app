@@ -24,8 +24,8 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <BrowserRouter basename='/labor-mural'>
-      {/* <BrowserRouter> */}
+      {/* <BrowserRouter basename='/labor-mural'> */}
+      <BrowserRouter>
       {/* <GlobalProvider> */}
           <Routes>
             <Route path='/' element={<Home />} />
