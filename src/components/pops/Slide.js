@@ -8,9 +8,10 @@ const Slide = ({popData}) => {
   const [direction, setDirection] = useState(1); 
   // let panStart = 0;
   
-  const bind = useDrag(({ down,  movement: [mx,my]}) => { // offset: [ox,oy]
+  const bindSlide = useDrag(({ down, event, movement: [mx,my]}) => { // offset: [ox,oy]
     if (!down) {
       console.log('movement mx, y: ' + mx +', ' + my + ' down: ' + down.toString());
+      event.stopPropagation()
       // if (Math.abs(mx) > 10) {
       if (Math.abs(mx) > Math.abs(my)) {
         mx < 0
@@ -53,7 +54,7 @@ const Slide = ({popData}) => {
           transition: {  duration: 1 }
         }}
         // exit={{opacity: 0.2, transition: {duration: 0.5}}}
-        {...bind()}
+        {...bindSlide()}
       >
         <div className="pop-img">
 

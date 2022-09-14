@@ -27,21 +27,26 @@ const Panel = () => {
   const bind = useDrag(({ down, target,  movement: [mx,my]}) => { 
     if (!down) {
       console.log('panel mx, my: ' + mx +', ' + my + ' down: ' + down.toString());
-      console.log('target: ' + target.tagName);
+      // console.log('target: ' + target.tagName);
+
+      console.log('panel click on tagName: ' + target.tagName +
+      ' or class: ' + target.parentNode.className);
+      // ' or class: ' + target.closest(".p÷op-item").className);
 
       // if (target.closest(".slimpop-wrapper") || showPop) {
-      if (target.tagName === "A") {
+      if (target.tagName === "A" || 
+        target.parentNode.className === "pop_item") {
         // Don't slide panel when target was slide-show
-        console.log('click on link, ignore');
+        console.log('got to ignore ');
       } else {
         if (Math.abs(mx) > Math.abs(my)) { // pan only if move was horizontal
-          if (mx < -1) {
+          if (mx < -10) {
             if (chosenPanel.node.ordinal < 11) {
               setLinkDirection(1);
               // console.log('dir 1, mx: ' + mx);
               goNextPanel();
             }
-          } else {
+          } else if (mx > 10) {
             if (chosenPanel.node.ordinal > 1){
               setLinkDirection(0);
               // console.log('dir 0, mx: ' + mx)
