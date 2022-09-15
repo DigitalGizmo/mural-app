@@ -127,8 +127,10 @@ cite:before {
 
 /*small display*/
 .wrapper {
+  left: 0;
+  position: fixed;
   display: grid;
-  touch-action: pan-y;
+  touch-action: none;
   grid-template-areas:
    "msm-link site-title"
    "panel-nav panel-nav"
@@ -139,6 +141,8 @@ cite:before {
 /*large display*/
 @media only screen and (min-width: 800px)   {
   .wrapper {
+    left: 0;
+    position: fixed;
     grid-template-columns: 220px auto 220px;
     grid-template-areas:
       "msm-link site-title panel-nav"

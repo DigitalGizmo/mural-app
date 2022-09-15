@@ -166,7 +166,6 @@ function PanelParent() {
 
   return (
     <div className="wrapper"> 
-      {/* currently wrapper here and also in Panel.js */}
 
       <div className="msm-link">
         <a href="https://mainestatemuseum.org/exhibit/maine-labor-history-mural/">
