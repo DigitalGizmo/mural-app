@@ -24,13 +24,22 @@ const Panel = () => {
   //   setPanelSlug(panelToGoTo);
   // }, [panelToGoTo])
 
-  const bind = useDrag(({ down, target,  movement: [mx,my]}) => { 
-    if (!down) {
-      console.log('panel mx, my: ' + mx +', ' + my + ' down: ' + down.toString());
-      // console.log('target: ' + target.tagName);
+  const bind = useDrag(({ down, target, movement: [mx,my],
+    cancel, elapsedTime}) => { 
 
-      console.log('panel click on tagName: ' + target.tagName +
-      ' or class: ' + target.parentNode.className);
+      // cancel, elapseTime
+
+      console.log('panel mx, my: ' + mx +', ' + my + ' down: ' + down.toString());
+
+    // if (!down) {
+    // if (elapsedTime > 30) {
+    if (Math.abs(mx) < 20) {
+      // console.log('panel mx, my: ' + mx +', ' + my + ' down: ' + down.toString());
+      // console.log('target: ' + target.tagName);
+      // console.log('time: ' + elapsedTime);
+
+      // console.log('panel click on tagName: ' + target.tagName +
+      // ' or class: ' + target.parentNode.className);
       // ' or class: ' + target.closest(".p÷op-item").className);
 
       // if (target.closest(".slimpop-wrapper") || showPop) {
@@ -45,12 +54,16 @@ const Panel = () => {
               setLinkDirection(1);
               // console.log('dir 1, mx: ' + mx);
               goNextPanel();
+              cancel();
+              return;
             }
           } else if (mx > 10) {
             if (chosenPanel.node.ordinal > 1){
               setLinkDirection(0);
               // console.log('dir 0, mx: ' + mx)
               goPrevPanel();
+              cancel();
+              return;
             }
           }
         }

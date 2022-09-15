@@ -75,7 +75,7 @@ const Slide = ({popData}) => {
             }
           </motion.nav>
 
-          <motion.img 
+          <img 
             className="slide-image"
             // onPan={(e, pointInfo) => { console.log('got img pan') }}
             // onPan={onSlidePan}
@@ -102,14 +102,25 @@ const Slide = ({popData}) => {
 
           {/* title is included in the caption */}
 
-          <div dangerouslySetInnerHTML={{ __html: popData.learnmoreNode.slideSet.edges[slideIndex].node.caption}}/>
+          <div dangerouslySetInnerHTML={{ __html: 
+            popData.learnmoreNode.slideSet.edges[slideIndex].node.caption}}/>
         </div>
       
-      <div className="slide-caption">
-        <h4 dangerouslySetInnerHTML={{ __html: popData.learnmoreNode.slideSet.edges[slideIndex].node.title}}
-        />    
-        <div dangerouslySetInnerHTML={{ __html: popData.learnmoreNode.slideSet.edges[slideIndex].node.narrative}}/>
-      </div>
+        <motion.div 
+          className="slide-caption"
+          key={popData.learnmoreNode.slideSet.edges[slideIndex].node.title}
+          initial={{ opacity: 0.2}}
+          animate={{ opacity: 1}}
+          exit={{ opacity: 0.2}}
+          transition={{duration: 0.7}}
+        >  
+          <h4 dangerouslySetInnerHTML={{ __html: 
+            popData.learnmoreNode.slideSet.edges[slideIndex].node.title}}
+          />    
+          <div dangerouslySetInnerHTML={{ __html: 
+            popData.learnmoreNode.slideSet.edges[slideIndex].node.narrative}}
+          />
+        </motion.div>
       </motion.div>
     </AnimatePresence>
   )
