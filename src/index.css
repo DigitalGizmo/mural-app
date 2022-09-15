@@ -128,9 +128,9 @@ cite:before {
 /*small display*/
 .wrapper {
   left: 0;
-  position: fixed;
+  /* position: fixed; */
   display: grid;
-  touch-action: none;
+  touch-action: pan-y;
   grid-template-areas:
    "msm-link site-title"
    "panel-nav panel-nav"
@@ -595,4 +595,29 @@ img.slide-arrow {
 
 .slide-caption {
   padding:  0 2em;
+  min-height: 100px;
+}
+
+.credits {
+  text-align: left;
+}
+
+.credits p {
+    margin: 0.8 0 0 0;
+    margin-block-end: 0.2em;
+    line-height: 1.2
+}
+
+.credits ul {
+  /* margin: 2 0 0.8 0; */
+  padding-top: 0em;
+}
+
+.credits li {
+  line-height: 1.2;
+}
+
+.with-bullets {
+  list-style-type: disc; 
+  list-style-position: inside; 
 }

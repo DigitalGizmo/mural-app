@@ -16,6 +16,7 @@ const Panel = () => {
   // const [panelToGoTo, setPanelToGoTo] = useState('jay-strike');
 
   const navigate = useNavigate();
+  const [numChanges, setNumChanges] = useState(0);
 
   // Have to useEffect because of closure on setState
   // https://stackoverflow.com/questions/54069253/usestate-set-method-not-reflecting-change-immediately
@@ -30,10 +31,13 @@ const Panel = () => {
       // cancel, elapseTime
 
       console.log('panel mx, my: ' + mx +', ' + my + ' down: ' + down.toString());
+    if (down) {
+      // ignore
+      setNumChanges(0);
 
-    // if (!down) {
+    } else {
     // if (elapsedTime > 30) {
-    if (Math.abs(mx) < 20) {
+    // if (Math.abs(mx) < 20) {
       // console.log('panel mx, my: ' + mx +', ' + my + ' down: ' + down.toString());
       // console.log('target: ' + target.tagName);
       // console.log('time: ' + elapsedTime);
@@ -49,21 +53,30 @@ const Panel = () => {
         console.log('got to ignore ');
       } else {
         if (Math.abs(mx) > Math.abs(my)) { // pan only if move was horizontal
-          if (mx < -10) {
+          if (mx < -1) {
             if (chosenPanel.node.ordinal < 11) {
-              setLinkDirection(1);
-              // console.log('dir 1, mx: ' + mx);
-              goNextPanel();
-              cancel();
-              return;
+              // console.log('numChanges: ' + numChanges);
+              if (numChanges < 1) {
+                setLinkDirection(1);
+                // console.log('dir 1, mx: ' + mx);
+                goNextPanel();
+                setNumChanges(numChanges + 1);
+                cancel();
+                return;
+
+              }
             }
-          } else if (mx > 10) {
+          } else if (mx > 1) {
             if (chosenPanel.node.ordinal > 1){
-              setLinkDirection(0);
-              // console.log('dir 0, mx: ' + mx)
-              goPrevPanel();
-              cancel();
-              return;
+              if (numChanges < 1) {
+
+                setLinkDirection(0);
+                // console.log('dir 0, mx: ' + mx)
+                goPrevPanel();
+                setNumChanges(numChanges + 1);
+                cancel();
+                return;
+              }
             }
           }
         }
@@ -96,11 +109,11 @@ const Panel = () => {
           className="content-area"
           key={chosenPanel.node.slug}
           initial={{ x: linkDirection === 1 ? '100%' : '-100%'}}
-          animate={{ x: 0, opacity: 1, transition: {  duration: 1.7 } }}
+          animate={{ x: 0, opacity: 1, transition: {  duration: 0.7 } }}
           // exit={{x: linkDirection === 1 ? '-100%' : '100%', 
           //   transition: {  duration: 1 }
           // }}
-          exit={{opacity: 0.2, transition: {duration: 1.5}}}
+          exit={{opacity: 0.2, transition: {duration: 0.5}}}
           {...bind()}
         >
       
