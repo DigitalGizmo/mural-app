@@ -35,7 +35,7 @@ function PanelParent() {
   }
 
   const calcLinkIndexes = (panelIndex) => { // currPanelIndex
-    console.log('were on panel index: ' + panelIndex);
+    // console.log('we are on panel index: ' + panelIndex);
     let newLinkIndexes = [];
     for (let i = 0; i < 11; i++){
       i < panelIndex
@@ -166,6 +166,7 @@ function PanelParent() {
 
   return (
     <div className="wrapper"> 
+
 
       <div className="msm-link">
         <a href="https://mainestatemuseum.org/exhibit/maine-labor-history-mural/">

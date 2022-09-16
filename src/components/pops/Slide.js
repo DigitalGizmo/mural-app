@@ -10,7 +10,7 @@ const Slide = ({popData}) => {
   
   const bindSlide = useDrag(({ down, event, movement: [mx,my]}) => { // offset: [ox,oy]
     if (!down) {
-      console.log('movement mx, y: ' + mx +', ' + my + ' down: ' + down.toString());
+      // console.log('movement mx, y: ' + mx +', ' + my + ' down: ' + down.toString());
       event.stopPropagation()
       // if (Math.abs(mx) > 10) {
       if (Math.abs(mx) > Math.abs(my)) {
@@ -47,7 +47,13 @@ const Slide = ({popData}) => {
     <AnimatePresence initial={false}>
       <motion.div
         className="slide-container"
-        key={slideIndex}     
+        key={slideIndex}    
+        
+        initial={{  opacity: 0, transition: {  duration: 1 } }}
+        animate={{ opacity: 1, transition: {  duration: 1 } }}
+        exit={{ opacity: 0, transition: {  duration: 1 }
+        }}
+
         {...bindSlide()}          
       >
         <motion.div 
@@ -57,7 +63,7 @@ const Slide = ({popData}) => {
           exit={{x: direction === 1 ? '-100%' : '100%', 
             transition: {  duration: 1 }
           }}
-          // exit={{opacity: 0.2, transition: {duration: 0.5}}}
+          // XXexit={{opacity: 0.2, transition: {duration: 0.5}}}
         >
 
           <motion.nav 

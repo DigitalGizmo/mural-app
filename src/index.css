@@ -612,13 +612,9 @@ img.slide-arrow {
 .credits ul {
   /* margin: 2 0 0.8 0; */
   padding-top: 0em;
-}
-
-.credits li {
-  line-height: 1.2;
-}
-
-.with-bullets {
   list-style-type: disc; 
   list-style-position: inside; 
+}
+.credits li {
+  line-height: 1.2;
 }

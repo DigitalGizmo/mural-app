@@ -25,32 +25,17 @@ const Panel = () => {
   //   setPanelSlug(panelToGoTo);
   // }, [panelToGoTo])
 
-  const bind = useDrag(({ down, target, movement: [mx,my],
-    cancel, elapsedTime}) => { 
-
-      // cancel, elapseTime
-
-      console.log('panel mx, my: ' + mx +', ' + my + ' down: ' + down.toString());
+  const bind = useDrag(({ down, target, movement: [mx,my], cancel}) => { 
+    // console.log('panel mx, my: ' + mx +', ' + my + ' down: ' + down.toString());
     if (down) {
       // ignore
       setNumChanges(0);
-
     } else {
-    // if (elapsedTime > 30) {
-    // if (Math.abs(mx) < 20) {
-      // console.log('panel mx, my: ' + mx +', ' + my + ' down: ' + down.toString());
-      // console.log('target: ' + target.tagName);
-      // console.log('time: ' + elapsedTime);
 
-      // console.log('panel click on tagName: ' + target.tagName +
-      // ' or class: ' + target.parentNode.className);
-      // ' or class: ' + target.closest(".p÷op-item").className);
-
-      // if (target.closest(".slimpop-wrapper") || showPop) {
       if (target.tagName === "A" || 
         target.parentNode.className === "pop_item") {
         // Don't slide panel when target was slide-show
-        console.log('got to ignore ');
+        // console.log('got to ignore ');
       } else {
         if (Math.abs(mx) > Math.abs(my)) { // pan only if move was horizontal
           if (mx < -1) {
@@ -88,9 +73,9 @@ const Panel = () => {
   function openPop (popParams) { // panelNum, learnmoreNode
     // setCurrIndex(index);
     // console.log('popParams.learnmoreNode.title: ' + popParams.learnmoreNode.title);
-    console.log('got to openPop');
+    // console.log('got to openPop');
     setPopData(popParams)
-    console.log('popData.panelNum: ' + popParams.panelNum);
+    // console.log('popData.panelNum: ' + popParams.panelNum);
     // console.log('popParams.learnmoreNode.title: ' + popParams.learnmoreNode.title);
     setShowPop(true);
   }
