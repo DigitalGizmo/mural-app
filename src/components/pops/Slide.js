@@ -48,23 +48,15 @@ const Slide = ({popData}) => {
       <motion.div
         className="slide-container"
         key={slideIndex}    
-        
-        initial={{  opacity: 0, transition: {  duration: 1 } }}
-        animate={{ opacity: 1, transition: {  duration: 1 } }}
-        exit={{ opacity: 0, transition: {  duration: 1 }
+        initial={{ x: direction === 1 ? '100%' : '-100%'}}
+        animate={{ x: 0, opacity: 1, transition: {  duration: 1 } }}
+        exit={{x: direction === 1 ? '-100%' : '100%', 
+          transition: {  duration: 1 }
         }}
-
-        {...bindSlide()}          
+        // exit={{opacity: 0.2, transition: {duration: 0.5}}}
+        {...bindSlide()}     
       >
-        <motion.div 
-          className="pop-img"
-          initial={{ x: direction === 1 ? '100%' : '-100%'}}
-          animate={{ x: 0, opacity: 1, transition: {  duration: 1 } }}
-          exit={{x: direction === 1 ? '-100%' : '100%', 
-            transition: {  duration: 1 }
-          }}
-          // XXexit={{opacity: 0.2, transition: {duration: 0.5}}}
-        >
+        <div className="pop-img">
 
           <motion.nav 
             className="slide-nav prev-slide"
@@ -112,23 +104,16 @@ const Slide = ({popData}) => {
 
           <div dangerouslySetInnerHTML={{ __html: 
             popData.learnmoreNode.slideSet.edges[slideIndex].node.caption}}/>
-        </motion.div>
       
-        <motion.div 
-          className="slide-caption"
-          key={popData.learnmoreNode.slideSet.edges[slideIndex].node.title}
-          initial={{ opacity: 0}}
-          animate={{ opacity: 1}}
-          exit={{ opacity: 0}}
-          transition={{duration: 0.7}}
-        >  
+
           <h4 dangerouslySetInnerHTML={{ __html: 
             popData.learnmoreNode.slideSet.edges[slideIndex].node.title}}
-          />    
+            />    
           <div dangerouslySetInnerHTML={{ __html: 
             popData.learnmoreNode.slideSet.edges[slideIndex].node.narrative}}
-          />
-        </motion.div>
+            />
+
+        </div>
       </motion.div>
     </AnimatePresence>
   )
