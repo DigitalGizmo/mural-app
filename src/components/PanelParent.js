@@ -169,7 +169,7 @@ function PanelParent() {
 
 
       <div className="msm-link">
-        <a href="https://mainestatemuseum.org/exhibit/maine-labor-history-mural/">
+        <a href="https://mainestatemuseum.org/exhibit/maine-labor-mural/">
           <img src="https://dev.digitalgizmo.com/mural-assets/images/msm-logo.svg" alt="Maine State Museum" className="msm-logo"/>
         </a>
       </div>
